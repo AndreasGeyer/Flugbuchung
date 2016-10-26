@@ -1,0 +1,9 @@
+drop table buchung;
+drop table sitzplatz;
+drop table angebot;
+drop table flug;
+drop table zusatzleistung;
+drop table flugzeugtyp;
+drop table fluggesellschaft;
+drop table flughafen;
+drop table kunde;
