@@ -1,0 +1,113 @@
+header{
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  left: 0px;
+  bottom 0px;
+  border-bottom: solid 5px grey;
+}
+header > button{
+  height: 100%;
+  width: 30%;
+}
+
+header > nav{
+  position:absolute;
+  right :0px;
+  bottom: 0px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+}
+
+header > nav > button{
+  flex:1;
+  height: 100%;
+  background-color: white;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px 10px 0px 0px;
+  
+}
+
+/* Rundet beim letzten Navigationsbutton die obere rechte Ecke nicht ab */
+header > nav > button:last-of-type{
+  border-radius: 10px 0px 0px 0px;
+}
+
+header > nav button:hover, header > nav > button#userButton:hover{
+  background-color:#5f5f5f;
+  color: white;
+}
+
+
+
+
+header > nav #userButton{
+  background-color: #f3f3f3;
+  width:20%;
+}
+
+header > nav #userButton > div{
+  float: left;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 20px;
+  max-width: 40%;
+}
+header > nav #userButton > img{
+  border-radius: 80px;
+  margin: 10px;
+  float: right;
+}
+
+
+header > #popupUserFenster.anmeldenAktiviert, header > #popupUserFenster.userAktiviert{
+  position: absolute;
+  background-color: white;;
+  right:0px;
+  border: solid grey 5px;
+  border-radius : 0px 0px 0px 20px;
+  padding: 20px;
+  background-color: #F3F3F3;
+  border-right: none;
+  
+}
+
+header > #popupUserFenster.anmeldenAktiviert button{
+  border: solid black 2px;
+  border-radius: 5px;
+  background-color: orange;
+  font-weight: bold;
+  padding: 5px;
+  width: 100%;
+  font-size: 20px;
+}
+header > #popupUserFenster.anmeldenAktiviert button:hover{
+  background-color: darkorange;
+}
+
+header > #popupUserFenster.anmeldenAktiviert input{
+  width: 300px; 
+}
+
+header > #popupUserFenster.userAktiviert{
+  width: 300px;
+}
+header > #popupUserFenster.userAktiviert button{
+  border: solid black 2px;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: bold;
+  padding: 5px;
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+header > #popupUserFenster.userAktiviert button:first-of-type{
+  margin-top: 0px;
+}

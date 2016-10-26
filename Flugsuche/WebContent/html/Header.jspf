@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; utf-8"
+    pageEncoding="utf-8"%>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../style/header.css" />
+	<script type="text/javascript" src="../js/header.js"></script>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+</head>
+
+<header>
+	<button>THI Flugsuche</button>
+	<nav>
+		<button>Startseite</button>
+		<button>Flugsuche</button>
+		<button>Angebote</button>
+		<!-- Hier muss Cookie Management eingefügt werden -->
+		<c:choose>
+			
+			<c:when test="${2 == 1}">
+				<button id="userButton" onclick="anmeldenFenster()">Anmelden</button>
+			</c:when>
+			<c:otherwise>
+				<button id="userButton" onclick="userFenster()">
+					<div>
+						<p>Kundennr.</p>
+						<!-- Mit 8 Stellen (führenden Nullen) aus der DB hohlen -->
+						<p>12345678</p>
+					</div>
+					<!-- Bild aus der Datenbankholen, ansonsten Standardbild (Facebook) einfügen -->
+					<img src="../img/Andi201605_25.JPG"  width="80" height="80" />
+				</button>
+			</c:otherwise>
+		</c:choose>
+	</nav>
+	<div id="popupUserFenster"></div>
+</header>
