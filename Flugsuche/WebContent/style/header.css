@@ -1,13 +1,4 @@
-header{
-  height: 100px;
-  width: 100%;
-  background-color: white;
-  position: fixed;
-  left: 0px;
-  bottom 0px;
-  border-bottom: solid 5px grey;
-  z-index: 100;
-}
+
 header > button{
   height: 100%;
   width: 30%;
@@ -17,6 +8,8 @@ button#logo{
 	background-image: url("../img/Logo.jpg");
 	background-size: 100% 100%;
 	border: none;
+  height: 100%;
+  width: 30%;
 }
 
 header > nav{
@@ -28,7 +21,7 @@ header > nav{
   display: flex;
 }
 
-header > nav > button{
+header > nav > button, header > nav > a > button{
   flex:1;
   height: 100%;
   background-color: white;
@@ -115,6 +108,6 @@ header > #popupUserFenster.userAktiviert button{
   margin-top: 10px;
 }
 
-header > #popupUserFenster.userAktiviert button:first-of-type{
+header > #popupUserFenster.userAktiviert > button:first-of-type{
   margin-top: 0px;
 }

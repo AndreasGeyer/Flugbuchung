@@ -22,7 +22,7 @@ function userFenster(){
 	}else{
 		var htmlpart = '';
 		htmlpart += '<button>Meine Flüge</button>';
-		htmlpart += '<button>Mein Profil</button>';
+		htmlpart += '<a href="User.jsp"><button>Mein Profil</button></a>';
 		htmlpart += '<button>Ausloggen</button>';
 		
 		document.getElementById("popupUserFenster").innerHTML = htmlpart;

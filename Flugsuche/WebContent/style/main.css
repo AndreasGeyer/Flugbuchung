@@ -10,6 +10,36 @@ body{
   box-sizing: border-box;
 }	
 
+
+header{
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  left: 0px;
+  bottom 0px;
+  border-bottom: solid 5px grey;
+  z-index: 100;
+}
+
+body > div#main{
+	position: absolute;
+	width: 100%;
+	margin: 0px;
+	top: 100px;
+}
+
+footer{
+	background-color: whitesmoke;
+	position: fixed;
+	bottom: 0;
+	border: none;
+	border-top: solid black 3px;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	
+}
 button.submitButton{
 	background-color: orange;
 	border: solid black 2px;

@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>
-		<div>
+		<div id="main">
 			<article id="Suche">
 				<h1>Flugsuche</h1>
 				<div>
@@ -47,5 +47,6 @@
 				</div>
 			</article>
 		</div>		
+		<%@ include file="Footer.jspf" %>
 	</body>
 </html>
