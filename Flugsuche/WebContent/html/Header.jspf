@@ -8,7 +8,7 @@
 </head>
 
 <header>
-	<button>THI Flugsuche</button>
+	<button id="logo"></button>
 	<nav>
 		<button>Startseite</button>
 		<button>Flugsuche</button>

@@ -8,31 +8,29 @@ body > div{
 body > div > article{
 	position: relative;
 	width: 100%;
-	padding-top: 50px;
-	padding-bottom: 180px;
 }
 
-body > div > article:last-of-type{
-  padding-bottom: 100px;
-}
-body > div > article:first-of-type{
-	padding-top:180px;
-}
-body > div > article:nth-of-type(odd){
-  background-image: url("../img/backgrounds/startseite_banner1.jpg");	
+
+
+article#Suche{
+//	padding-top:180px;
+	padding-bottom: 180px;
+	background-image: url("../img/backgrounds/startseite_banner1.jpg");	
 	background-size: 100% 100%;
 }
-body > div > article:nth-of-type(even){
-	background-color: #f3f3f3;
+article#Suche h1, article#Angebote h1{
+	background-color: white;
+	font-size: 40px;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 20px;
+
 }
 
-body > div > article h1{
-	margin: 0px;
-}
-
-body > div > article > div{
-  margin-left:10%;
+article#Suche > div{
+	margin-left:10%;
 	margin-right: 25%;
+	margin-top: 180px;
   width: 50%;
 	border: solid black 5px;
 	background-color: white;
@@ -40,6 +38,136 @@ body > div > article > div{
 	padding: 20px;
 	border-radius: 20px;
 }
-body > div > article > div:hover{
+
+article#Suche > div:hover{
 	opacity: 1.0;
 }
+
+article#Suche table, article#Suche tr{
+	width: 100%;
+}
+article#Suche th{
+	text-align: left;
+}
+article#Suche table{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+article#Suche td{
+	padding-right: 15px;
+}
+article#Suche input{
+	width: 100%;
+}
+article#Suche button{
+	width: 150px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+
+article#Angebote{
+	background-image: url("../img/backgrounds/startseite_banner2.jpg");	
+	background-size: 100% 100%;
+	padding-bottom: 100px;
+
+
+}
+
+article#Angebote > div{
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 100px;
+	background-color: #505050;
+	opacity: 0.8;
+	border: solid black 3px;
+	border-radius: 10px;
+	padding: 20px;
+	color: white;
+}
+
+article#Angebote > div:hover{
+	opacity: 1.0;
+}
+
+article#Angebote h2{
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+article#Angebote div#Angebotsinhalt{
+	display: flex;
+	width: 100%;
+	margin-bottom: 20px;
+	height: 240px;
+}
+article#Angebote div#Angebotsinhalt img{
+	flex: 4;
+	border-radius: 3px;
+	border: 3px solid white;
+}
+article#Angebote div#Angebotsinhalt div{
+	flex: 10;
+	margin-left: 20px;
+
+}
+
+ article#Angebote div#Angebotsinhalt button#vorherigesAngebot{
+	background-color: transparent;
+	width: 0px;
+	border-top: 120px solid transparent;
+  border-bottom: 120px solid transparent;
+  border-right: 30px solid white;
+	border-left: 0px;
+	height: 100%;
+	margin-right: 10px;
+}
+
+article#Angebote div#Angebotsinhalt button#naechstesAngebot{
+	background-color: transparent;
+	width: 0px;
+	border-top: 120px solid transparent;
+  border-bottom: 120px solid transparent;
+  border-right: 0px;
+	border-left: 30px solid white;
+	height: 100%;
+	margin-left: 10px;
+}
+
+article#Angebote p{
+	margin: 0px;
+}
+
+article#Angebote button{
+	width: 150px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+article#Angebote button#AlleAngebote{
+	background-color: white;
+	border: solid black 2px;
+}
+article#Angebote button#AlleAngebote:hover{
+	background-color:whitesmoke;
+}
+article#Angebote p.alterPreis{
+	margin-top: 20px;
+	color: red;
+	text-decoration: line-through;
+}
+
+.neuerPreis{
+	font-weight: bold;
+}
+
+
+
+
+
+
+body > div > article h1{
+	margin: 0px;
+}
+

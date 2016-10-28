@@ -13,6 +13,12 @@ header > button{
   width: 30%;
 }
 
+button#logo{
+	background-image: url("../img/Logo.jpg");
+	background-size: 100% 100%;
+	border: none;
+}
+
 header > nav{
   position:absolute;
   right :0px;

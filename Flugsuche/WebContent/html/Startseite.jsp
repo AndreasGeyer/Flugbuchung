@@ -12,8 +12,9 @@
 		<%@ include file="Header.jspf" %>
 		<div>
 			<article id="Suche">
+				<h1>Flugsuche</h1>
 				<div>
-					<h1>Finden Sie schnell und einfach Ihren Flug!</h1>
+					<h2>Finden Sie schnell und einfach Ihren Flug!</h2>
 					<form>
 						<table>
 							<tr>
@@ -23,16 +24,27 @@
 								<td><input type="text"/></td>	<td><input type=text" /></td>	<td><input type="date"/></td>
 							</tr>
 						</table>
-						<button type="submit">Suchen</button>
+						<button type="submit" class="submitButton">Suchen</button>
 					</form>
 				</div>
 			</article>
 			<article id="Angebote">
 				<h1>Angebote</h1>
-				<p>Finden Sie schnell und einfach Ihren Flug!</p>
-				<form>
-					<p>Abflughafen</p><select><option>1</option><option>2</option></select>
-				</form>
+				<div>
+					<h2>One Night in Bankog</h2>
+					<div id="Angebotsinhalt">
+						<button id="vorherigesAngebot"></button>
+						<img src="../img/Bangkok.jpg"/>
+						<div>
+							<p>Hier ist irgendein Beschreibungstext</p>
+							<p class="alterPreis">999,99€</p>
+							<p class="neuerPreis">399,99€</p>
+						</div>
+						<button id="naechstesAngebot"></button>
+					</div>
+					<button id="AlleAngebote">Weitere Angebote</button>
+					<button class="submitButton">Zum Angebot</button>
+				</div>
 			</article>
 		</div>		
 	</body>

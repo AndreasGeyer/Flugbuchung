@@ -9,3 +9,12 @@ body{
 *{
   box-sizing: border-box;
 }	
+
+button.submitButton{
+	background-color: orange;
+	border: solid black 2px;
+}
+
+button.submitButton:hover{
+	background-color: darkorange;
+}

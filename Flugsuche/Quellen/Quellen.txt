@@ -1,1 +1,2 @@
 startseite_banner1.jpg: http://das-bessere-ich.com/wp-content/uploads/2014/10/Ziele_web.jpg;
+startseite_banner2.jpg: http://www.forrer-lombriser.ch/fileadmin/user_upload/header-bilder/wegweiser_morgen.jpg
