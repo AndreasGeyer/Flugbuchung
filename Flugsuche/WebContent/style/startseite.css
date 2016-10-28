@@ -1,0 +1,45 @@
+body > div{
+	position: absolute;
+	width: 100%;
+	margin: 0px;
+	top: 100px;
+}
+
+body > div > article{
+	position: relative;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 180px;
+}
+
+body > div > article:last-of-type{
+  padding-bottom: 100px;
+}
+body > div > article:first-of-type{
+	padding-top:180px;
+}
+body > div > article:nth-of-type(odd){
+  background-image: url("../img/backgrounds/startseite_banner1.jpg");	
+	background-size: 100% 100%;
+}
+body > div > article:nth-of-type(even){
+	background-color: #f3f3f3;
+}
+
+body > div > article h1{
+	margin: 0px;
+}
+
+body > div > article > div{
+  margin-left:10%;
+	margin-right: 25%;
+  width: 50%;
+	border: solid black 5px;
+	background-color: white;
+	opacity: 0.6;
+	padding: 20px;
+	border-radius: 20px;
+}
+body > div > article > div:hover{
+	opacity: 1.0;
+}

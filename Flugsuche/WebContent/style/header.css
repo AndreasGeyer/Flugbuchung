@@ -2,10 +2,11 @@ header{
   height: 100px;
   width: 100%;
   background-color: white;
-  position: absolute;
+  position: fixed;
   left: 0px;
   bottom 0px;
   border-bottom: solid 5px grey;
+  z-index: 100;
 }
 header > button{
   height: 100%;
@@ -52,15 +53,15 @@ header > nav #userButton{
 
 header > nav #userButton > div{
   float: left;
-  font-size: 17px;
+  font-size: 13px;
   font-weight: bold;
   text-align: left;
-  margin-left: 20px;
+  margin-left: 10px;
   max-width: 40%;
 }
 header > nav #userButton > img{
   border-radius: 80px;
-  margin: 10px;
+  margin: px;
   float: right;
 }
 
