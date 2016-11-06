@@ -1,0 +1,93 @@
+article{
+  width:70%;
+  margin-left: 15%;
+  margin-top 20px;
+// background-color: blue;
+  padding: 20px;
+}
+
+
+article > ul{
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+article > ul > li.anzeigen{
+  display: flex;
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid black;
+ 
+}
+
+article > ul > li.anzeigen:hover{
+  background-color: #e3e3e3;
+  cursor: pointer;
+}
+
+article > ul > li.anzeigen > span.inhalt{
+  flex: 7;
+  font-size: 16px;
+  padding-top: 25%;
+}
+
+article > ul > li.anzeigen > span.bearbeiten{
+  flex: 1;
+  font-size: 16px;
+  padding-top: 25%;
+  text-align: center;
+}
+
+article > ul > li.anzeigen > h2{
+  white-space: nowrap;
+  padding-top: 25%;
+  padding-left: 10px;
+  width: 100px;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  flex: 2;
+}
+
+article > ul > li.aendern{
+  padding-left: 30%;
+  padding-right: 30%;
+  border-bottom: 1px solid black;
+  background-color: #e3e3e3;
+  display:none;
+}
+
+article > ul > li.aendern.visible{
+	display: inherit;
+}
+
+article > ul > li.aendern  form{
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+article > ul > li.aendern  form > table{
+  width: 100%;
+}
+
+article > ul > li.aendern  form > table tr >td:first-of-type{
+  width: 50%;
+  padding-right: 2%;
+  text-align: right;
+}
+article > ul > li.aendern  form > table td > input{
+  width: 100%;
+}
+
+article > ul > li.aendern  form button{
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+}
+

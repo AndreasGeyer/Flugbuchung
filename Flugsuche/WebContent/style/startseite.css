@@ -18,6 +18,7 @@ article#Suche h1, article#Angebote h1{
 	text-align: center;
 	padding-bottom: 20px;
 	padding-top: 20px;
+	font-style: italic;
 
 }
 
@@ -79,6 +80,10 @@ article#Angebote > div{
 	border-radius: 10px;
 	padding: 20px;
 	color: white;
+}
+
+article#Angebote > div.unvisible{
+	display: none;
 }
 
 article#Angebote > div:hover{
