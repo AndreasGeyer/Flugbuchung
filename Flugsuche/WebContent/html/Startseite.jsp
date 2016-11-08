@@ -7,6 +7,7 @@
 		<title>Flugsuche THI</title>
 		<link rel="stylesheet" type="text/css" href="../style/main.css" />
 		<link rel="stylesheet" type="text/css" href="../style/startseite.css" />
+		<script type="text/javascript" src="../js/startseite.js"></script>
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>
@@ -30,17 +31,47 @@
 			</article>
 			<article id="Angebote">
 				<h1>Angebote</h1>
-				<div>
+				<div class="visible Angebot1">
 					<h2>One Night in Bankog</h2>
 					<div id="Angebotsinhalt">
-						<button id="vorherigesAngebot"></button>
+						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
 						<img src="../img/Bangkok.jpg"/>
 						<div>
 							<p>Hier ist irgendein Beschreibungstext</p>
 							<p class="alterPreis">999,99€</p>
 							<p class="neuerPreis">399,99€</p>
 						</div>
-						<button id="naechstesAngebot"></button>
+						<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
+					</div>
+					<button id="AlleAngebote">Weitere Angebote</button>
+					<button class="submitButton">Zum Angebot</button>
+				</div>
+				<div class="unvisible Angebot2">
+					<h2>Yolo Night in Bankog</h2>
+					<div id="Angebotsinhalt">
+						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
+						<img src="../img/Bangkok.jpg"/>
+						<div>
+							<p>Hier ist irgendein Beschreibungstext</p>
+							<p class="alterPreis">999,99€</p>
+							<p class="neuerPreis">399,99€</p>
+						</div>
+						<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
+					</div>
+					<button id="AlleAngebote">Weitere Angebote</button>
+					<button class="submitButton">Zum Angebot</button>
+				</div>
+				<div class="unvisible Angebot3">
+					<h2>GUTE Night in Bankog</h2>
+					<div id="Angebotsinhalt">
+						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
+						<img src="../img/Bangkok.jpg"/>
+						<div>
+							<p>Sichern Sie sich jetzt das ultimative Erholungswochenende in der Erlebnismetropole Bangkog.</p>
+							<p class="alterPreis">999,99€</p>
+							<p class="neuerPreis">299,99€</p>
+						</div>
+						<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 					</div>
 					<button id="AlleAngebote">Weitere Angebote</button>
 					<button class="submitButton">Zum Angebot</button>

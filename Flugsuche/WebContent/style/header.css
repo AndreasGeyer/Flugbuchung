@@ -21,15 +21,17 @@ header > nav{
   display: flex;
 }
 
+header > nav > button, header > nav > a{
+   flex:1;
+}
 header > nav > button, header > nav > a > button{
-  flex:1;
   height: 100%;
   background-color: white;
   border-style: none;
   font-size: 20px;
   font-weight: bold;
   border-radius: 10px 10px 0px 0px;
-  
+  width: 100%;  
 }
 
 /* Rundet beim letzten Navigationsbutton die obere rechte Ecke nicht ab */
