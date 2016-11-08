@@ -26,7 +26,7 @@ public class Flughafen implements Serializable {
 	@column(name = "zeitzone")
 	private double zeitzone;
 	
-	public Flughafen(){
+	public  Flughafen(){
 		super();
 	}
 	
