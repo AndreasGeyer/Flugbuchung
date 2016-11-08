@@ -52,6 +52,8 @@ public class Test extends HttpServlet {
     				fh.setKuerzel(rs.getString("kuerzel"));
     				fh.setZeitzone(rs.getDouble("zeitzone"));
     				flughaefen.add(fh);
+    				
+    			//	fh.getClass().getann
     			}
     			
     		}
@@ -80,6 +82,8 @@ public class Test extends HttpServlet {
 			out.println("</tr>");
 			
 		}
+		
+	
 		out.println("</table></body></html>");
 	}
 
