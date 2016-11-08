@@ -28,12 +28,13 @@ public class Flugzeugtyp implements Serializable{
 	private int seatsEconomy;
 	
 	@fkColumn(nameFK = "fk_flugzeuggesellschaft", referenceColumnName = "fluggesellschaftid", referenceTable = "fluggesellschaft")
-	private Fluggesellschaft gesellschaft;
+	private Fluggesellschaft   gesellschaft;
 
 	public int getId() {
 		return id;
 	}
 
+	   
 	public void setId(int id) {
 		this.id = id;
 	}
