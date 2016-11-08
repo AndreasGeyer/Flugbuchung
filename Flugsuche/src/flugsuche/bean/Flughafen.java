@@ -2,15 +2,41 @@ package flugsuche.bean;
 
 import java.io.Serializable;
 
+import flugsuche.annotation.column;
+import flugsuche.annotation.table;
+
+@table(name = "flughafen")
 public class Flughafen implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8082168128863727641L;
 	
+	@column(name = "flughafenid")
 	private int id;
+	
+	@column(name = "ort")
 	private String ort;
+	
+	@column(name = "kuerzel")
 	private String kuerzel;
+	
+	@column(name = "zeitzone")
 	private double zeitzone;
 	
+	public Flughafen(){
+		super();
+	}
 	
+	
+	public Flughafen(String ort, String kuerzel, double zeitzone) {
+		super();
+		this.ort = ort;
+		this.kuerzel = kuerzel;
+		this.zeitzone = zeitzone;
+	}
 	public int getId(){
 		return id;
 	}
