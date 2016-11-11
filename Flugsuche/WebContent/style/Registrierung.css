@@ -1,0 +1,53 @@
+#main{
+  background-image: url("../img/Registrierung/Landebahn.jpg");
+  background-size: 100% 100%;
+  background-color: darkgrey;
+  margin-bottom: 3%;
+}
+  
+article{
+  width:70%;
+  margin-left: 28%;
+  margin-top: 20px;
+  padding: 20px;
+  opacity: 0.7;
+  margin-bottom: 25px;
+}
+
+article h1{
+  text-align: center;
+  background-color: darkgrey;
+  margin-right: 52%;
+}
+
+lable{
+	display: block; 
+	text-align: left;
+}
+
+input{
+	width: 20em;
+}
+
+textarea{
+	width: 20em;
+	border: 1px soild black;
+}
+
+input [type="checkbox"]{
+	width: auto;
+}
+
+fieldset{
+	width: 30em;
+	padding-top: 1.5em;
+	padding-left: 1.5em;
+	background: darkgrey;
+	border-radius: 5px;
+}
+
+legend{
+	background: white;
+	padding: 0.2em;
+	border-radius: 5px;
+}
