@@ -6,7 +6,7 @@ body{
 	flex-flow: row wrap;
 	background-image: url("../img/Angebot/Flug.jpg");
 	background-repeat: no-repeat;
-	background-size: 150%;	
+	background-size: 155%;	
 	
 }
 
@@ -14,13 +14,11 @@ body{
 	display: flex;
 	flex-flow: row wrap;
 	margin-top: 20px;
-	margin-bottom: 5%;
+	margin-bottom: 30px;
 	margin-left: 24%;
 	margin-right: 20%;
 	padding-left: 3%;
-	background-color: white;
-	border-radius: 3px;
-	border: 3px solid black;
+	
 }
 
 #Berlin{
@@ -69,7 +67,7 @@ body{
 
 
 #button-moskau{
-	background-image: url("../Angebot/img/Moskau.jpg");	
+	background-image: url(http://img.fotocommunity.com/basilius-kathedrale-moskau-6e9708b9-87cf-4a1c-8a05-895f5ca12d2f.jpg?height=1080);	
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -161,12 +159,22 @@ b{
 	
 }
 
-
 #angebote{
    text-align: center;
   font-family: "Bookman Old Style";
 	font-size: 20px;
 	margin-right: 100px;
 	margin-left: 100px;
-
+}
+.Angebote{
+	margin-bottom: 5px;
+	border-radius: 5px;
+	border: 3px solid white;
+	height: 80px;
+	width: 500px;
+	text-align: center;
+  font-family: "Bookman Old Style";
+	font-size: 20px;
+	background-color: FireBrick;
+	margin-left: 20%;
 }

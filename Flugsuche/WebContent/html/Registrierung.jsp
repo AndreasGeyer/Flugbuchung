@@ -52,10 +52,12 @@
 					</p>
 				</from>
 			</fieldset>
-			<button type="submit">registrieren</button>
+			
 		</form>
 		</article>
-		<button type="submit" id="registrierung">registrieren</button>
+		<div id="Button-Registrierung">
+			<button type="submit">registrieren</button>
+		</div>
 		</div>		
 		<%@ include file="Footer.jspf" %>
 	</body>

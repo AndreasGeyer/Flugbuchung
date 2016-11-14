@@ -51,3 +51,12 @@ legend{
 	padding: 0.2em;
 	border-radius: 5px;
 }
+
+#Button-Registrierung button{
+	margin-left: 29%;
+	border-radius: 5px;
+	width: 550px;
+	height: 30px;
+	background-color: F5F5F5;
+	margin-bottom: 30px;
+}
