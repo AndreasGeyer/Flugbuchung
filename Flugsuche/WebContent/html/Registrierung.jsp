@@ -33,18 +33,21 @@
 				<label for="passwort">Passwort:</label><br>
 				<input type="password" name="passwort" id="passwort" maxlength="30" required>
 				<br>
+				<label for="passwort">Passwort Bestätigung:</label><br>
+				<input type="password" name="passwort" id="passwort bestätigung" maxlength="30" required>
+				<br>
 				<label for="mail">E-Mail:</label><br>
 				<input id="mail" name="email" type="email" required>
 				<br>
 				<label for="mail">E-Mail Bestätigung:</label><br>
-				<input id="mail" name="email" type="email" required>
+				<input id="mailbestätigung" name="email" type="email" required>
 				<br>
 				<p>Bitte Wählen Sie Ihre Account-Art:</p>
 				<p>
-					<input type="checkbox" name="normal" id="normal">
-						<label for="normal" id="normal">Normal</label><br>
-					<input type="checkbox" name="premium" id="normal">
-						<label for="premium" id="premium">Premium</label><br>
+					<input id="Normalkunde" type="radio" name="Normalkunde"> 
+					<labelfor="Normalkunde">Normal</label><br>
+					<input id="Premiumkunde" type="radio" name="Premiumkunde"> 
+					<label for="Premiumkunde">Premium</label><br>
 				</p><br>
 				<from methode="post" enctype="multipart/from-data">
 					<p>Profilbild auswählen:
@@ -56,7 +59,7 @@
 		</form>
 		</article>
 		<div id="Button-Registrierung">
-			<button type="submit">registrieren</button>
+			<button type="submit" onclick="prüfung()">registrieren</button>
 		</div>
 		</div>		
 		<%@ include file="Footer.jspf" %>

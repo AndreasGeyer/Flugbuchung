@@ -1,0 +1,181 @@
+@import url(../style/main.css);
+
+body{
+	background-image: url("../img/Flugsuche/ozean.jpg");
+	background-repeat: no-repeat;
+	background-size: 300%;	
+}
+
+#navigation{
+	margin-top: 9%;
+}
+nav ul {
+	margin: 0;
+	padding: 0.8em;
+	text-align: center;
+}
+
+nav li {
+	list-style: none;
+	display: inline-block;
+}
+
+nav a,
+nav span {
+	display: block;
+	width: 11em;
+	padding: 0.5em;
+	font-weight: bold;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px white inset;
+	color: black;
+	background-color: #F5F5F5;
+	margin-top: 3%;
+	font-family: Bookman Old Style;
+}
+
+nav a:focus,
+nav a:hover,
+nav span {
+	color: black;
+	background-color: darkgrey;
+}
+
+h1{
+	text-align: center;
+	border: 2px solid;
+	background-color: ghostwhite;
+	margin-left: 10%;
+	margin-right: 10%;
+	font-family: Bookman Old Style;
+}
+
+.aufTeilung >.service >img{
+	border-radius: 3%;
+	margin-top: 30px;
+	margin-left: 3%;
+	margin-right: 1%;
+}
+
+#food >img{
+	border-radius: 3%;
+	margin-top: 30px;
+	margin-left: 3%;
+	margin-right: 1%;
+}
+
+#insurance {
+	margin: 15px;
+	width: 80%;
+
+}
+
+#insurance p {
+	width: 80%;
+	font-family: Bookman Old Style;
+}
+
+.service, #kindInsurance, #food, #selector, #a {
+	display: flex;
+	flex-direction: row;
+}
+
+.service, #food {
+	background-color: GhostWhite;
+	margin: 5%;
+	border-radius: 5px;
+}
+
+
+
+.auswahl{
+	display: flex;
+	flex-direction: column;
+}
+
+
+#kindInsurance, #a, #selector {
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+
+
+div h3 {
+	margin: 0;
+	padding: 3%;
+	padding-left: 5%;
+	padding-right: 5%;
+	text-align: center;
+	background-color: #1188cc;
+	color: white;
+	font-family: Bookman Old Style;
+	margin-bottom: 5%;
+}
+
+#kindInsurance span {
+	font-weight: bold;
+	font-size: 25px;
+}
+
+#normal, #sonder {
+	background-color: #ddd;
+	width: 45%;
+}
+
+#sonder div, #normal div {
+	display: flex;
+	flex-direction: row;
+}
+
+li {
+	margin-top: 5px;
+	padding-left: 20px;
+	font-weight: 500;
+	font-family: Bookman Old Style;
+}
+
+input {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 20px;
+	font-family: Bookman Old Style;
+}
+
+#description {
+	position:relative;
+	width: 35%;
+	background-color: #ddd;
+	font-family: Bookman Old Style;
+}
+
+div label {
+	position: absolute;
+	background-color: #ddd;
+	color: red;
+	font-weight: bold;
+	right: 5px;
+	bottom: 2%;
+	font-size: 130%;
+	font-family: Bookman Old Style;
+}
+
+h4 {
+	margin: 15px;
+	font-family: Bookman Old Style;
+}
+
+.auswahl {
+	width: 40%;
+}
+
+button{
+	background-color: F5F5F5;
+	font-family: Bookman Old Style;
+	width: 100px;
+	height: 30px;
+	border-radius: 3%;
+	url("../html/Passagier.jsp")
+}
+
+

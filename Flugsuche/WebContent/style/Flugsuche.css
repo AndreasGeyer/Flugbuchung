@@ -1,0 +1,178 @@
+@import url(../style/main.css);
+
+body{
+	background-image: url("../img/Flugsuche/ozean.jpg");
+	background-repeat: no-repeat;
+	background-size: 300%;	
+}
+
+#navigation{
+	margin-top: 9%;
+}
+nav ul {
+	margin: 0;
+	padding: 0.8em;
+	text-align: center;
+}
+
+nav li {
+	list-style: none;
+	display: inline-block;
+}
+
+nav a,
+nav span {
+	display: block;
+	width: 11em;
+	padding: 0.5em;
+	font-weight: bold;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px white inset;
+	color: black;
+	background-color: #F5F5F5;
+	margin-top: 3%;
+}
+
+nav a:focus,
+nav a:hover,
+nav span {
+	color: black;
+	background-color: darkgrey;
+}
+
+#sidebar{
+	float: left;
+	padding: 2% 2%;
+	width: 28%;
+	background-color: ghostwhite;
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 12px;
+}
+
+#sidebar h4{
+	margin-top: 20px;
+}
+
+#sidebar > .maxPrice input{
+	width: 50%;
+}
+
+
+
+
+#main{
+	float: right;
+	width: 65%;
+	margin-right: 5%;
+}
+
+.Flug select{
+	width: 100%;
+}
+
+.passengers select {
+	width: 80%;
+	margin-top: 10px;
+	
+}
+
+.kalender input{
+	width: 100%;
+}
+
+ h4, input {
+	margin: 0;
+}
+
+input, select {
+	margin-top: 5px;
+	width: 10%;
+	margin-left: 50px;
+}
+
+#filter input, span{
+	margin-top: 10px;
+}
+
+.mainField h4, span {
+	margin-left: 50px;
+}
+
+.flugLabel {
+	padding: 5px;
+	margin-top: 10px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.switchFlight, .imageDiv, #flugWrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrapper: row wrap;
+}
+
+.Flug, .passengers, .kalender, .flightSearchWindow {
+	display: flex;
+	flex-direction: column;
+	flex-wrapper: row wrap;
+	margin-top: 5px;
+}
+
+.FlugartRadio {
+	display: none;
+}
+
+.flugLabel {
+	width: 30%;
+	margin-right:10px;
+  background-color: darkgray;
+	min-width: 200px;
+	max-width: 120px;
+}
+
+.tables {
+	position: absolute;
+	display: none;
+}
+
+.Date {
+	background: url("../img/Flugsuche/kalender.png") no-repeat right top;
+	background-color: white;
+	background-size: 22px 22px;
+}
+
+
+
+#flugWrapper div {
+	margin-top: 10px;
+}
+
+#flugWrapper {
+	justify-content: space-between;
+}
+
+input:CHECKED+.flugLabel {
+	background-color: #114477;
+	border: 3px white solid;
+	font-weight: bold;
+	color: white;
+}
+
+input:NOT(:CHECKED ) +.flugLabel:HOVER {
+	font-weight: bold;
+	color: black;
+}
+
+input[type="text"], select {
+	background-color: white;
+}
+
+#flightInfo {
+	background-color: ghostwhite;
+	border: 3px;
+	padding: 3%;
+	margin-top: 15px;
+	border-radius: 10px;
+}
