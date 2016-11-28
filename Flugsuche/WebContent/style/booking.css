@@ -1,0 +1,353 @@
+@CHARSET "utf-8";
+
+@import url(../style/main.css);
+
+p {
+	font-size: 15px;
+	margin: 0;
+	padding: 5px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#filter {
+	width: 17.5%;
+	height: 600px;
+}
+
+#preis {
+	width: 17.5%;
+	height: 400px;
+}
+
+#main {
+	width: 60%;
+	height: 1000px;
+}
+
+h2 {
+	color: #aaa;
+}
+
+th {
+	height: 35px;
+	padding: 2%;
+	font-size: 120%;
+	color: blue;
+}
+
+#detail th {
+	height: auto;
+	padding: 1%;
+	font-size: 100%;
+	color: blue;
+	background-color: grey;
+	display: table-cell;
+}
+
+.mainField, #hinflug, #s, #row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: row wrap;
+	justify-content: space-between;
+}
+
+#hinflug {
+	justify-content: flex-start;
+	margin-top: 10px;
+	background-color: #ddd;
+}
+
+h1 {
+	margin: 0;
+	padding-left: 3%;
+	line-height: 55px;
+}
+
+#s {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #aaa;
+	width: 100%;
+}
+
+#s div {
+	border: 2px aqua #aaa;
+	background-color: #ddd;
+	margin-right: 5px;
+}
+
+.datum {
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+}
+
+#prev, #back {
+	background-color: black;
+	color: white;
+}
+
+#ab {
+	border-color: #1188cc;
+	border-weight: bold;
+	background-color: #114477;
+	border: 3px white solid;
+	font-weight: bold;
+	color: white;
+}
+
+input[type="radio"] {
+	width: 10%;
+	min-width: 0px;
+}
+
+.test {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	heigth: 500px;
+	width: 500px;
+	background-color: red;
+	display: table;
+	z-index: 20000;
+	overflow: scroll;
+}
+
+#hinflug span {
+	color: red;
+}
+
+#trow, .stopps {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+#trow div {
+	margin: 0;
+}
+
+.datum {
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+@media screen and (min-width:600px) {
+	.datum div {
+		min-width: calc(100%/ 3);
+	}
+}
+
+@media screen and (min-width:700px) {
+	.datum div {
+		min-width: calc(100%/ 4);
+	}
+}
+
+@media screen and (min-width:1200px) {
+	.datum div {
+		min-width: calc(100%/ 5);
+	}
+}
+
+table {
+	width: 100%;
+}
+
+#ab p {
+	text-align: center;
+}
+
+#prev:hover+.datum div {
+	transform: translate(-100%);
+	background-color: red;
+	transition: 4s;
+}
+
+td p {
+	text-align: left;
+}
+
+td span {
+	display: block;
+	width: 80%;
+}
+
+#row span {
+	font-size: 120%;
+	color: blue;
+	background-color: inherit;
+}
+
+#detail {
+	display: none;
+}
+
+#detail p {
+	text-align: center;
+}
+
+#detail img {
+	display: block;
+	margin: auto;
+}
+
+table:HOVER  #detail {
+	display: table;
+}
+
+.stopps, .maxPrice, .dauer, .zeit, .airline {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5%;
+	background-color: #ddd;
+	padding: 5px;
+	border-radius: 10px;
+	border: 0;
+}
+
+#filter span {
+	color: black;
+	text-align: center;
+}
+
+.flugKlasse {
+	background-color: #1188cc;
+	color: white;
+}
+
+#hinTable tbody {
+	background-color: #ddd;
+}
+
+#filter h4 {
+	color: #1188cc;
+	font-weight: bolder;
+}
+
+#filter h4:after {
+	content: "";
+	margin-top: 5px;
+	display: block;
+}
+
+#filter span {
+	text-align: center;
+	display: block;
+}
+
+#filter .abstand:AFTER {
+	content: "";
+	display: block;
+	margin-bottom: 10px;
+}
+
+#preis span {
+	display: block;
+	text-align: center;
+	color: white;
+	background-color: #1188cc;
+	font-weight: bold;
+}
+
+#preis .posten {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.Rechnung {
+	background-color: #ddd;
+}
+
+.Rechnung span {
+	padding: 2%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#calendarTable1 {
+	position: absolute;
+	height: 150px;
+	width: 280px;
+	background-color: #aaa;
+	display: table;
+	z-index: 20000;
+}
+
+.tables {
+	text-align: center;
+}
+
+.tables th {
+	background-color: #1188cc;
+	color: white;
+	font-weight: bold;
+	width: 40px;
+}
+
+.tables td[colspan="5"] {
+	background: white;
+	font-weight: bold;
+}
+
+.datePicker :HOVER {
+	background: #ffdfbf;
+	font-weight: : bold;
+}
+
+#today {
+	background: orange;
+	font-weight: : bold;
+}
+
+.last {
+	background: lime;
+	font-weight: : bold;
+}
+
+.datePicker {
+	background: #e4e4e4;
+	font-weight: : bold;
+}
+
+.autocompletAirport {
+	position: absolute;
+	background-color: #fff;
+	border: 3px solid black;
+	margin: 0;
+	width: 30%;
+	min-width: 250px;
+	overflow-y: auto;
+	max-height: 200px;
+	white-space: nowrap;
+	z-index: 200;
+}
+
+.listAirportAuto {
+	display: table;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+
+	cursor: pointer;
+	padding: 10px 10px 30px;
+	pointer-events: all;
+	height: 30px;
+	width: 100%;
+	
+	border-bottom: 2px solid #e8e5e5;
+}
+.listAirportAuto li:HOVER {
+	background-color: #eaeaea;
+}
