@@ -26,16 +26,20 @@ public class Flughafen implements Serializable {
 	@column(name = "zeitzone")
 	private double zeitzone;
 	
+	@column(name = "land")
+	private String land;
+	
 	public  Flughafen(){
 		super();
 	}
 	
 	
-	public Flughafen(String ort, String kuerzel, double zeitzone) {
+	public Flughafen(String ort, String kuerzel, double zeitzone, String land) {
 		super();
 		this.ort = ort;
 		this.kuerzel = kuerzel;
 		this.zeitzone = zeitzone;
+		this.land = land;
 	}
 	public int getId(){
 		return id;
@@ -60,6 +64,16 @@ public class Flughafen implements Serializable {
 	}
 	public void setZeitzone(double zeitzone) {
 		this.zeitzone = zeitzone;
+	}
+
+
+	public String getLand() {
+		return land;
+	}
+
+
+	public void setLand(String land) {
+		this.land = land;
 	}
 	
 	

@@ -38,30 +38,7 @@ public class Test extends HttpServlet {
     }
 
     
-    public List<Flughafen> suchen(PrintWriter out) throws ServletException{
-    	
-    	List<Flughafen> flughaefen = new ArrayList<Flughafen>();
-    	
-    	try(Connection con = ds.getConnection();
-    		PreparedStatement pstmt = con.prepareStatement("select * from flughafen")){
-    		try(ResultSet rs = pstmt.executeQuery()){
-    			while(rs!=null && rs.next()){
-    				Flughafen fh = new Flughafen();
-    				fh.setId(rs.getInt("flughafenid"));
-    				fh.setOrt(rs.getString("ort"));
-    				fh.setKuerzel(rs.getString("kuerzel"));
-    				fh.setZeitzone(rs.getDouble("zeitzone"));
-    				flughaefen.add(fh);
-    				
-    			//	fh.getClass().getann
-    			}
-    			
-    		}
-    	}catch(Exception ex){
-    		throw new ServletException(ex.getMessage());
-    	}
-    	return flughaefen;
-    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -70,18 +47,18 @@ public class Test extends HttpServlet {
 		final PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE html");
 		out.println("<html><body>");
-		List<Flughafen> haefen = suchen(out);
-		out.println("<p>"+haefen.size()+"</p>");
-		out.println("<table>");
-		for(Flughafen fh: haefen){
-			out.println("<tr>");
-			out.println("<td>" + fh.getId() + "</td>");
-			out.println("<td>" + fh.getOrt() + "</td>");
-			out.println("<td>" + fh.getKuerzel() + "</td>");
-			out.println("<td>" + fh.getZeitzone() + "</td>");
-			out.println("</tr>");
-			
-		}
+
+//		out.println("<p>"+haefen.size()+"</p>");
+//		out.println("<table>");
+//		for(Flughafen fh: haefen){
+//			out.println("<tr>");
+//			out.println("<td>" + fh.getId() + "</td>");
+//			out.println("<td>" + fh.getOrt() + "</td>");
+//			out.println("<td>" + fh.getKuerzel() + "</td>");
+//			out.println("<td>" + fh.getZeitzone() + "</td>");
+//			out.println("</tr>");
+//			
+//		}
 		
 	
 		out.println("</table></body></html>");

@@ -14,3 +14,9 @@ function schlieseAendern(menuId){
 	menuOffen = false;
 	
 }
+
+function date(){
+	var date = new Date();
+	document.getElementById("monatsname").innerHTML = date.getDay();
+}
+
