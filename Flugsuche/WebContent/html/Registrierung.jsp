@@ -11,11 +11,34 @@
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>
-		<div id="main">
 		
+		<h1>Registrieren</h1><br>
+		
+		<div class= "mainField">
+		
+		<div id="sidebar"> 
+		<h4>Normalkunde</h4>
+		<p>
+		Als Normalekunde bekommen Sie nur 
+		bestimmte Angebote vorgeschlagen. 
+		</p><br>
+		<img src="../img/Registrierung/Basic.jpg" alt="Normaltarif" style="width: 150px; height: 83px;">
+		<br>
+		<h4>Premiumkunde</h4>
+		<p>
+		Als Premiumkunde bekommen Sie all 
+		unsere Topangebote. Wir zeigen Ihnen
+		die aktuellsten Sparmöglichkeiten und 
+		alle Lieblingsziele. 
+		</p><br>
+		<img src="../img/Registrierung/premium.png" alt="Premium" style="width: 150px; height: 93px;">
+		<br>
+		</div>
+		
+		<div id="main">
 		<article>
 		<form>
-			<h1>Registrieren</h1><br>
+			
 			<br>
 			<fieldset>
 				<label for="vorname">Vorname:</label><br>
@@ -60,6 +83,7 @@
 		</article>
 		<div id="Button-Registrierung">
 			<button type="submit" onclick="prüfung()">registrieren</button>
+		</div>
 		</div>
 		</div>		
 		<%@ include file="Footer.jspf" %>

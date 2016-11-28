@@ -79,6 +79,33 @@ fieldset{
 		font-family: Bookman Old Style;
 }
 
+
+
+.mainField{
+	display: flex;
+	flex-wrapper: row wrap;
+}
+
+#sidebar{
+	float: left;
+	padding: 2% 2%;
+	width: 28%;
+	background-color: ghostwhite;
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 4%;
+	height: 50%;
+	font-family: Bookman Old Style;
+}
+#main{
+	float: right;
+	width: 65%;
+	margin-right: 5%;
+	font-family: Bookman Old Style;
+}
+
+
 #Speichern button{
 	margin-left: 29%;
 	border-radius: 5px;
@@ -86,5 +113,5 @@ fieldset{
 	height: 30px;
 	background-color: F5F5F5;
 	margin-bottom: 30px;
-		font-family: Bookman Old Style;
+	font-family: Bookman Old Style;
 }
