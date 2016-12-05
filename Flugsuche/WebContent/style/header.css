@@ -66,8 +66,11 @@ header > nav #userButton > img{
   float: right;
 }
 
-
+header > #popupUserFenster{
+	display: none;
+}
 header > #popupUserFenster.anmeldenAktiviert, header > #popupUserFenster.userAktiviert{
+  display: inherit;
   position: absolute;
   background-color: white;;
   right:0px;

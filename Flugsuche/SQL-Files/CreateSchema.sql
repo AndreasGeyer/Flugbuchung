@@ -6,7 +6,7 @@ create table kunde
     vorname varchar(100),
     nachname varchar(100),
     geburtsdatum date,
-    email varchar(255),
+    email varchar(255) unique,
     passwort varchar(255),
     strasse varchar(255),
     hausnummer varchar(5),
