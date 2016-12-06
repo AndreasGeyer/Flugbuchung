@@ -39,6 +39,10 @@ article > ul > li.anzeigen{
  
 }
 
+article > ul > li.anzeigen:last-of-type{
+	border-bottom: none;
+}
+
 article > ul > li.anzeigen:hover{
   background-color: #e3e3e3;
   cursor: pointer;
