@@ -328,6 +328,7 @@ table:HOVER  #detail {
 	max-height: 200px;
 	white-space: nowrap;
 	z-index: 200;
+	visibility: hidden;
 }
 
 .listAirportAuto {
@@ -351,3 +352,5 @@ li {
 .listAirportAuto li:HOVER {
 	background-color: #eaeaea;
 }
+
+

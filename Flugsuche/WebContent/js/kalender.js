@@ -90,7 +90,7 @@ function createBodyCalender(monthNumber, year, calendarHin) {
 function createHeaderKalender(calendarHin) {
 
 	// var today = new Date();
-	alert("HEADER");
+	
 
 	var table = document.createElement("table");
 	table.setAttribute("class", "tables");
@@ -156,7 +156,7 @@ function selectDate(date,c) {
 	var input = document.getElementById(listInputs);
 	if (date != null) {
 		if (date == "today")
-			input.setAttribute("value", new Date().toDateString());
+			input.setAttribute("value", new Date().toLocaleDateString());
 		else
 			input.setAttribute("value", date);
 	}
@@ -180,7 +180,7 @@ function removeCalendar() {
 	if (e != null) {
 		
 		var body = e.parentNode;
-		alert(e.id);
+	
 		body.removeChild(e);
 		numberofOpenCalendars--;
 	
@@ -189,7 +189,7 @@ function removeCalendar() {
 }
 
 function nextDate(numberMonth) {
-	alert(numberMonth);
+
 	if (numberMonth == 1) {
 		if (selectedDate.getMonth() == 12) {
 			var year = selectedDate.getFullYear() + 1;

@@ -39,4 +39,10 @@ public class Fluggesellschaft implements Serializable {
 	public void setBezeichnung(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }

@@ -86,6 +86,12 @@ public class Flug implements Serializable {
 	public void setFlugzeugtyp(Flugzeugtyp flugzeugtyp) {
 		this.flugzeugtyp = flugzeugtyp;
 	}
+	public Date getAbflugzeit() {
+		return abflugzeit;
+	}
+	public void setAbflugzeit(Date abflugzeit) {
+		this.abflugzeit = abflugzeit;
+	}
 	
 	
 

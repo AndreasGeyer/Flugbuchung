@@ -25,7 +25,7 @@ import flugsuche.bean.Flughafen;
 public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Resource(lookup="jdbc/MyTestSQLPool")
+	@Resource(lookup="jdbc/__default")
 	private DataSource ds;
 	
        
@@ -43,25 +43,25 @@ public class Test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		final PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html");
-		out.println("<html><body>");
-
-//		out.println("<p>"+haefen.size()+"</p>");
-//		out.println("<table>");
-//		for(Flughafen fh: haefen){
-//			out.println("<tr>");
-//			out.println("<td>" + fh.getId() + "</td>");
-//			out.println("<td>" + fh.getOrt() + "</td>");
-//			out.println("<td>" + fh.getKuerzel() + "</td>");
-//			out.println("<td>" + fh.getZeitzone() + "</td>");
-//			out.println("</tr>");
-//			
-//		}
+		response.setContentType("text/html;charset=UTF-8");
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<body>");
+		try {
+			// ds = (DataSource) InitialContext.doLookup("jdbc/MySQLPool");
+			final Connection con = ds.getConnection();
+			if (con.isValid(10))
+				out.println("<BR>Connected via @Resource!");
+			con.close();
+		} catch (Exception ex) {
+			out.println(ex.getMessage()+"\n");
+			ex.printStackTrace(out);
+		}
+		out.println("</body></html>");
 		
 	
-		out.println("</table></body></html>");
+
 	}
 
 	/**

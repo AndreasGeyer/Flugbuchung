@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="E:/Glassfish/glassfish4/glassfish/modules/javax.servlet.jsp.jar"/>
 	<classpathentry kind="lib" path="E:/Glassfish/glassfish4/glassfish/modules/javax.servlet.jsp-api.jar"/>
 	<classpathentry kind="lib" path="E:/Glassfish/glassfish4/glassfish/modules/javax.servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
