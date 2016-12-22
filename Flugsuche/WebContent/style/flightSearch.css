@@ -35,13 +35,24 @@ input, select {
 	border-radius: 10px;
 }
 
-.switchFlight, .imageDiv, #flugWrapper {
+.switchFlight, .imageDiv, #flugWrapper, .flug_row, .wrapper_flugplan,
+	.flugdetails {
 	display: flex;
 	flex-direction: row;
 	flex-wrapper: row wrap;
 }
 
-.Flug, .passengers, .kalender, .flightSearchWindow {
+.priceField {
+	position: relative;
+	text-align: center;
+}
+
+.priceField {
+	justify-content: space-between;
+}
+
+.Flug, .passengers, .kalender, .flightSearchWindow, .flugplan,
+	.wrapper_flugdetail, .flug_column, .priceField {
 	display: flex;
 	flex-direction: column;
 	flex-wrapper: row wrap;
@@ -56,8 +67,8 @@ input, select {
 	width: 30%;
 	margin-right: 10px;
 	background-color: #1188CC;
-	min-width: 102px;
-	max-width: 120px;
+	min-width: 130px;
+	max-width: 150px;
 }
 
 /* .tables { */
@@ -90,14 +101,16 @@ input, select {
 	visibility: hidden;
 }
 
-input:CHECKED+.flugLabel {
+input:CHECKED+.flugLabel, input:CHECKED+label {
 	background-color: #114477;
 	border: 3px white solid;
 	font-weight: bold;
 	color: white;
+	transition: 2s;
 }
 
-input:NOT (:CHECKED ) +.flugLabel:HOVER {
+input:NOT (:CHECKED ) +.flugLabel:HOVER, input:NOT (:CHECKED ) + label:HOVER
+	{
 	font-weight: bold;
 	color: black;
 }
@@ -119,7 +132,7 @@ input[type="text"], select {
 	border: 1px solid grey;
 	margin: 20px 0px 20px;
 	padding: 0px;
-	height: 70px;
+	height: 100px;
 	background: ghostwhite;
 }
 
@@ -169,3 +182,62 @@ input[type="text"], select {
 .wrapper_flugtage .element:HOVER {
 	border: 3px yellow solid;
 }
+
+.flugplan {
+	width: 50%;
+}
+
+.Sortieren {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border: 1px black solid;
+}
+
+.flug_column {
+	margin: auto;
+	width: 80%;
+	justify-content: space-between;
+}
+
+.Sortieren label {
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	margin: 0px;
+}
+
+/* input:CHECKED + label{ */
+
+/* 	background-color: red; */
+/* 	border:  */
+/* } */
+input:NOT(CHECKED)+label {
+	
+}
+
+th label {
+	text-align: center;
+}
+
+.price {
+	font-size: 24px;
+}
+
+.selectorPrice {
+	padding: 15px;
+}
+
+.lastSeats {
+	color: red;
+	font-weight: bold;
+	text-align: left;
+}
+
+.cheapest {
+	background-color: #1188cc;
+	padding: 5px;
+	color: white;
+}
+

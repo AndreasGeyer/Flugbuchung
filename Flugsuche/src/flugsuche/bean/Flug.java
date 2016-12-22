@@ -1,8 +1,9 @@
 package flugsuche.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class Flug implements Serializable {
 	 */
 	private static final long serialVersionUID = 7318648102198792109L;
 
-
+	final long hourInMillis = 3600000L;
 	@column(name = "flugid")
 	private int id;
 	@column(name = "abflugzeit")
 	private Date abflugzeit;
 	@column(name = "fugdauer")
-	private Time flugdauer;
+	private Date flugdauer;
 	@column(name = "preis")
 	private double preis;
 	@fkColumn(nameFK = "fk_abflughafen", referenceColumnName = "flughafenid", referenceTable = "flughafen")
@@ -37,7 +38,7 @@ public class Flug implements Serializable {
 	
 	private List<Angebot> angebotListe = new ArrayList<>();
 	
-	public Flug(Date abflugzeit, Time flugdauer, double preis, Flughafen abFlughafen, Flughafen anFlughafen,
+	public Flug(Date abflugzeit, Date flugdauer, double preis, Flughafen abFlughafen, Flughafen anFlughafen,
 			Flugzeugtyp flugzeugtyp) {
 		super();
 		this.abflugzeit = abflugzeit;
@@ -56,10 +57,10 @@ public class Flug implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Time getFlugdauer() {
+	public Date getFlugdauer() {
 		return flugdauer;
 	}
-	public void setFlugdauer(Time flugdauer) {
+	public void setFlugdauer(Date flugdauer) {
 		this.flugdauer = flugdauer;
 	}
 	public double getPreis() {
@@ -93,6 +94,11 @@ public class Flug implements Serializable {
 		this.abflugzeit = abflugzeit;
 	}
 	
-	
+	public Date calculateAnkunftZeit(){
+		
+		Date utc_abflug = new Date((long) (abflugzeit.getTime()-abFlughafen.getZeitzone()*hourInMillis));
+		long hoursUTCAnkunft = (long) (anFlughafen.getZeitzone()*hourInMillis);
+		return new Date(utc_abflug.getTime()+hoursUTCAnkunft+flugdauer.getTime());
+	}
 
 }

@@ -1,6 +1,12 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.sql.Time"%>
 <%@page import="java.util.HashMap"%>
+<%@page import="java.text.*"%>
+
 <%@ page import="java.util.*"%>
+<%@ page import="flugsuche.bean.*"%>
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -172,9 +178,15 @@
 							<div class="kalender">
 								<div class="flyDate" id="hinFly">
 									<h4>Hinflug</h4>
+									<%
+										Date hinflug = (Date) session.getAttribute("datumHin");
+										String hinDate = "";
+										hinDate = "17.02.2017";
+									%>
 									<input type="date" id="calendarHin" name="DateHinflug"
 										class="Date" placeholder="TT.MM.JJJJ"
-										onclick="currentMonthName(calendarHin.id)" required>
+										onclick="currentMonthName(calendarHin.id)" value=<%=hinDate%>
+										required>
 
 								</div>
 
@@ -326,6 +338,7 @@
 
 
 
+
 			<div class="flightPlan">
 				<table id="hinTable">
 					<colgroup>
@@ -339,40 +352,146 @@
 					<thead>
 						<tr>
 						<tr>
-							<th></th>
+							<th>
+								<div class="flug_column">
+									<p>
+										<span>Sortieren nach</span>
+									</p>
+									<div class="Sortieren">
+
+
+										<input class="FlugartRadio" id="PreisHin" name="Preis"
+											value="1" checked type="radio"> <label for="PreisHin">
+											Preis </label> <input class="FlugartRadio" id="Dauer" name="Preis"
+											value="2" type="radio"> <label for="Dauer">
+											Flugdauer </label> <input class="FlugartRadio" id="Stopp"
+											name="Preis" value="3" type="radio"> <label
+											for="Stopp"> Stopps </label>
+
+									</div>
+							</th>
 							<th class="flugKlasse" id="economy">Economy Class</th>
 							<th class="flugKlasse" id="business">Business Class</th>
 						</tr>
 					</thead>
-					<tr id="test">
 
-						<td>
-							<div id="row">
 
-								<p>
-									<strong>8:00 Uhr:&nbsp;</strong>Berlin (THX)
+					<%
+						List<Flug> direktflug = (List<Flug>) session.getAttribute("direktflug");
+
+						Date flugdauerHinMin = new Date(86400000L);
+						Date flugdauerHinMax = new Date(1L);
+						Date abflugHinMin = new Date(2030 * 365 * 86400000L);
+						Date abflugHinMax = new Date(1990 * 365 * 86400000L);
+
+						List<Fluggesellschaft> gesellschaftList = new ArrayList<>();
+
+						for (Flug flug : direktflug) {
+
+							if (flugdauerHinMin.after(flug.getFlugdauer()))
+								flugdauerHinMin = flug.getFlugdauer();
+							if (flugdauerHinMax.before(flug.getFlugdauer()))
+								flugdauerHinMax = flug.getFlugdauer();
+							if (abflugHinMax.before(flug.getAbflugzeit()))
+								abflugHinMax = flug.getAbflugzeit();
+							if (abflugHinMin.after(flug.getAbflugzeit()))
+								abflugHinMin = flug.getAbflugzeit();
+
+							if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
+								gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
+							}
+					%>
+					<tr>
+
+						<td class="flug_row" colspan="1">
+							<div class="wrapper_flugplan">
+
+								<p class="flugplan">
+									<%
+										DateFormat simDateFormat = new SimpleDateFormat("HH:mm");
+											String UhrzeitAbflug = simDateFormat.format(flug.getAbflugzeit());
+									%>
+									<span><strong><%=UhrzeitAbflug%> Uhr:&nbsp;</strong></span> <span>
+										${abflughafen.ort} (<%=flug.getAbFlughafen().getKuerzel() %>) </span>
 								</p>
-								<p>
-									<span>-></span>
-								</p>
-								<p>
-									<strong>13:25 Uhr:&nbsp;</strong>New York (JFK)
+								<%
+									String UhrzeitAnkunft = simDateFormat.format(flug.calculateAnkunftZeit());
+								%>
+								<p class="flugplan">
+									<span><strong><%=UhrzeitAnkunft%> Uhr:&nbsp;</strong></span> <span>
+										${ankufthafen.ort} (<%=flug.getAnFlughafen().getKuerzel() %>) </span>
 								</p>
 
 							</div>
-							<p>Reisedauer: 12h 15 min, 1 Stopp</p>
+							<div class="wrapper_flugdetail">
+								<p class="flugdetails">
+									<%
+										String reisedauer = simDateFormat.format(flug.getFlugdauer());
+									%>
+									<span><strong>Reisedauer:&nbsp;</strong></span> <span><%=reisedauer%>h</span>
+								</p>
+								<p class="flugdetails">
+									<span><strong>Stopps:&nbsp;</strong>0</span>
+								</p>
+								<p class="flugdetails">
+									<span><strong>Anschluss:</strong></span> <span> </span>
+								</p>
+							</div>
+
 
 
 						</td>
-						<td><input type="radio" name="A"><span>500 €</span></td>
-						<td><input type="radio" name="A"><span> 700 €</span></td>
-				
+						<td>
+							<div class="priceField">
+								<%
+									DecimalFormat df = new DecimalFormat("#.##");
+										String preis = df.format(flug.getPreis());
+
+									//	Double minPreis = map.get(hinflug);
+									//	minPreis = 12.2;
+// 										for (Date datum : map.keySet()) {
+// 											if (hinflug.toLocaleString().equals(datum.toLocaleString())) {
+// 												minPreis = map.get(datum);
+// 											}
+// 										}
+// 										if (minPreis != null)
+// 											preis = minPreis.toString();
+										
+											
+								%>
+								<div>
+									<span class="cheapest">Günstigster Preis</span>
+								</div>
+								<div class="selectorPrice">
+									<span class="price"> <input type="radio" name="A">
+										<strong> <%=preis%>
+									</strong>
+									</span>
+								</div>
+								<div>
+									<span class="lastSeats">Noch 4 Plätze</span>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="priceField">
+								<div>
+									<span class="cheapest">Günstigster Preis</span>
+								</div>
+								<div class="selectorPrice">
+									<span class="price"> <input type="radio" name="A">
+										<strong> <%=df.format(flug.getPreis() *3)%></strong>
+									</span>
+								</div>
+								<div>
+									<span class="lastSeats">Noch 4 Plätze</span>
+								</div>
+							</div>
+						</td>
+
 					</tr>
 
-
-
-
-					<tr>
+					<tr class="unvisible">
 						<td colspan="4">
 							<table id="detail">
 								<thead>
@@ -390,12 +509,15 @@
 										<td><img
 											src="https://lh6.googleusercontent.com/-lITucNA2MiM/AAAAAAAAAAI/AAAAAAAAFK8/pbNj2KQLkOM/photo.jpg"
 											alt="pl" width="35" height="35"></td>
+											
+											<%UhrzeitAbflug = UhrzeitAbflug+" Uhr: " +flug.getAbFlughafen().getOrt();
+											UhrzeitAnkunft = UhrzeitAnkunft+" Uhr: " +flug.getAnFlughafen().getOrt();%>
 
-										<td><p>LH4752</p></td>
-										<td><p>8:00 Uhr Berlin</p></td>
-										<td><p>9:00 Uhr München</p></td>
-										<td><p>1h 00min</p></td>
-										<td><p>2h 00min</p></td>
+										<td><p>LH14775</p></td>
+										<td><p><%=UhrzeitAbflug%></p></td>
+										<td><p><%=UhrzeitAnkunft%></p></td>
+										<td><p><%=reisedauer%></p></td>
+										<td><p></p></td>
 									</tr>
 									<tr>
 										<td><img
@@ -408,11 +530,12 @@
 										<td><p>1h 00min</p></td>
 										<td><p>2h 00min</p></td>
 									</tr>
-
 								</tbody>
-							</table>
-					</tr>
-
+							</table> <%
+ 	}
+ %>
+						
+					</tbody>
 				</table>
 			</div>
 

@@ -1,6 +1,7 @@
 package flugsuche.bean;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 import flugsuche.annotation.column;
 import flugsuche.annotation.table;
@@ -25,7 +26,7 @@ public class Flughafen implements Serializable {
 	
 	@column(name = "zeitzone")
 	private double zeitzone;
-	
+
 	@column(name = "land")
 	private String land;
 	

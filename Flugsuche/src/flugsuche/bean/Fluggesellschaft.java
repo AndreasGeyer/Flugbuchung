@@ -43,6 +43,14 @@ public class Fluggesellschaft implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		Fluggesellschaft fluggesellschaft = (Fluggesellschaft) obj;
+		if (this.id == fluggesellschaft.getId()) {
+			return true;
+		}
+		return false;
+
+	}
 }

@@ -3,7 +3,7 @@
 @import url(../style/main.css);
 
 p {
-	font-size: 15px;
+/* 	font-size: 15px; */
 	margin: 0;
 	padding: 5px;
 }
@@ -40,7 +40,7 @@ th {
 	height: 35px;
 	padding: 2%;
 	font-size: 120%;
-	color: blue;
+	
 }
 
 #detail th {
@@ -204,14 +204,12 @@ table {
 	transition: 4s;
 }
 
-td p {
+td p, th p {
 	text-align: left;
+	font-size: : 18px;
 }
 
-td span {
-	display: block;
-	width: 80%;
-}
+
 
 #row span {
 	font-size: 120%;
@@ -219,22 +217,22 @@ td span {
 	background-color: inherit;
 }
 
-#detail {
-	display: none;
-}
+/* #detail { */
+/* 	display: none; */
+/* } */
 
-#detail p {
-	text-align: center;
-}
+/* #detail p { */
+/* 	text-align: center; */
+/* } */
 
-#detail img {
-	display: block;
-	margin: auto;
-}
+/* #detail img { */
+/* 	display: block; */
+/* 	margin: auto; */
+/* } */
 
-table:HOVER  #detail {
-	display: table;
-}
+/* table:HOVER  #detail { */
+/* 	display: table; */
+/* } */
 
 .stopps, .maxPrice, .dauer, .zeit, .airline {
 	width: 90%;
@@ -327,7 +325,7 @@ table:HOVER  #detail {
 	width: 40px;
 }
 
-.tables td[colspan="5"] {
+.tables td[colspan="4"] {
 	background: white;
 	font-weight: bold;
 }
@@ -385,4 +383,8 @@ li {
 
 .listAirportAuto li:HOVER {
 	background-color: #eaeaea;
+}
+
+.unvisible{
+	display: none;
 }
