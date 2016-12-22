@@ -22,10 +22,10 @@
 								<th>Von</th>					<th>Nach</th>					<th>Am</th>
 							</tr>
 							<tr>
-								<td><input type="text"/></td>	<td><input type=text" /></td>	<td><input type="date"/></td>
+								<td><input type="text" name="hinflug"/></td>	<td><input type=text" name ="rueckflug" /></td>	<td><input type="date" name="datumhin"/></td>
 							</tr>
 						</table>
-						<button type="submit" class="submitButton">Suchen</button>
+						<button type="submit" class="submitButton"  formaction="/Flugsuche/Flugbuchung" formmethod= "post">Suchen</button>
 					</form>
 				</div>
 			</article>

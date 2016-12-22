@@ -102,7 +102,7 @@ public class Flugorte extends HttpServlet {
 			String flughafen_Bezeichnung = (String) request.getParameter(request.getParameterNames().nextElement())
 					.toLowerCase();
 			statement.setString(1, "%" + flughafen_Bezeichnung + "%");
-			
+			System.out.println(statement.toString());
 			ResultSet result = statement.executeQuery();
 			con.close();
 			return fillFlughafenList(result);

@@ -1,17 +1,25 @@
 
+<%@page import="java.util.HashMap"%>
+<%@ page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../style/prozess.css">
-<link rel="stylesheet" href="../style/booking.css">
-<link rel="stylesheet" href="../style/flightSearch.css">
-<script type="text/javascript" src="../js/kalender.js"></script>
-<script type="text/javascript" src="../js/airportAutocomplet.js"></script>
-
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/style/prozess.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/style/booking.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/style/flightSearch.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/kalender.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/airportAutocomplet.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/Flugsuche.js"></script>
+<title>Flugsuche</title>
 </head>
 <body>
 	<%@ include file="Header.jspf"%>
@@ -25,16 +33,13 @@
 						<form></form>
 						<div>
 							<input id="nonStopp" type="radio" name="stopp"> <label
-								for="nonStopp">Nonstopp</label>
+								for="nonStopp">Non Stopp</label>
 						</div>
 						<div>
 							<input id="oneStopp" type="radio" name="stopp"> <label
 								for="oneStopp">1 Stopp</label>
 						</div>
-						<div>
-							<input id="moreStopp" type="radio" name="stopp"> <label
-								for="moreStopp">mehr als 1 Stopp</label>
-						</div>
+
 
 					</div>
 
@@ -117,37 +122,46 @@
 
 
 				<section class="flightSearchWindow">
-					<form class="J"  method="POST">
+					<form class="J" method="POST">
 						<div class=switchFlight>
+
 							<input type="radio" class="FlugartRadio" id="HinUndRückRadio"
-								name="Flugart" value=1 required> <label class="flugLabel"
-								id="HinUndRück" for="HinUndRückRadio"> Hin-/ Rückflug </label> <input
+								name="Flugart" value=1 required
+								<c:if test="${!onlyHinflug}"> checked </c:if>> <label
+								class="flugLabel" id="HinUndRück" for="HinUndRückRadio"
+								onclick="displayRueckflug(event)"> Hin-/ Rückflug </label> <input
 								type="radio" class="FlugartRadio" id="HinflugRadio"
-								name="Flugart" value=2 required> <label class="flugLabel"
-								id="Hinflug" for="HinflugRadio" > nur Hinflug </label>
+								name="Flugart" value=2 required
+								<c:if test="${onlyHinflug}"> checked </c:if>> <label
+								class="flugLabel" id="Hinflug" for="HinflugRadio"
+								onclick="displayRueckflug(event)"> nur Hinflug </label>
 						</div>
 
 						<div id="flugWrapper">
 							<div class="Flug">
 								<div class="imageDiv">
-									<img src="../images/planeUp.png" alt="plane"
-										style="width: 20px; height: 20px;">
+									<img
+										src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
+										alt="plane" style="width: 20px; height: 20px;">
 									<h4>von</h4>
 								</div>
 								<input placeholder="Abflughafen" type="text" id="ablflug"
-									onkeyup="loadAirports(event)" autocomplete="off" name="abflug" required>
+									onkeyup="loadAirports(event)" autocomplete="off" name="abflug"
+									value="${abflughafen.ort}" required>
 								<div class="autocompletAirport" id="ablflugAutocomplet"></div>
 
 
 
 								<table class="tables" id="möglicheFlüge"></table>
 								<div class="imageDiv">
-									<img src="../images/planeDown.png" alt="plane"
-										style="width: 20px; height: 20px;">
+									<img
+										src="${pageContext.request.contextPath}/img/Flugsuche//planeDown.png"
+										alt="plane" style="width: 20px; height: 20px;">
 									<h4>nach</h4>
 								</div>
-								<input placeholder="Ankunftshafen" type="text" id="ankunft" name ="ankunft"
-									onkeyup="loadAirports(event)" required>
+								<input placeholder="Ankunftshafen" type="text" id="ankunft"
+									name="ankunft" onkeyup="loadAirports(event)"
+									value="${ankufthafen.ort}" required>
 								<div class="autocompletAirport" id="ankunftAutocomplet"></div>
 
 								<table class="tables" id="möglicheFlüge"></table>
@@ -158,55 +172,76 @@
 							<div class="kalender">
 								<div class="flyDate" id="hinFly">
 									<h4>Hinflug</h4>
-									<input type="date" id="calendarHin" name ="DateHinflug" class="Date"
-										placeholder="TT.MM.JJJJ"
+									<input type="date" id="calendarHin" name="DateHinflug"
+										class="Date" placeholder="TT.MM.JJJJ"
 										onclick="currentMonthName(calendarHin.id)" required>
 
 								</div>
 
 
 
-								<div class="flyDate" id="rückFly">
+								<div class="flyDate" id="rückFly"
+									<c:if test="${onlyHinflug ==true}"> visibility ="hidden"</c:if>>
 									<h4>Rückflug</h4>
-									<input type="date" id="calendarRueck" class="Date" name = "DateRueckflug"
-										placeholder="TT.MM.JJJJ"
-										onclick="currentMonthName(calendarRueck.id)" required>
+									<input type="date" id="calendarRueck" class="Date"
+										name="DateRueckflug" placeholder="TT.MM.JJJJ"
+										onclick="currentMonthName(calendarRueck.id)"
+										<c:if test="${onlyHinflug ==false}"> required </c:if>>
 								</div>
 							</div>
-
 							<div class="passengers">
 								<h4>Passagiere</h4>
 
 
-								<select class="selectPassenger" id="erwachsen" name = "adults">
+								<select class="selectPassenger" id="erwachsen" name="adults">
 									<optgroup label="Erwachsene(>18 Jahre)">
+										<%
+											for (int i = 1; i <= 5; i++) {
+										%>
 
-										<option>1 Erwachsener</option>
-										<option>2 Erwachsener</option>
-										<option>3 Erwachsener</option>
-										<option>4 Erwachsener</option>
-										<option>5 Erwachsener</option>
+										<option><%=i%> Erwachsener
+										</option>
+										<%
+											}
+										%>
+
 
 
 									</optgroup>
-								</select> <select class="selectPassenger" name = "children">
+								</select> <select class="selectPassenger" name="children">
 									<optgroup label="Kinder (2 bis 18 Jahre)">
-										<option>0 Kinder</option>
-										<option>1 Kind</option>
-										<option>2 Kinder</option>
-										<option>3 Kinder</option>
-										<option>4 Kinder</option>
-										<option>5 Kinder</option>
+										<%
+											for (int i = 0; i <= 5; i++) {
+										%>
+
+										<option><%=i%> Kind<%
+											if (i != 1) {
+										%>er<%
+											}
+										%>
+										</option>
+										<%
+											}
+										%>
 
 
 									</optgroup>
 
-								</select> <select class="selectPassenger" name = "babies">
+								</select> <select class="selectPassenger" name="babies">
 									<optgroup label="Baby (bis 2 Jahre)">
-										<option>0 Babys</option>
-										<option>1 Baby</option>
-										<option>2 Babys</option>
-										<option>3 Babys</option>
+										<%
+											for (int i = 0; i <= 5; i++) {
+										%>
+
+										<option><%=i%> Baby<%
+											if (i != 1) {
+										%>s<%
+											}
+										%>
+										</option>
+										<%
+											}
+										%>
 
 
 
@@ -218,7 +253,8 @@
 
 							</div>
 						</div>
-						<button type="submit" formaction="/Flugsuche/Flugbuchung" formmethod= "post"> Suchen </button>
+						<button type="submit" formaction="/Flugsuche/Flugbuchung"
+							formmethod="post">Suchen</button>
 					</form>
 				</section>
 
@@ -229,87 +265,76 @@
 			<div id="hinflug">
 				<img src="../images/planeUp.png" style="width: 50px; height: 50px;">
 				<h1>
-					Ihr Hinflug: <span>München - New York</span>
-					<% System.out.println("Hello"); %>
+					Ihr Hinflug: <span>${abflughafen.ort} - ${ankufthafen.ort}</span>
+
 				</h1>
 			</div>
-			<div id="s">
-				<div id="prev">
-					<p><</p>
-				</div>
-				<div class="datum" id="hinFlug">
-
-					<div id="ab">
-						<p>Di ,22.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Mi,23.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Do ,24.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Fr ,25.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Di ,22.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Mi,23.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Do ,24.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Fr ,25.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Di ,22.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Mi,23.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Do ,24.03.2016</p>
-						<p>ab 200</p>
-					</div>
-					<div id="ab">
-						<p>Fr ,25.03.2016</p>
-						<p>ab 200</p>
-					</div>
 
 
-				</div>
+			<!-- 			<div id="s"> -->
+			<!-- 				<div id="prev"> -->
+			<!-- 					<p><</p> -->
+			<!-- 				</div> -->
+			<!-- 				<div class="datum" id="hinFlug"> -->
+
+			<%-- 										<% --%>
+			<!-- 					// HashMap -->
+			<!-- 					<Date , Double> map = (HashMap) session.getAttribute("map"); -->
+			<%-- 					// for (Date date : map.keySet()) { // System.out.println(date); 					%> --%>
+			<%-- 					<!-- 					<div id="ab"> --> 						<p><%=date.toLocaleString().substring(0, 9)%></p> --%>
+			<%-- 					<!-- 						<p> --> <!-- 							ab --> 							<%=map.get(date)%> --%>
+			<%-- 					<!-- 							€ --> <!-- 						</p> --> <!-- 					</div> --> 					<% --%>
+			<%-- 					// } 					%> --%>
+			<!-- 				</div> -->
 
 
 
-				<div id="back">
-					<p><</p>
-				</div>
+			<!-- 				<div id="back"> -->
+			<!-- 					<p><</p> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+
+			<div class="wrapper_flugtage">
+				<ul>
+
+					<li class="arrow-flugtag"><span><</span></li>
+					<%
+						HashMap<Date, Double> map = (HashMap) session.getAttribute("map");
+						for (Date date : map.keySet()) {
+							System.out.println(date);
+					%>
+
+					<li class="element">
+
+						<p>
+							<b><%=date.toLocaleString().substring(0, 10)%></b>
+						</p>
+						<p>
+							ab
+							<%=map.get(date)%>
+							€
+						</p>
+					</li>
+					<%
+						}
+					%>
+					<li class="arrow-flugtag"><span>></span></li>
+
+				</ul>
 			</div>
+
 
 
 
 			<div class="flightPlan">
 				<table id="hinTable">
 					<colgroup>
-						<col width="51%">
+						<col width="60%">
 
-						<col width="17%">
-						<col width="17%">
-						<col width="17%">
+						<col width="20%">
+						<col width="20%">
+
 					</colgroup>
-
 
 					<thead>
 						<tr>
@@ -317,7 +342,6 @@
 							<th></th>
 							<th class="flugKlasse" id="economy">Economy Class</th>
 							<th class="flugKlasse" id="business">Business Class</th>
-							<th class="flugKlasse" id="first">First Class</th>
 						</tr>
 					</thead>
 					<tr id="test">
@@ -342,8 +366,12 @@
 						</td>
 						<td><input type="radio" name="A"><span>500 €</span></td>
 						<td><input type="radio" name="A"><span> 700 €</span></td>
-						<td><input type="radio" name="A"><span>1000 €</span></td>
+				
 					</tr>
+
+
+
+
 					<tr>
 						<td colspan="4">
 							<table id="detail">

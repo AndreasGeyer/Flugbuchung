@@ -8,6 +8,11 @@ p {
 	padding: 5px;
 }
 
+li p {
+	padding: 0px;
+	padding-bottom: 5px;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -137,21 +142,51 @@ input[type="radio"] {
 	width: 100%;
 }
 
-@media screen and (min-width:600px) {
-	.datum div {
-		min-width: calc(100%/ 3);
+@media screen and (max-width:849px) {
+	.wrapper_flugtage>ul>.element {
+		width: calc(100%/ 3 - 1%);
+	}
+	.wrapper_flugtage>ul>.element:nth-child(1n+5) {
+		display: none
+	}
+	.wrapper_flugtage>ul>.arrow-flugtag {
+		display: none
 	}
 }
 
-@media screen and (min-width:700px) {
+@media screen and (min-width:850px) and (max-width:1090px) {
 	.datum div {
 		min-width: calc(100%/ 4);
+	}
+	.wrapper_flugtage>ul>.element {
+		width: calc(90%/ 4 - 1%);
+	}
+	.wrapper_flugtage>ul>.element:nth-child(1n+6) {
+		display: none
+	}
+}
+
+@media screen and (min-width:1090px) and (max-width:1199px) {
+	.datum div {
+		min-width: calc(100%/ 4);
+	}
+	.wrapper_flugtage>ul>.element {
+		width: calc(90%/ 4 - 1%);
+	}
+	.wrapper_flugtage>ul>.element:nth-child(1n+6) {
+		display: none
 	}
 }
 
 @media screen and (min-width:1200px) {
 	.datum div {
 		min-width: calc(100%/ 5);
+	}
+	.wrapper_flugtage>ul>.element {
+		width: calc(90%/ 5 - 1%);
+	}
+	.wrapper_flugtage>ul>.element:nth-child(1n+7) {
+		display: none
 	}
 }
 
@@ -340,17 +375,14 @@ table:HOVER  #detail {
 }
 
 li {
-
 	cursor: pointer;
 	padding: 10px 10px 30px;
 	pointer-events: all;
 	height: 30px;
 	width: 100%;
-	
 	border-bottom: 2px solid #e8e5e5;
 }
+
 .listAirportAuto li:HOVER {
 	background-color: #eaeaea;
 }
-
-
