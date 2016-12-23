@@ -25,7 +25,7 @@ import flugsuche.bean.Kunde;
  * Servlet implementation class User
  */
 @WebServlet("/User")
-public class User extends HttpServlet {
+public class UserLaden extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Resource(lookup="jdbc/MyTestSQLPool")
@@ -33,7 +33,7 @@ public class User extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public User() {
+    public UserLaden() {
         super();
         // TODO Auto-generated constructor stub
     }
