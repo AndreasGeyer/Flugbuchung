@@ -10,6 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ import flugsuche.bean.Flug;
 import flugsuche.bean.Fluggesellschaft;
 import flugsuche.bean.Flughafen;
 import flugsuche.bean.Flugzeugtyp;
+import flugsuche.bean.ComparatorFlug;
 
 /**
  * Servlet implementation class Flugbuchung
@@ -64,9 +67,9 @@ public class Flugbuchung extends HttpServlet {
 		Flughafen ankufthafen;
 		Date hinflug = null;
 		Date rueckflug = null;
-		int adults;
-		int childs;
-		int babies;
+		int adults = 1;
+		int childs = 0;
+		int babies = 0;
 
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -89,6 +92,7 @@ public class Flugbuchung extends HttpServlet {
 
 			try {
 				hinflug = format.parse(request.getParameter("datumhin"));
+				System.out.println("flug: datim"+hinflug.toString());
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
@@ -116,18 +120,27 @@ public class Flugbuchung extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			System.out.println(request.getParameter("babies").charAt(0) +"charat");
+			System.out.println(request.getParameter("babies"));
+			adults = Integer.parseInt(""+request.getParameter("adults").charAt(0));
 
-			adults = Integer.valueOf(request.getParameter("adults").charAt(0));
-			childs = Integer.valueOf(request.getParameter("children").charAt(0));
-			babies = Integer.valueOf(request.getParameter("babies").charAt(0));
+			childs = Integer.valueOf(""+request.getParameter("children").charAt(0));
+			babies = Integer.valueOf(""+request.getParameter("babies").charAt(0));
 		}
 
 		request.setAttribute("abflughafen", abflughafen);
 		request.setAttribute("ankufthafen", ankufthafen);
 		request.setAttribute("onlyHinflug", onlyHinflug);
-		request.setAttribute("datumHin", hinflug);
 
+		request.setAttribute("datumHin", hinflug);
+		request.setAttribute("datumRueck", rueckflug);
+		
+		request.setAttribute("erwachsener", adults);
+		request.setAttribute("childs", childs);
+		request.setAttribute("babies", babies);
+		
 		List<Flug> direkt = getDirectFlug(abflughafen, ankufthafen, hinflug);
+		Collections.sort(direkt, ComparatorFlug.getComparatorPreis());
 		Map<Date, Double> minPreisMap = getMinPreisPerDate(abflughafen, ankufthafen, hinflug);
 
 		session.setAttribute("map", minPreisMap);

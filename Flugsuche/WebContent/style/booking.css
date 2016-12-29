@@ -104,7 +104,7 @@ h1 {
 	color: white;
 }
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
 	width: 10%;
 	min-width: 0px;
 }
@@ -385,6 +385,6 @@ li {
 	background-color: #eaeaea;
 }
 
-.unvisible{
+.unvisibleHin, .unvisibleRueck{
 	display: none;
 }

@@ -88,6 +88,8 @@ function loadAirports(event) {
 	xmlhttp.send();
 }
 
+
+
 function selectAirport(event, inputField) {
 	var target = event.target;
 	var airport = target.id;

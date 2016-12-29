@@ -234,6 +234,9 @@ th label {
 	font-weight: bold;
 	text-align: left;
 }
+.unvisibleHin, .unvisibleRueck{
+	display: none;
+}
 
 .cheapest {
 	background-color: #1188cc;
@@ -241,3 +244,13 @@ th label {
 	color: white;
 }
 
+.fehler{
+	text-align: center;
+	font-size: 30px;
+	padding: 30px;
+	margin: 4%;
+	color: red;
+	border: 5px red solid;
+	position: absolut;
+	right: 30%;
+}
