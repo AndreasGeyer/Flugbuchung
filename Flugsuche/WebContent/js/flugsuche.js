@@ -1,7 +1,0 @@
-function sichthinrück(){
-	
-}
-
-function sichthin(){
-	
-}

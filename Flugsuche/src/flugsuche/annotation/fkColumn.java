@@ -13,4 +13,6 @@ public @interface fkColumn {
 	String referenceTable();
 	String referenceColumnName();
 
+
 }
+

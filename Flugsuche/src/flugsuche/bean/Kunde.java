@@ -34,6 +34,7 @@ public class Kunde  implements Serializable {
 	private String mail;
 	
 	@column(name="passwort")
+
 	private String passwort;
 	
 	@column(name="strasse")

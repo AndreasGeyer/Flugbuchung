@@ -2,8 +2,10 @@
     pageEncoding="utf-8"%>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style/header.css" />
-	<script type="text/javascript" src="js/header.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/header.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/header.js"></script>
+
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 
