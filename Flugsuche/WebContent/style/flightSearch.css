@@ -97,9 +97,7 @@ input, select {
 	justify-content: space-between;
 }
 
-#rückFly {
-	visibility: hidden;
-}
+
 
 input:CHECKED+.flugLabel, input:CHECKED+label {
 	background-color: #114477;

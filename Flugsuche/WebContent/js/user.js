@@ -1,4 +1,5 @@
-var menuOffen = false;
+var selectedHin = null;
+var seletRueck = null;
 
 function oeffneAendern(menuId) {
 	if (menuOffen == false) {
@@ -35,9 +36,11 @@ function displayFlightDetails(event, hin) {
 	var tr_visible = document.getElementById(id + "_detail");
 
 	tr_visible.setAttribute("class", "visible" + hin.toString());
+	tr_visible.style.display = "table-row";
 
 	target = event.target;
-	fillRechung(target.id);
+
+	fillRechung(target.id, hin);
 }
 
 function displayFlyTime(event) {
@@ -49,6 +52,8 @@ function displayFlyTime(event) {
 	var date = new Date(parseInt(value));
 	if (idString.indexOf("Uhr", 0) != -1) {
 		dateString = date.getHours() + ":" + date.getMinutes() + " Uhr";
+	} else if ((idString.indexOf("max", 0) != -1)) {
+		dateString = target.value + " €";
 	}
 
 	else {
@@ -63,6 +68,11 @@ function displayFlyTime(event) {
 	innerHTMLspanField = innerHTMLspanField.substring(0, innerHTMLspanField
 			.indexOf("bis", 0) + 4);
 	spanField.innerHTML = innerHTMLspanField + dateString + "</strong>";
+
+	if (idString.indexOf("Hin", 0) != -1)
+		ajax("Hin");
+	else
+		ajax("Rueck");
 }
 
 function displayPrice(event) {
@@ -81,12 +91,16 @@ function displayPrice(event) {
 	spanField.innerHTML = innerHTMLspanField + value + "</strong>";
 }
 
-function fillRechung(id) {
+function fillRechung(id, hin) {
 	var idString = "" + id;
 	var flightNumber = idString.substring(0, idString.indexOf("_", 0) + 1);
 	var price = document.getElementById(id);
 	var datumHin = document.getElementById("calendarHin").getAttribute("value");
-	var rechnungHin = document.getElementById("RechnungHin");
+	var rechnungHin = "";
+	if (hin == "Hin")
+		rechnungHin = document.getElementById("RechnungHin");
+	else
+		rechnungHin = document.getElementById("RechnungRueck");
 	var abflugzeit = document.getElementById(flightNumber + "abflugzeit");
 	var ankunftzeit = document.getElementById(flightNumber + "ankunftzeit");
 	var abflugort = document.getElementById(flightNumber + "abflugort").innerText;
@@ -138,14 +152,14 @@ function fillRechung(id) {
 			var erwachsener_p = document.createElement("p");
 			var preis = price.parentNode.innerText.replace(",", ".");
 
-			var preis =(parseFloat(preis)*pricePassengers[i]).toFixed(2);
+			var preis = (parseFloat(preis) * pricePassengers[i]).toFixed(2);
 
 			erwachsener_p.appendChild(document.createTextNode(text + " a "
-					+ preis+"€"));
+					+ preis + "€"));
 			var erwachsener_preis = document.createElement("p");
 
-			preis = (preis*number).toFixed(2);
-		
+			preis = (preis * number).toFixed(2);
+
 			erwachsener_preis.appendChild(document.createTextNode(preis + "€"));
 
 			erwachsene.setAttribute("class", "posten");
@@ -158,16 +172,145 @@ function fillRechung(id) {
 		}
 	}
 
-
 }
 
+function ajax(hinorRueck) {
 
-function ajax(){
 	var xmlhttp = new XMLHttpRequest();
-	var target = event.target;
 
-	xmlhttp.onreadystatechange = function(){
-		
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+			var fluege = JSON.parse(xmlhttp.responseText);
+			if (fluege == null) {
+				return;
+			} else {
+				var elements = [];
+				alert(fluege.toString());
+				var table = null;
+				if (hinorRueck == "Hin" || hinorRueck == "HinRueck")
+					table = document.getElementById("hinTable");
+				else
+					table = document.getElementById("rueckTable");
+
+				var i = table.querySelectorAll("tr");
+				var body = table.querySelectorAll("tbody");
+				alert(i == null);
+				alert(i);
+				for (var int = 0; int < i.length; int++) {
+					alert(i[int].id);
+					if (i[int].id != "") {
+						var elem = document.getElementById(i[int].id);
+						//elem.style.display = "none";
+						elements.push(elem);
+
+					}
+				}
+
+				var paretn = elements[0].parentNode;
+
+				for (var int2 = 0; int2 < fluege.length * 2; int2++) {
+
+					var pos = getElementPosition(elements, fluege[int2 / 2].id);
+					var node = elements[pos];
+					node.style.display = "table-row";
+					var node2 = elements[pos + 1];
+					elements[pos] = null;
+					elements[pos + 1] = null;
+
+					paretn.appendChild(node);
+					paretn.appendChild(node2);
+
+					int2++;
+
+				}
+				displayNone(elements, paretn)
+
+			}
+		}
+	}
+
+	var input = document.getElementsByName("Preis");
+	var hinSortierung = null;
+	for (var i = 0; i < input.length; i++) {
+		if (input[i].checked == true) {
+			hinSortierung = input[i].value;
+		}
+	}
+
+	var params = "";
+
+	if (hinorRueck == "Hin" || hinorRueck == "HinRueck") {
+		var preisHin = document.getElementById("maxPriceHin_input").value;
+		var uhrzeit = document.getElementById("UhrzeitHin_input").value;
+		var flugdauer = document.getElementById("zeitHin_input").value;
+		var gesellschaft = document.getElementsByName("fluggesellschaft");
+		var string_gesellschaft = "";
+		for (var i = 0; i < gesellschaft.length; i++) {
+			if (gesellschaft[i].checked == true) {
+				string_gesellschaft = string_gesellschaft
+						+ gesellschaft[i].id.toString() + ",";
+			}
+		}
+
+		params = "HinRueck=Hin&preisHin=" + preisHin + "&uhrzeitHin=" + uhrzeit + "&ges="
+				+ string_gesellschaft + "&flugdauer=" + flugdauer;
+	} else if (hinorRueck == "Rueck") {
+		var preisRueck = document.getElementById("maxPriceRueck_input").value;
+		var uhrzeitRueck = document.getElementById("UhrzeitRueck_input").value;
+		var flugdauerRueck = document.getElementById("zeitRueck_input").value;
+		var gesellschaft = document.getElementsByName("fluggesellschaft");
+		var string_gesellschaft = "";
+		for (var i = 0; i < gesellschaft.length; i++) {
+			if (gesellschaft[i].checked == true) {
+				string_gesellschaft = string_gesellschaft
+						+ gesellschaft[i].id.toString() + ",";
+			}
+		}
+
+		params = "HinRueck=Rueck&preisHin=" + preisRueck + "&uhrzeitHin=" + uhrzeitRueck
+				+ "&ges=" + string_gesellschaft + "&flugdauer="
+				+ flugdauerRueck;
+	}
+
+	var url = "/Flugsuche/FlugTableAktualisieren?sortingHin" + "="
+			+ hinSortierung + "&" + params;
+	xmlhttp.open("GET", url, true)
+
+	xmlhttp.send();
+	if (hinorRueck == "HinRueck") {
+		ajax("Rueck");
+	}
+}
+
+function displayNone(elements, parent) {
+	for (var i = 0; i < elements.length; i++) {
+
+		if (elements[i] != null) {
+
+			var node = elements[i++];
+			parent.appendChild(node);
+			node.style.display = "none";
+
+			var node2 = elements[i];
+			parent.appendChild(node2);
+			node2.style.display = "none";
+
+		}
+	}
+}
+
+function getElementPosition(elements, id) {
+	for (var i = 0; i < elements.length; i++) {
+		if (elements[i] != null && elements[i].id == id) {
+			return i;
+		}
+	}
+}
+
+function resize() {
+	if (window.innerWidth <= 849) {
+
 	}
 }
 

@@ -43,6 +43,7 @@ public class Flugbuchung extends HttpServlet {
 
 	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
+	private Connection connection;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -59,6 +60,13 @@ public class Flugbuchung extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		try {
+			connection = ds.getConnection();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		// Setzen der Flugvariablen
 
@@ -92,7 +100,7 @@ public class Flugbuchung extends HttpServlet {
 
 			try {
 				hinflug = format.parse(request.getParameter("datumhin"));
-				System.out.println("flug: datim"+hinflug.toString());
+				System.out.println("flug: datim" + hinflug.toString());
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
@@ -120,12 +128,12 @@ public class Flugbuchung extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println(request.getParameter("babies").charAt(0) +"charat");
+			System.out.println(request.getParameter("babies").charAt(0) + "charat");
 			System.out.println(request.getParameter("babies"));
-			adults = Integer.parseInt(""+request.getParameter("adults").charAt(0));
+			adults = Integer.parseInt("" + request.getParameter("adults").charAt(0));
 
-			childs = Integer.valueOf(""+request.getParameter("children").charAt(0));
-			babies = Integer.valueOf(""+request.getParameter("babies").charAt(0));
+			childs = Integer.valueOf("" + request.getParameter("children").charAt(0));
+			babies = Integer.valueOf("" + request.getParameter("babies").charAt(0));
 		}
 
 		request.setAttribute("abflughafen", abflughafen);
@@ -134,18 +142,40 @@ public class Flugbuchung extends HttpServlet {
 
 		request.setAttribute("datumHin", hinflug);
 		request.setAttribute("datumRueck", rueckflug);
-		
+
 		request.setAttribute("erwachsener", adults);
 		request.setAttribute("childs", childs);
 		request.setAttribute("babies", babies);
-		
-		List<Flug> direkt = getDirectFlug(abflughafen, ankufthafen, hinflug);
-		Collections.sort(direkt, ComparatorFlug.getComparatorPreis());
+
+		List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);
+		Collections.sort(direktHin, ComparatorFlug.getComparatorPreis());
 		Map<Date, Double> minPreisMap = getMinPreisPerDate(abflughafen, ankufthafen, hinflug);
+		Map<Date, Double> minPreisMapRueck = null;
+
+		List<Flug> direktRueck = null;
+		if (!onlyHinflug) {
+			 direktRueck = getDirectFlug(ankufthafen, abflughafen, rueckflug);
+			Collections.sort(direktRueck, ComparatorFlug.getComparatorPreis());
+			minPreisMapRueck = getMinPreisPerDate(ankufthafen, abflughafen, rueckflug);
+			session.setAttribute("mapRueck", minPreisMapRueck);
+			session.setAttribute("direktflugRueck", direktRueck);
+
+		}
+		else{
+			session.setAttribute("direktflugRueck", null);
+		}
+
+		
+		
 
 		session.setAttribute("map", minPreisMap);
-		session.setAttribute("direktflug", direkt);
-
+		session.setAttribute("direktflug", direktHin);
+		try {
+			connection.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Flugsuche.jsp");
 		dispatcher.forward(request, response);
 
@@ -156,15 +186,15 @@ public class Flugbuchung extends HttpServlet {
 		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? group by date(abflugzeit) order by abflugzeit desc ";
 		Map<Date, Double> minPreis = new HashMap<>();
 		Map<Date, Double> maxPreis = new HashMap<>();
-		Connection connection;
+	
 		try {
-			connection = ds.getConnection();
+			
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
 			preparedStatement.setDate(3, new java.sql.Date(datum.getTime() - 86400000L * 15));
 			preparedStatement.setDate(4, new java.sql.Date(datum.getTime() + 86400000L * 15));
-			System.out.println(preparedStatement.toString());
+			
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
@@ -172,7 +202,7 @@ public class Flugbuchung extends HttpServlet {
 				maxPreis.put(result.getDate("abflugdatum"), result.getDouble("maxPreis"));
 
 			}
-			connection.close();
+		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -203,9 +233,9 @@ public class Flugbuchung extends HttpServlet {
 
 		String statement = "SELECT * FROM FLUGHAFEN WHERE ORT = ?";
 
-		Connection connection;
+
 		try {
-			connection = ds.getConnection();
+			
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setString(1, code);
 			ResultSet result = preparedStatement.executeQuery();
@@ -221,7 +251,7 @@ public class Flugbuchung extends HttpServlet {
 			}
 			System.out.println(preparedStatement.toString());
 
-			connection.close();
+		
 			return hafen;
 
 		} catch (SQLException e) {
@@ -238,9 +268,9 @@ public class Flugbuchung extends HttpServlet {
 
 		String statement = "select * from flugzeugtyp where flugzeugtypid = ?";
 
-		Connection connection;
+
 		try {
-			connection = ds.getConnection();
+		
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, id);
 			ResultSet result = preparedStatement.executeQuery();
@@ -255,7 +285,7 @@ public class Flugbuchung extends HttpServlet {
 				typ.setGesellschaft(getFluggesellschaft(result.getInt("fk_flugzeuggesellschaft")));
 				return typ;
 			}
-			connection.close();
+		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -271,13 +301,13 @@ public class Flugbuchung extends HttpServlet {
 	private Fluggesellschaft getFluggesellschaft(int id) {
 		String statement = "select * from fluggesellschaft where fluggesellschaftid = ?";
 
-		Connection connection;
+	
 		try {
-			connection = ds.getConnection();
+	
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, id);
 			ResultSet result = preparedStatement.executeQuery();
-			System.out.println(preparedStatement.toString());
+	
 
 			if (result.next()) {
 				Fluggesellschaft gesellschaft = new Fluggesellschaft();
@@ -285,7 +315,7 @@ public class Flugbuchung extends HttpServlet {
 				gesellschaft.setId(id);
 				return gesellschaft;
 			}
-			connection.close();
+	
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -302,9 +332,9 @@ public class Flugbuchung extends HttpServlet {
 		String sql = "SELECT * FROM flug WHERE fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) = ?";
 		List<Flug> listDirektFluege = new ArrayList<Flug>();
 
-		Connection connection;
+
 		try {
-			connection = ds.getConnection();
+	
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
@@ -316,7 +346,7 @@ public class Flugbuchung extends HttpServlet {
 				Flug flug = new Flug();
 				flug.setId(result.getInt("flugid"));
 				flug.setAbflugzeit(new Date(result.getTimestamp("abflugzeit").getTime()));
-	
+
 				flug.setAbFlughafen(abFlughafen);
 				flug.setAnFlughafen(anFlughafen);
 				flug.setFlugdauer(new Date(result.getTime("fugdauer").getTime()));
@@ -327,7 +357,7 @@ public class Flugbuchung extends HttpServlet {
 
 			}
 
-			connection.close();
+		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

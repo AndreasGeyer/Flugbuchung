@@ -6,8 +6,9 @@ function displayRueckflug(event) {
 	var target = event.target;
 	if (target.id == 'Hinflug') {
 
-		document.getElementById("rückFly").style.visibility = 'hidden';
+		document.getElementById("rückFly").visibility = 'hidden';
 		document.getElementById("calendarRueck").required = false;
+		document.getElementById("calendarRueck").value = "";
 		var i = document.getElementById("rückFly");
 		
 	} else {
