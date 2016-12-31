@@ -6,6 +6,7 @@ body{
 	background-image: url("../img/Flugsuche/ozean.jpg");
 	background-repeat: no-repeat;
 	background-size: 300%;	
+
 }
 
 #navigation{
@@ -18,8 +19,12 @@ nav ul {
 }
 
 nav li {
-	list-style: none;
-	display: inline-block;
+    list-style: none;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-bottom: 0px;
 }
 
 nav a,
@@ -41,8 +46,6 @@ nav span {
 	color: black;
 	background-color: darkgrey;
 }
-
-
 
 
 p {
@@ -70,8 +73,8 @@ li p {
 	height: 400px;
 }
 
-#main {
-	width: 60%;
+main {
+	width: 98%;
 	height: 1000px;
 }
 
@@ -259,23 +262,6 @@ td p, th p {
 	color: blue;
 	background-color: inherit;
 }
-
-/* #detail { */
-/* 	display: none; */
-/* } */
-
-/* #detail p { */
-/* 	text-align: center; */
-/* } */
-
-/* #detail img { */
-/* 	display: block; */
-/* 	margin: auto; */
-/* } */
-
-/* table:HOVER  #detail { */
-/* 	display: table; */
-/* } */
 
 .stopps, .maxPrice, .dauer, .zeit, .airline {
 	width: 90%;
