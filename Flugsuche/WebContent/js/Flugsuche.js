@@ -4,16 +4,25 @@
 function displayRueckflug(event) {
 
 	var target = event.target;
+
 	if (target.id == 'Hinflug') {
 
-		document.getElementById("rückFly").visibility = 'hidden';
+		document.getElementById("rueckFly").style.display = "none";
+	
+//		document.getElementById("calendarRueck").setAttribute("required", "required");
+		document.getElementById("calendarRueck").setAttribute("value", "");
 		document.getElementById("calendarRueck").required = false;
-		document.getElementById("calendarRueck").value = "";
-		var i = document.getElementById("rückFly");
+		document.getElementById("calendarRueck").setAttribute("pattern", "");
+
+
 		
 	} else {
-		document.getElementById("rückFly").style.visibility = 'visible';
+	
+		document.getElementById("rueckFly").style.display = "block";
 		document.getElementById("calendarRueck").required = true;
+		document.getElementById("calendarRueck").setAttribute("value", "");
+		document.getElementById("calendarRueck").setAttribute("pattern", "\d{1,2}.\d{1,2}.\d{4}");
+
 	}
 }
 

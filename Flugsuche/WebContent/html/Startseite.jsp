@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Flugsuche THI</title>
-		<link rel="stylesheet" type="text/css" href="style/main.css" />
-		<link rel="stylesheet" type="text/css" href="style/startseite.css" />
-		<script type="text/javascript" src="js/startseite.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/startseite.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/startseite.js"></script>
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>

@@ -28,7 +28,7 @@ import flugsuche.bean.Kunde;
 public class UserLaden extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Resource(lookup="jdbc/MyTestSQLPool")
+	@Resource(lookup="jdbc/__default")
 	private DataSource ds;
     /**
      * @see HttpServlet#HttpServlet()

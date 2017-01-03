@@ -16,6 +16,12 @@ public  class ComparatorFlug {
 		return comp;
 	}
 	
+	public static Comparator<Flug> getComparatorAbflugzeit(){
+		Comparator<Flug> comp = new ComparatorAbflugzeit();	
+		return comp;
+	}
+	
+	
 	
 	private static class ComparatorPreis implements Comparator<Flug>{
 
@@ -36,4 +42,12 @@ public  class ComparatorFlug {
 		
 	}
 
+	private static class ComparatorAbflugzeit implements Comparator<Flug>{
+
+		@Override
+		public int compare(Flug o1, Flug o2) {
+			return o1.getAbflugzeit().compareTo(o2.getAbflugzeit());
+		}
+		
+	}
 }

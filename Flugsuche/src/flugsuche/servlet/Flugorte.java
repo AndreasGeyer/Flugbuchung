@@ -45,7 +45,7 @@ import flugsuche.bean.Flughafen;
 public class Flugorte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Resource(lookup = "jdbc/MyTestSQLPool")
+	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
 
 	/**

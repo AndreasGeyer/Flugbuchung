@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 	private final String userID = "Test";
 	private final String password = "test";
 	
-	@Resource(lookup="jdbc/MyTestSQLPool")
+	@Resource(lookup="jdbc/__default")
 	private DataSource ds;
 
 	protected void doPost(HttpServletRequest request,

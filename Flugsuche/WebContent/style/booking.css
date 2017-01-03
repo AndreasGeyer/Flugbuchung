@@ -108,7 +108,7 @@ th {
 #hinflug, #rueckflug {
 	justify-content: flex-start;
 	margin-top: 10px;
-	background-color: #ddd;
+	background-color: ghostwhite;
 }
 
 h1 {
@@ -126,7 +126,7 @@ h1 {
 
 #s div {
 	border: 2px aqua #aaa;
-	background-color: #ddd;
+	background-color: ghostwhite;
 	margin-right: 5px;
 }
 
@@ -192,9 +192,7 @@ input[type="radio"], input[type="checkbox"] {
 	.wrapper_flugtage>ul>.element {
 		width: calc(100%/ 3 - 1%);
 	}
-/* 	.wrapper_flugtage>ul>.element:nth-child(1n+5) { */
-/* 		display: none */
-/* 	} */
+
 	.wrapper_flugtage>ul>.arrow-flugtag {
 		display: none
 	}
@@ -207,9 +205,7 @@ input[type="radio"], input[type="checkbox"] {
 	.wrapper_flugtage>ul>.element {
 		width: calc(90%/ 4 - 1%);
 	}
-	.wrapper_flugtage>ul>.element:nth-child(1n+6) {
-		display: none
-	}
+
 }
 
 @media screen and (min-width:1090px) and (max-width:1199px) {
@@ -219,9 +215,7 @@ input[type="radio"], input[type="checkbox"] {
 	.wrapper_flugtage>ul>.element {
 		width: calc(90%/ 4 - 1%);
 	}
-	.wrapper_flugtage>ul>.element:nth-child(1n+6) {
-		display: none
-	}
+
 }
 
 @media screen and (min-width:1200px) {
@@ -231,9 +225,7 @@ input[type="radio"], input[type="checkbox"] {
 	.wrapper_flugtage>ul>.element {
 		width: calc(90%/ 5 - 1%);
 	}
-	.wrapper_flugtage>ul>.element:nth-child(1n+7) {
-		display: none
-	}
+
 }
 
 table {
@@ -268,7 +260,7 @@ td p, th p {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 5%;
-	background-color: #ddd;
+	background-color: ghostwhite;
 	padding: 5px;
 	border-radius: 10px;
 	border: 0;
@@ -285,7 +277,7 @@ td p, th p {
 }
 
 #hinTable tbody, #rueckTable tbody {
-	background-color: #ddd;
+	background-color: ghostwhite;
 }
 
 #filter h4 {
@@ -325,7 +317,7 @@ td p, th p {
 }
 
 .Rechnung {
-	background-color: #ddd;
+	background-color: ghostwhite;
 }
 
 .Rechnung span {

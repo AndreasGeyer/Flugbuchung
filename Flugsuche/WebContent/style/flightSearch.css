@@ -118,12 +118,14 @@ input[type="text"], select {
 }
 
 #flightInfo {
-	background-color: #ddd;
-	border: 3px #ddd solid;
+	background-color: ghostwhite;
+	border: 3px ghostwhite solid;
 	padding: 1%;
 	margin-top: 15px;
 	border-radius: 10px;
 }
+
+
 
 .wrapper_flugtage {
 	overflow: hidden;
@@ -242,6 +244,10 @@ th label {
 	color: white;
 }
 
+#rueckFly{
+	display : none;
+}
+
 .fehler{
 	text-align: center;
 	font-size: 30px;
@@ -252,3 +258,8 @@ th label {
 	position: absolut;
 	right: 30%;
 }
+
+.wrapper_flugtage ul .element[name="nearestHin"], .wrapper_flugtage ul .element[name="nearestRueck"]  {
+    border: 3px green solid;
+    background: #f3f844;
+    color: black;}

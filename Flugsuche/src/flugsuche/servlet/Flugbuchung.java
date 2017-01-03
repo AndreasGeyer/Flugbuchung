@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -41,7 +43,7 @@ import flugsuche.bean.ComparatorFlug;
 public class Flugbuchung extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Resource(lookup = "jdbc/MyTestSQLPool")
+	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
 	private Connection connection;
 
@@ -104,8 +106,8 @@ public class Flugbuchung extends HttpServlet {
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				response.sendRedirect("Startseite.jsp");
+	
+
 
 			}
 
@@ -150,13 +152,13 @@ public class Flugbuchung extends HttpServlet {
 		List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);
 		Collections.sort(direktHin, ComparatorFlug.getComparatorPreis());
 		Map<Date, Double> minPreisMap = getMinPreisPerDate(abflughafen, ankufthafen, hinflug);
-		Map<Date, Double> minPreisMapRueck = null;
+		 
 
 		List<Flug> direktRueck = null;
 		if (!onlyHinflug) {
 			 direktRueck = getDirectFlug(ankufthafen, abflughafen, rueckflug);
 			Collections.sort(direktRueck, ComparatorFlug.getComparatorPreis());
-			minPreisMapRueck = getMinPreisPerDate(ankufthafen, abflughafen, rueckflug);
+			Map<Date, Double >minPreisMapRueck = getMinPreisPerDate(ankufthafen, abflughafen, rueckflug);
 			session.setAttribute("mapRueck", minPreisMapRueck);
 			session.setAttribute("direktflugRueck", direktRueck);
 
@@ -183,9 +185,10 @@ public class Flugbuchung extends HttpServlet {
 
 	private Map<Date, Double> getMinPreisPerDate(Flughafen abFlughafen, Flughafen anFlughafen, Date datum) {
 
-		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? group by date(abflugzeit) order by abflugzeit desc ";
-		Map<Date, Double> minPreis = new HashMap<>();
-		Map<Date, Double> maxPreis = new HashMap<>();
+		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? group by date(abflugzeit) order by abflugzeit asc ";
+		Map<Date, Double> minPreis = new TreeMap<>();
+		Map<Date, Double> maxPreis = new TreeMap<>();
+	
 	
 		try {
 			
@@ -196,7 +199,7 @@ public class Flugbuchung extends HttpServlet {
 			preparedStatement.setDate(4, new java.sql.Date(datum.getTime() + 86400000L * 15));
 			
 			ResultSet result = preparedStatement.executeQuery();
-
+			System.out.println(preparedStatement.toString());
 			while (result.next()) {
 				minPreis.put(result.getDate("abflugdatum"), result.getDouble("minPreis"));
 				maxPreis.put(result.getDate("abflugdatum"), result.getDouble("maxPreis"));
@@ -243,7 +246,7 @@ public class Flugbuchung extends HttpServlet {
 			if (result.next()) {
 				hafen = new Flughafen();
 				hafen.setId(result.getInt("flughafenid"));
-				hafen.setKuerzel("kuerzel");
+				hafen.setKuerzel(result.getString("kuerzel"));
 				hafen.setLand(result.getString("land"));
 				hafen.setOrt(code);
 				hafen.setZeitzone((Double.valueOf(result.getBigDecimal("zeitzone").toString())));

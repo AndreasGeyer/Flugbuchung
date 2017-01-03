@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -16,67 +20,26 @@ import flugsuche.annotation.table;
 import flugsuche.bean.Flughafen;
 
 public class Utils {
-
-	@Resource(lookup = "jdbc/MyTestSQLPool")
-	private DataSource ds;
-
-	public static void persist(DataSource dataSource, Object persistent) {
-		try {
-			Connection con = dataSource.getConnection();
-			Class persClass = persistent.getClass();
-			Annotation[] t = persClass.getAnnotationsByType(table.class);
-			Field[] coloumnName = persClass.getDeclaredFields();
-
-			String statement = "INSERT INTO " + ((table) t[0]).name() + "(";
-			String values = "VALUES(";
-			PreparedStatement preparedStatement = con.prepareStatement(null);
-
-			for (Field field : coloumnName) {
-				Annotation[] annotation = field.getAnnotations();
-				Annotation ann;
-				if (annotation[0] instanceof column) {
-
-					ann = (flugsuche.annotation.column) annotation[0];
-					statement = statement + ((column) ann).name() + ",";
-					values = values + persClass.getMethod("get" + getName(field)).invoke(persistent).toString();
-
-					persClass.getMethod("get" + getName(field)).invoke(persistent).toString();
+	
+	public static Date getNearestDate(Map<Date,Double> map, Date flugDatum){
+		Set<Date> keys =  map.keySet();
+		if(keys.size() == 0){
+			return null;
+		}
+		else{
+			Iterator<Date> iterator = keys.iterator();
+			Date nearestKey = iterator.next();
+			Long abstand = Math.abs(flugDatum.getTime()-nearestKey.getTime());
+			while(iterator.hasNext()){
+				Date nextkey = iterator.next();
+				if(Math.abs(flugDatum.getTime()-nextkey.getTime())<abstand){
+					abstand = Math.abs(flugDatum.getTime()-nextkey.getTime());
+					nearestKey = nextkey;
 				}
 			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-
+			return nearestKey;
 		}
-
-	}
-
-	private static String getName(Field field) {
-
-		char firstLetter = (char) (field.getName().charAt(0) + 20);
-		return Character.toString(firstLetter) + field.getName().substring(1);
 	}
 }
-// public List<Flughafen> suchen(PrintWriter out) throws ServletException {
-//
-// List<Flughafen> flughaefen = new ArrayList<Flughafen>();
-//
-// try (Connection con = ds.getConnection();
-// PreparedStatement pstmt = con.prepareStatement("select * from flughafen")) {
-// try (ResultSet rs = pstmt.executeQuery()) {
-// while (rs != null && rs.next()) {
-// Flughafen fh = new Flughafen();
-// fh.setId(rs.getInt("flughafenid"));
-// fh.setOrt(rs.getString("ort"));
-// fh.setKuerzel(rs.getString("kuerzel"));
-// fh.setZeitzone(rs.getDouble("zeitzone"));
-// flughaefen.add(fh);
-//
-// // fh.getClass().getann
-// }
-//
-// }
-// } catch (Exception ex) {
-// throw new ServletException(ex.getMessage());
-// }
-// return flughaefen;
+
+
