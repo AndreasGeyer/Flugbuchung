@@ -51,10 +51,28 @@ article#Suche table{
 
 article#Suche td{
 	padding-right: 15px;
+	height: 50px;
+	width: 33%;
+	position: relative;
 }
 article#Suche input{
 	width: 100%;
+	
 }
+article#Suche td > div.autocompletAirport{
+	background-color: white;
+	border: 1px black solid;
+	position: absolute;
+	width: calc(100% - 16px);
+}
+article#Suche td > div ul{
+	margin-top: 4px;
+	margin-bottom: 4px;
+	list-style:none;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
 article#Suche button{
 	width: 150px;
 	height: 30px;

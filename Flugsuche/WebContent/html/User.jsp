@@ -16,15 +16,16 @@
 	<%@ include file="Header.jspf"%>
 	<div id="main">
 		<article>
+			<h1>Ihre Daten</h1>
 			<ul>
-				<h1>Ihre Daten</h1>
 				<li class="anzeigen" onclick="oeffneAendern('Name')">
 					<h2>Näame</h2> <span class="inhalt">${kunde.anrede}
 						${kunde.titel} ${kunde.vorname} ${kunde.nachname}</span><span
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Name" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserAendern" method="post">
+					<form action="${pageContext.request.contextPath}/UserAendern"
+						method="post">
 						<table>
 							<tr>
 								<td><label>Anrede</label></td>
@@ -41,7 +42,7 @@
 							</tr>
 							<tr>
 								<td><label>Titel</label></td>
-								<td><select name = "titel">
+								<td><select name="titel">
 										<option value=null
 											<c:if test="${kunde.titel == null}">
 												 selected="selected"
@@ -63,14 +64,17 @@
 							</tr>
 							<tr>
 								<td><label>Vorname</label></td>
-								<td><input name="vorname" type="text" value="${kunde.vorname}" /></td>
+								<td><input name="vorname" type="text"
+									value="${kunde.vorname}" /></td>
 							</tr>
 							<tr>
 								<td><label>Nachname</label></td>
-								<td><input name="nachname" type="text" value="${kunde.nachname}" /></td>
+								<td><input name="nachname" type="text"
+									value="${kunde.nachname}" /></td>
 							</tr>
 							<tr>
-								<td><input onclick="schlieseAendern('Name')" type="button" value="Abbrechen"></td>
+								<td><input onclick="schlieseAendern('Name')" type="button"
+									value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -83,26 +87,31 @@
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Adresse" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserAendern" method="post">
+					<form action="${pageContext.request.contextPath}/UserAendern"
+						method="post">
 						<table>
 							<tr>
 								<td><label>Straße</label></td>
-								<td><input name="strasse" type="text" value="${kunde.strasse}" /></td>
+								<td><input name="strasse" type="text"
+									value="${kunde.strasse}" /></td>
 							</tr>
 							<tr>
 								<td><label>Hausnummer</label></td>
-								<td><input name="hausnummer" type="text" value="${kunde.hausnummer}" /></td>
+								<td><input name="hausnummer" type="text"
+									value="${kunde.hausnummer}" /></td>
 							</tr>
 							<tr>
 								<td><label>Postleitzahl</label></td>
-								<td><input name="postleitzahl" type="text" value="${kunde.PLZ}" /></td>
+								<td><input name="postleitzahl" type="text"
+									value="${kunde.PLZ}" /></td>
 							</tr>
 							<tr>
 								<td><label>Ort</label></td>
 								<td><input name="ort" type="text" value="${kunde.ort}" /></td>
 							</tr>
 							<tr>
-								<td><input type="button" onclick="schlieseAendern('Adresse')" value="Abbrechen"></td>
+								<td><input type="button"
+									onclick="schlieseAendern('Adresse')" value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -114,14 +123,17 @@
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Geburtsdatum" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserAendern" method="post">
+					<form action="${pageContext.request.contextPath}/UserAendern"
+						method="post">
 						<table>
 							<tr>
 								<td><label>Geburtsdatum</label></td>
-								<td><input name="geburtsdatum" type="date" value="${kunde.geburtsdatum}"/></td>
+								<td><input name="geburtsdatum" type="date"
+									value="${kunde.geburtsdatum}" /></td>
 							</tr>
 							<tr>
-								<td><input type="button" onclick="schlieseAendern('Geburtsdatum')" value="Abbrechen"></td>
+								<td><input type="button"
+									onclick="schlieseAendern('Geburtsdatum')" value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -133,14 +145,16 @@
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Email" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserAendern" method="post">
+					<form action="${pageContext.request.contextPath}/UserAendern"
+						method="post">
 						<table>
 							<tr>
 								<td><label>E-Mail</label></td>
-								<td><input name="email" type="email" value="${kunde.mail}"/></td>
+								<td><input name="email" type="email" value="${kunde.mail}" /></td>
 							</tr>
 							<tr>
-								<td><input type="button" onclick="schlieseAendern('Email')" value="Abbrechen"></td>
+								<td><input type="button" onclick="schlieseAendern('Email')"
+									value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -152,7 +166,8 @@
 						Passwort ändern</span><span class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Passwort" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserAendern" method="post">
+					<form action="${pageContext.request.contextPath}/UserAendern"
+						method="post">
 						<table>
 							<tr>
 								<td><label>Altes Passwort</label></td>
@@ -167,7 +182,8 @@
 								<td><input name="passwortwdh" type="password" /></td>
 							</tr>
 							<tr>
-								<td><input type="button" onclick="schlieseAendern('Passwort')" value="Abbrechen"></td>
+								<td><input type="button"
+									onclick="schlieseAendern('Passwort')" value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -179,18 +195,21 @@
 						durch ein neues ersetzen</span><span class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Profilbild" class="aendern">
-					<form action="${pageContext.request.contextPath}/UserBildAendern" method="post" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/UserBildAendern"
+						method="post" enctype="multipart/form-data">
 						<table>
 							<tr>
 								<td><label>Altes Profilbild</label></td>
-								<img src="${pageContext.request.contextPath}/UserBildLaden"  width="300" height="300" />
+								<td><img src="${pageContext.request.contextPath}/UserBildLaden"
+									width="300" height="300" /></td>
 							</tr>
 							<tr>
 								<td><label>Neues Profilbild</label></td>
 								<td><input type="file" name="nutzerbild" accept="image/*" /></td>
 							</tr>
 							<tr>
-								<td><input type="button" onclick="schlieseAendern('Profilbild')" value="Abbrechen"></td>
+								<td><input type="button"
+									onclick="schlieseAendern('Profilbild')" value="Abbrechen"></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -200,16 +219,14 @@
 				<c:choose>
 					<c:when test="${kunde.premium == false}">
 						<li class="anzeigen" onclick="openPremium()">
-							<h2>Account</h2> 
-							<span class="inhalt">Sie benutzen den
+							<h2>Account</h2> <span class="inhalt">Sie benutzen den
 								Standard Account</span><span class="bearbeiten">Bearbeiten</span>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="anzeigen">
-								<h2>Premium</h2>
-							<span class="inhalt">Sie haben bereits Premium!</span>
-							<span class="bearbeiten">Bearbeiten</span>
+							<h2>Premium</h2> <span class="inhalt">Sie haben bereits
+								Premium!</span> <span class="bearbeiten">Bearbeiten</span>
 						</li>
 
 					</c:otherwise>
