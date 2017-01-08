@@ -26,7 +26,9 @@ public class MeineFluegeLaden extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		select * from 
+//		select datum, buchungsid, zahlungsart, zahlungsnr, positionsid, abflughafen, ankunfthafen, sitzplatz, passagiername, geburtsdatum, zusatzleistungen 
+//		from 
+		response.sendRedirect("html/MeineFluege.jsp");
 	}
 
 	/**

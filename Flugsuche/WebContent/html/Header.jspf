@@ -50,7 +50,7 @@
 				<a id="registrieren" href="Startseite.jsp">Noch nicht regisitriert?</a>
 			</c:when>
 			<c:otherwise>
-				<button>Meine Flüge</button>
+				<a href="${pageContext.request.contextPath}/MeineFluegeLaden"><button>Meine Flüge</button></a>
 				<a href="${pageContext.request.contextPath}/UserLaden"><button>Mein Profil</button></a>
 				<button onclick="ausloggen();">Ausloggen</button>
 			</c:otherwise>

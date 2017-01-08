@@ -114,6 +114,4 @@ header > #popupUserFenster.userAktiviert button{
   margin-top: 10px;
 }
 
-header > #popupUserFenster.userAktiviert > button:first-of-type{
-  margin-top: 0px;
-}
+

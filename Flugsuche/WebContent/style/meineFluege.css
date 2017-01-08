@@ -1,0 +1,85 @@
+div#main {
+	height: 100%;
+	background-image: url(../img/backgrounds/flieger.jpg);
+	background-size: 100% 100%;
+}
+
+div#main h1 {
+	widht: 100%;
+	background-color: ;
+	padding-top: 20px;
+	margin-top: 0px;
+	padding-bottom: 20px;
+	opacity: 0.9;
+	text-align: center;
+	color: white;
+}
+
+div#main > table {
+	width: 70%;
+	margin-left: 15%;
+	border: 5px solid white;
+	border-radius: 5px;
+}
+
+div#main table {
+	border-spacing: 0;
+}
+
+div#main>table tr.ueberschriftbuchung {
+	background-color: black;
+	text-align: left;
+	color: white;
+}
+
+div#main>table tr.buchung {
+	background-color: darkgrey;
+}
+
+div#main>table tr.buchung:hover {
+	background-color: grey;
+	cursor: pointer;
+}
+
+div#main>table tr.detail>td.unsichtbar {
+	display: none;
+}
+
+div#main>table tr.detail>td {
+	padding-left: 50px;
+	background-color: darkgray;
+	width: 100%;
+}
+
+div#main>table tr.detail>td table {
+	width: 100%;
+}
+
+div#main table tr td:last-of-type, div#main table tr th:last-of-type,
+	div#main>table tr.detail table  tr.ueberschriftSitzplatz th:last-of-type,
+	div#main>table tr.detail table  tr.positionSitzplatz td:last-of-type,
+	ddiv#main>table tr.detail table tr.ueberschriftZusatzleistung th:last-of-type,
+	div#main>table tr.detail table  tr.positionZusatzleistung td:last-of-type
+	{
+	text-align: right;
+}
+
+div#main>table tr.detail table tr.ueberschriftSitzplatz {
+	background-color: lightgray;
+	text-align: left;
+}
+
+div#main>table tr.detail table tr.positionSitzplatz td {
+	background-color: whitesmoke;
+	text-align: left;
+}
+
+div#main>table tr.detail table  tr.ueberschriftZusatzleistung {
+	background-color: lightgray;
+	text-align: left;
+}
+
+div#main>table tr.detail table  tr.positionZusatzleistung td {
+	background-color: whitesmoke;
+	text-align: left;
+}
