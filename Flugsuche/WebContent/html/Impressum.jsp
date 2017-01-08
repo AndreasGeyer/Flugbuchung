@@ -14,19 +14,20 @@
 		
 	<main>
 		
-		<div id="Überschrift">
+		<div id="Ueberschrift">
 		<h1>IMPRESSUM</h1>
 		</div>
 		
 		<div id="Inhaber">
 		<h1>THI Flugsuche</h1>
 		
+		<div id="Namen">
 		<c>Inhaber: </c>
 		
 		<b>Andreas Geyer</b>
 		<b>Jürgen Bauer</b>
 		<b>Magdalena Hora</b>
-		
+		</div>
 		</div>
 		<div id="Haftung">
 

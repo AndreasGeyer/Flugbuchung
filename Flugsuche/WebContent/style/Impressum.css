@@ -1,18 +1,19 @@
 @import url(../style/main.css);
 
 body{
-	background-color: WhiteSmoke;
+	background-image: URL(../img/Impressum/Hintergrund.Impressum.png);
+	background-size: 100%;
 }
 
 #Haftung{
 	margin-right: 3%;
 	margin-left: 3%;
-	margin-top: 10px;
+	margin-top: 10 px;
 	margin-bottom: 3%;
 }
 
-#Überschrift h1{
-	margin-top: 8%;
+#Ueberschrift>h1{
+	margin-top: 12%;
 	text-align: center;
 	font-family: "Calisto MT";
 	font-size: 55px;
@@ -35,12 +36,20 @@ b{
 #Inhaber{
 	background-color: gray;
 	border-radius: 15px;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+	padding-bottom: 1%;
 }
 
 #Inhaber h1{
 	font-family: "Calisto MT";
 	font-size: 30px;
 	margin-left: 3%;
+}
+
+#Inhaber >#Namen{
+	background-color: whitesmoke;
+	margin-left: 1%;
+	margin-right: 1%;
 }

@@ -1,12 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>Flugsuche THI</title>
+		<link rel="stylesheet" type="text/css" href="../style/main.css" />
+		<link rel="stylesheet" type="text/css" href="../style/ErrorPage.css" />
+		<script type="text/javascript" src="../js/startseite.js"></script>
+	</head>
+	<body>
+		<%@ include file="Header.jspf" %>
+	<div class="mainField">	
+		<div id="main">
+			<p>ErrorPage - PAGE NOT FOUND!!</p>
+		</div>	
+	
+		<aside id="sidebar">
+			<img alt="Error404" src="../img/ErrorPage/Error.png" style="width: 70%; height: 65%;">
+		</aside>	
+	
+	</div>
+	
+	<div id="Beschreibung">
+		<a>Bitte überprüfen Sie Ihre URL. Ist diese Richtig gehen Sie bitte zurück auf die Startseite und versuchen Sie es erneut.</a>
+	</div>
+		<%@ include file="Footer.jspf" %>
+	</body>
 </html>
