@@ -24,32 +24,35 @@ import flugsuche.bean.Kunde;
 /**
  * Servlet implementation class User
  */
-@WebServlet("/User")
+@WebServlet("/UserLaden")
 public class UserLaden extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@Resource(lookup="jdbc/__default")
+
+	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLaden() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserLaden() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Get Request");
 		Kunde k = null;
 		Cookie cookies[] = request.getCookies();
 		String id = "";
-		for(int i = 0; i < cookies.length; i++)
-		{
+		for (int i = 0; i < cookies.length; i++) {
 			Cookie c = cookies[i];
-			if(c.getName().equals("kundenid")){
+			if (c.getName().equals("kundenid")) {
 				id = c.getValue();
 			}
 		}
@@ -64,43 +67,42 @@ public class UserLaden extends HttpServlet {
 		}
 
 		request.setAttribute("kunde", k);
-		if(k == null){
+		if (k == null) {
 			final PrintWriter out = response.getWriter();
-			out.println("<!DOCTYPE html>"); 
-			out.println("<html>"); 
-			out.println("<body>"); 
-			out.println("<h3>" + "Kunde" + Integer.parseInt(id) +" Leer" + "</h3>"); 
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<body>");
+			out.println("<h3>" + "Kunde" + Integer.parseInt(id) + " Leer" + "</h3>");
 			out.println("Datum: <b>" + new Date() + "/b");
 			out.println("</body>");
 			out.println("</html>");
 			return;
 		}
-		RequestDispatcher disp = request.getRequestDispatcher("User.jsp");
+		System.out.println(request.getContextPath() + "/html/User.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/html/User.jsp");
 		disp.forward(request, response);
+		System.out.println("ZUENDE");
 
-		
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
-	
-	
-	public Kunde getUser(int id, HttpServletResponse response) throws Exception{		
+
+	public Kunde getUser(int id, HttpServletResponse response) throws Exception {
 		Kunde kunde = null;
-		
-		try(
-			Connection con = ds.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(
-					"select * from kunde where kundeid = ?");
-		){
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("select * from kunde where kundeid = ?");) {
 			pstmt.setInt(1, id);
-			try(ResultSet rs = pstmt.executeQuery();){
-				if(rs.next()){
+			try (ResultSet rs = pstmt.executeQuery();) {
+				if (rs.next()) {
 					kunde = new Kunde();
 					kunde.setId(id);
 					kunde.setAnrede(rs.getString("anrede"));
@@ -114,15 +116,13 @@ public class UserLaden extends HttpServlet {
 					kunde.setGeburtsdatum(rs.getDate("geburtsdatum"));
 					kunde.setMail(rs.getString("email"));
 					kunde.setPasswort(rs.getString("passwort"));
-					kunde.setBild(rs.getBytes("benutzerbild"));
+					kunde.setBild(rs.getBytes("nutzerbild"));
 					kunde.setPremium(rs.getBoolean("istPremium"));
-				}
-				else{
-					
+				} else {
+
 				}
 			}
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

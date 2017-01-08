@@ -49,6 +49,7 @@ button:hover{
 button.submitButton{
 	background-color: orange;
 	border: solid black 2px;
+	border-radius: 5px;
 }
 
 button.submitButton:hover{

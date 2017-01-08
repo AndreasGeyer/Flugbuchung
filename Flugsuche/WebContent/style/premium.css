@@ -1,0 +1,83 @@
+
+div#main{
+  background-image: url("../img/backgrounds/skitour.jpg");
+  height: calc(100% - 100px);
+  background-size: 100% 100%;
+  background-color: darkgrey;
+}
+
+article{
+  width:40%;
+  margin-left: 55%;
+  margin-top: 50px;
+  padding: 50px;
+  padding-top:20px;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 5px solid lightgrey;
+}
+
+article h1{
+  text-align: center;
+}
+article p{
+  text-align: justify;
+}
+
+article > div{
+  border: 0px;
+  margin:0px;
+  padding:0px;
+  display: flex;
+}
+
+article > div > button{
+  flex:1;
+  margin: 0px;
+  padding:5px;
+  border:0px;
+  background-color: lightgrey;
+  color: black;
+  font: 18px;
+  font-weight: bold;
+}
+article > div > button.aktiviert{
+  flex:1;
+  margin: 0px;
+  padding:5px;
+  border:0px;
+  background-color: darkblue;
+  color: white;
+  font: 20px;
+  font-weight: bold;
+}
+
+
+article > form {
+  display: none;background-color: whitesmoke;
+  border: 1px lightgrey solid;
+  border-top: none;
+  padding: 10px;
+}
+
+article > form > p{
+  padding: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  display: flex;
+}
+
+article > form > p > *{
+  flex: 1;
+}
+article > form.aktiviert{
+  display: inherit;
+  
+}
+
+article > form > button.submitButton{
+	margin-left:25%;
+	width: 50%;
+}
+

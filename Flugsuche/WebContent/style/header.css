@@ -66,8 +66,12 @@ header > nav #userButton > img{
   float: right;
 }
 
+header > #popupUserFenster, header > #popupUserFenster{
+  display: none;
+}
 
 header > #popupUserFenster.anmeldenAktiviert, header > #popupUserFenster.userAktiviert{
+  display: inherit;
   position: absolute;
   background-color: white;;
   right:0px;
@@ -79,7 +83,7 @@ header > #popupUserFenster.anmeldenAktiviert, header > #popupUserFenster.userAkt
   
 }
 
-header > #popupUserFenster.anmeldenAktiviert button{
+header > #popupUserFenster.anmeldenAktiviert #loginButton{
   border: solid black 2px;
   border-radius: 5px;
   background-color: orange;
@@ -88,7 +92,7 @@ header > #popupUserFenster.anmeldenAktiviert button{
   width: 100%;
   font-size: 20px;
 }
-header > #popupUserFenster.anmeldenAktiviert button:hover{
+header > #popupUserFenster.anmeldenAktiviert #loginButton:hover{
   background-color: darkorange;
 }
 
