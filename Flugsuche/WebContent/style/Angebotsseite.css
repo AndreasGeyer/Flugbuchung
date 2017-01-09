@@ -20,8 +20,8 @@ body{
 	font-style: italic;
 }
 
-#Beschreibung{
-	margin-top: 30%;
+.Beschreibung{
+	margin-top: 33%;
 	font-style: italic;
 	text-align: center;
   font-family: "Bookman Old Style";
@@ -30,8 +30,8 @@ body{
 
 .fotoButton {
 
-	height: 350px;
-	width: 370px;
+	height: 300px;
+	width: 320px;
 	margin-bottom: 15px;
 	margin-left: 10px;
 	border-radius: 3px;
@@ -54,14 +54,14 @@ body{
 
 
 #moskau{
-	background-image: url(../img/Angbot/Moskau.jpg);	
+	background-image: Url("../img/Angebot/Moskau.jpg");	
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #düsseldorf{
 	
-  background-image: Url(../img/Angebot/Duesseldorf.jpg);
+  background-image: Url("../img/Angebot/Duesseldorf.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 	
@@ -69,70 +69,68 @@ body{
 
 #rom{
 
-   	background-image: Url(../img/Angebot/Rom.jpg);
+   	background-image: Url("../img/Angebot/Rom.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #paris{
 	
-   	background-image: Url(../img/Angbot/Paris.jpg);
+   	background-image: Url("../img/Angebot/Paris.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #dublin{
 
-   	background-image: Url(../img/Angbot/Dublin.jpg);
+   	background-image: Url("../img/Angebot/Dublin.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #sideny{
 
-   	background-image: Url(../img/Angbot/Sidney.jsp);
+   	background-image: Url("../img/Angebot/Sidney.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #side{
 
-   	background-image: Url(../img/Angbot/Side.jpg);
+   	background-image: Url("../img/Angebot/Side.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #barcelona{
 
-   	background-image: Url(../img/Angbot/Barcelona.jpg);
+   	background-image: Url("../img/Angebot/Barcelona.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #bali{
 
-   	background-image: Url(../img/Angebot/Bali.jpg);
+   	background-image: Url("../img/Angebot/Bali.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #miami{
 
-   	background-image: Url(..img/Angebot/Miami.jpg);
+   	background-image: Url("../img/Angebot/Miami.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #button-lissabon{
-
-   	background-image: Url(../img/Angebot/Lissabon.jpg);
+   	background-image: Url("../img/Angebot/Lissabon.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #button-hamburg{
-
-  background-image: Url(../img/Angebot/Hamburg.jpg);
+  background-image: Url("../img/Angebot/Hamburg.jpg");
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
