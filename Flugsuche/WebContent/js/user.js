@@ -1,4 +1,5 @@
 
+var menuOffen = false;
 
 function oeffneAendern(menuId) {
 	if (menuOffen == false) {
@@ -16,11 +17,6 @@ function schlieseAendern(menuId) {
 
 }
 
-
-
-
-
-function date() {
-	var date = new Date();
-	document.getElementById("monatsname").innerHTML = date.getDay();
+function openPremium(){
+	location = "html/Premium.jsp";
 }
