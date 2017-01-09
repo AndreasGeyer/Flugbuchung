@@ -1,63 +1,30 @@
 @import url(../style/main.css);
 
+
+div{
+	padding: 0.2em;
+}
+
 body{
-	background-image: url("../img/Registrierung/Landebahn.jpg");
-  	background-size: 100% 100%;
+	background-image: URL("../img/Registrierung/HintergrundRegistrierung.jpg");
+	background-size: 100%;
 }
 
-#main{
-	float: right;
-	width: 65%;
-	margin-right: 5%;
-}
-
-.mainField{
-	display: flex;
-	flex-wrapper: row wrap;
-}
-
-#sidebar{
-	float: left;
-	padding: 2% 2%;
-	width: 28%;
-	background-color: ghostwhite;
-	border-radius: 10px;
-	margin-left: 10%;
-	margin-top: 60px;
-	height: 50%;
-}
-  
 article{
-  width:70%;
   margin-left: 28%;
   margin-top: 20px;
   padding: 20px;
   margin-bottom: 25px;
 }
 
-h1{
-  text-align: center;
-  margin-right: 52%;
-	margin-top: 10%;
-	width: 100%;
-}
-
-lable{
-	display: block; 
+label{
+  display: inline-block;
 	text-align: left;
+	min-width: 10em;
 }
 
 input{
 	width: 20em;
-}
-
-textarea{
-	width: 20em;
-	border: 1px soild black;
-}
-
-input [type="checkbox"]{
-	width: auto;
 }
 
 fieldset{
@@ -66,6 +33,18 @@ fieldset{
 	padding-left: 1.5em;
 	background: ghostwhite;
 	border-radius: 5px;
+	margin-top: 10%;
+	opacity: 0.9;
+}
+
+input:required + span::after{
+	color:red;
+	content: " *";
+}
+
+input[type='email']:valid + span::after{
+	color: green;
+	content: " *"
 }
 
 legend{
@@ -74,11 +53,4 @@ legend{
 	border-radius: 5px;
 }
 
-#Button-Registrierung button{
-	margin-left: 29%;
-	border-radius: 5px;
-	width: 550px;
-	height: 30px;
-	background-color: F5F5F5;
-	margin-bottom: 30px;
-}
+
