@@ -61,8 +61,8 @@
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote" href="Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot2">
 				<h2>Von München nach Madrid</h2>
@@ -77,8 +77,8 @@
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote" href="Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot3">
 				<h2>Von Frankfurt nach Zürich</h2>
@@ -93,8 +93,8 @@
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote" herf="Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot4">
 				<h2>Von München nach Barcelona</h2>
@@ -109,8 +109,8 @@
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote" herf="Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 		</article>
 	</div>
