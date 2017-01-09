@@ -1,3 +1,4 @@
+<%@page import="flugsuche.servlet.UserBildLaden"%>
 <%@ page language="java" contentType="text/html; utf-8"
     pageEncoding="utf-8"%>
 <head>
@@ -10,9 +11,9 @@
 </head>
 
 <header>
-	<a href="Startseite.jsp"><button id="logo"></button></a>
+	<a href="${pageContext.request.contextPath}/html/Startseite.jsp"><button id="logo"></button></a>
 	<nav>
-		<a href="Startseite.jsp"><button>Startseite</button></a>
+		<a href="${pageContext.request.contextPath}/html/Startseite.jsp"><button>Startseite</button></a>
 		<button>Flugsuche</button>
 		<button>Angebote</button>
 		<!-- Hier muss Cookie Management eingefügt werden -->
@@ -31,7 +32,9 @@
 						<p>${cookie['kundenid'].value}</p>
 					</div>
 					<!-- Bild aus der Datenbankholen, ansonsten Standardbild (Facebook) einfügen -->
-					<img src="img/Andi201605_25.JPG"  width="80" height="80" />
+					<img src="${pageContext.request.contextPath}/UserBildLaden" width="80" height="80" 
+					 />
+
 				</button>
 			</c:otherwise>
 		</c:choose>
@@ -39,16 +42,16 @@
 	<div id="popupUserFenster">
 		<c:choose>
 			<c:when test="${cookie['kundenid'] == null}">
-				<form action="LoginServlet" method="post">
+				<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 					<p>E-Mail:<br><input name="email" type="text"></p>
 					<p>Passwort:<br><input name="password" type="password"></p>
-					<input type="submit" value="Login" >
+					<input type="submit" value="Login" id="loginButton">
 				</form>
 				<a id="registrieren" href="Startseite.jsp">Noch nicht regisitriert?</a>
 			</c:when>
 			<c:otherwise>
-				<button>Meine Flüge</button>
-				<a href="User"><button>Mein Profil</button></a>
+				<a href="${pageContext.request.contextPath}/MeineFluegeLaden"><button>Meine Flüge</button></a>
+				<a href="${pageContext.request.contextPath}/UserLaden"><button>Mein Profil</button></a>
 				<button onclick="ausloggen();">Ausloggen</button>
 			</c:otherwise>
 		</c:choose>

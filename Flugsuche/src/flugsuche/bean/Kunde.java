@@ -53,7 +53,7 @@ public class Kunde  implements Serializable {
 	private byte[] bild;
 	
 	@column(name="istPremium")
-	private boolean isPremium;
+	private boolean premium;
 	
 	public Kunde(){
 		
@@ -74,7 +74,7 @@ public class Kunde  implements Serializable {
 		PLZ = pLZ;
 		Ort = ort;
 		this.bild = bild;
-		this.isPremium = isPremium;
+		this.premium = isPremium;
 	}
 
 	public String getAnrede() {
@@ -174,11 +174,11 @@ public class Kunde  implements Serializable {
 	}
 
 	public boolean isPremium() {
-		return isPremium;
+		return premium;
 	}
 
 	public void setPremium(boolean isPremium) {
-		this.isPremium = isPremium;
+		this.premium = isPremium;
 	}
 	
 	public void setId(int id){

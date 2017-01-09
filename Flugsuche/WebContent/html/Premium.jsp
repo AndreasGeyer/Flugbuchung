@@ -1,12 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>Premium</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/style/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/style/premium.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/premium.js"></script>
 </head>
 <body>
-
+	<%@ include file="Header.jspf"%>
+	<div id="main">
+		<article>
+			<h1>Premium entdecken!</h1>
+			<p>Du willst nie wieder ein Angebot verpassen? Du willst nie
+				wieder lange nach dem besten Flug für dich suchen? Du willst nie
+				wieder nervenraubende Suchen machen? Dann entscheide dich jetzt für
+				Premium! Für nur 9,99€ im Jahr bekommst du die immer aktuellsten
+				Angebote und wirst bei deinen Suchen beraten, ob du mit dem Buchen
+				noch warten solltest!</p>
+			<div>
+				<button id="kredit" class="aktiviert" onclick="oeffneKarte()">Mit
+					Kreditkarte bezahlen</button>
+				<button id="last" onclick="oeffneLast()">Per Lastschrift
+					bezahlen</button>
+			</div>
+			<form id="kreditkarte" class="aktiviert">
+				<p>
+					<label>Kreditkartennummer</label> <input type="text"
+						name="kartennr">
+				</p>
+				<p>
+					<label>Prüfnummer</label> <input type="text" name="preufnr">
+				</p>
+				<button type="submit" class="submitButton">Zahlungspflichtig
+					abschließen!</button>
+			</form>
+			<form id="lastschrift">
+				<p>
+					<label>IBAN</label> <input type="text" name="iban">
+				</p>
+				<p>
+					<label>BIC</label> <input type="text" name="bic">
+				</p>
+				<button type="submit" class="submitButton">Zahlungspflichtig
+					abschließen!</button>
+			</form>
+		</article>
+	</div>
+	<%@ include file="Footer.jspf"%>
 </body>
 </html>

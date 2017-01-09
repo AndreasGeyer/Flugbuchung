@@ -7,4 +7,5 @@ GlassFish Application Server 3.1 Servlet 3.0//EN"
 		<property name="compilerSourceVM" value="7" />
 		<property name="compilerTargetVM" value="7" />
 	</jsp-config>
+	<parameter-encoding default-charset="UTF-8"></parameter-encoding>
 </glassfish-web-app>
