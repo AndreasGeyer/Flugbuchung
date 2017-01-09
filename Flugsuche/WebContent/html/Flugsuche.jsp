@@ -43,8 +43,8 @@
 		List<Flug> direktflugRueck = (List<Flug>) session.getAttribute("direktflugRueck");
 
 		DateFormat simDateFormat = new SimpleDateFormat("HH:mm");
-		Date flugHin = (Date) request.getAttribute("datumHin");
-		boolean onlyHinflug = (boolean) request.getAttribute("onlyHinflug");
+		Date flugHin = (Date) session.getAttribute("datumHin");
+		boolean onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 
 		Date flugdauerHinMin = new Date(86400000L);
 		Date flugdauerHinMax = new Date(1L);
@@ -355,7 +355,7 @@
 								<div class="flyDate" id="<%=id%>">
 									<h4>Rückflug</h4>
 									<%
-										Date flugRueck = (Date) request.getAttribute("datumRueck");
+										Date flugRueck = (Date) session.getAttribute("datumRueck");
 
 										String rueckDate = "";
 										if (flugRueck != null)
@@ -378,9 +378,9 @@
 								<select class="selectPassenger" id="erwachsen" name="adults">
 									<optgroup label="Erwachsene(>18 Jahre)">
 										<%
-											int adults = (int) request.getAttribute("erwachsener");
-											int kind = (int) request.getAttribute("childs");
-											int baby = (int) request.getAttribute("babies");
+											int adults = (int) session.getAttribute("erwachsener");
+											int kind = (int) session.getAttribute("childs");
+											int baby = (int) session.getAttribute("babies");
 											System.out.println(adults);
 											for (int i = 1; i <= 5; i++) {
 										%>
@@ -679,11 +679,9 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><img
-												src="https://lh6.googleusercontent.com/-lITucNA2MiM/AAAAAAAAAAI/AAAAAAAAFK8/pbNj2KQLkOM/photo.jpg"
-												alt="pl" width="35" height="35"></td>
+	
 
-											<%
+											<% 
 												UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
 														UhrzeitAnkunft = UhrzeitAnkunft + " Uhr: " + flug.getAnFlughafen().getOrt();
 														String flugnr = flug.getFlugzeugtyp().getGesellschaft().getBezeichnung().substring(0, 2)
@@ -691,7 +689,7 @@
 														if (flugnr.length() > 5)
 															flugnr = flugnr.substring(0, 4);
 											%>
-
+											<td><p><%=flug.getFlugzeugtyp().getGesellschaft().getBezeichnung()%></p></td>
 											<td><p><%=flugnr%></p></td>
 											<td><p><%=UhrzeitAbflug%></p></td>
 											<td><p><%=UhrzeitAnkunft%></p></td>
@@ -954,9 +952,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><img
-												src="https://lh6.googleusercontent.com/-lITucNA2MiM/AAAAAAAAAAI/AAAAAAAAFK8/pbNj2KQLkOM/photo.jpg"
-												alt="pl" width="35" height="35"></td>
+
 
 											<%
 												UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
@@ -967,6 +963,7 @@
 																if (flugnr.length() > 5)
 																	flugnr = flugnr.substring(0, 4);
 											%>
+											<td><p><%=flug.getFlugzeugtyp().getGesellschaft().getBezeichnung()%></p></td>
 
 											<td><p><%=flugnr%></p></td>
 											<td><p><%=UhrzeitAbflug%></p></td>
@@ -1011,35 +1008,40 @@
 
 			</div>
 			<%
-				}if(onlyHinflug == true){
+				}
+				if (onlyHinflug == true) {
 			%>
-</div>
+		</div>
+		<%
+			}
+			if (direktflug != null && direktflug.size() > 0) {
+		%>
+		<div id="preis">
+
+			<div class="Rechnung" id="RechnungHin">
+
+				<span>HINFLUG</span>
+				<p>Bitte wählen sie einen Hinflug aus</p>
+			</div>
 			<%
-				}if (direktflug != null && direktflug.size() > 0) {
+				if (direktflugRueck != null && direktflugRueck.size() > 0) {
 			%>
-			<div id="preis">
+			<div class="Rechnung" id="RechnungRueck">
 
-				<div class="Rechnung" id="RechnungHin">
-
-					<span>HINFLUG</span>
-					<p>Bitte wählen sie einen Hinflug aus</p>
-				</div>
-				<%
-					if (direktflugRueck != null && direktflugRueck.size() > 0) {
-				%>
-				<div class="Rechnung" id="RechnungRueck">
-
-					<span>RÜCKFLUG</span>
-					<p>Bitte wählen sie einen Hinflug aus</p>
-				</div>
-				<%
-					}
-				%>
+				<span>RÜCKFLUG</span>
+				<p>Bitte wählen sie einen Hinflug aus</p>
 			</div>
 			<%
 				}
 			%>
-		
+			<button id="weiterButton" type="submit" onclick="return g()"
+				formaction="/Flugsuche/ServiceLaden" formmethod="post">Weiter</button>
+		</div>
+
+		<%
+			}
+		%>
+
 	</form>
 
 	</main>

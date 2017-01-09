@@ -17,17 +17,83 @@ public class Buchung implements Serializable {
 	 */
 	private static final long serialVersionUID = 5215563400773342405L;
 	
-	@column(name = "buchungid")
+
 	private int id;
-	@column(name = "zeitstempel")
+
 	private Timestamp timestamp;
-	@column(name = "preis")
-	private double preis;
-	@fkColumn(nameFK = "fk_flug", referenceColumnName = "flugid", referenceTable = "flug")
-	private Flug flug;
-	private List<Buchung> buchung = new ArrayList<>();
-	@fkColumn(nameFK = "fk_kunde", referenceColumnName = "kundeid", referenceTable = "kunde")
+
+
+	private List<Buchungsposition> positionen = new ArrayList<>();
+
 	private Kunde kunde;
+	private String zahlungsart;
+	private String zahlungsnummer;
+	
+	
+	public Buchung() {
+		super();
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
+
+	public List<Buchungsposition> getPositionen() {
+		return positionen;
+	}
+
+
+	public void setPositionen(List<Buchungsposition> positionen) {
+		this.positionen = positionen;
+	}
+
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
+	}
+
+
+	public String getZahlungsart() {
+		return zahlungsart;
+	}
+
+
+	public void setZahlungsart(String zahlungsart) {
+		this.zahlungsart = zahlungsart;
+	}
+
+
+	public String getZahlungsnummer() {
+		return zahlungsnummer;
+	}
+
+
+	public void setZahlungsnummer(String zahlungsnummer) {
+		this.zahlungsnummer = zahlungsnummer;
+	}
+
 	
 
 	

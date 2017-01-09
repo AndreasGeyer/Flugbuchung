@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `zusatzleistung`;
 CREATE TABLE `zusatzleistung` (
   `zusatzleistungid` int(11) NOT NULL AUTO_INCREMENT,
   `bezeichnung` varchar(255) DEFAULT NULL,
-  `beschreibung` blob,
+  `beschreibung` varchar(5000) DEFAULT NULL,
   `preis` decimal(10,2) DEFAULT NULL,
   `fk_flugzeugtyp` int(11) DEFAULT NULL,
+  `Art` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`zusatzleistungid`),
   KEY `fk_zusatzleistung_flugzeugtyp` (`fk_flugzeugtyp`),
   CONSTRAINT `fk_zusatzleistung_flugzeugtyp` FOREIGN KEY (`fk_flugzeugtyp`) REFERENCES `flugzeugtyp` (`flugzeugtypid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +41,7 @@ CREATE TABLE `zusatzleistung` (
 
 LOCK TABLES `zusatzleistung` WRITE;
 /*!40000 ALTER TABLE `zusatzleistung` DISABLE KEYS */;
+INSERT INTO `zusatzleistung` VALUES (1,'Reiserücktrittsversicherung','Stornierung;Gepäckverlust; Krankheit',25.02,30,'Versicherung'),(2,'Weißwurst','Mittag;Bayrischerns beste Tradition!',3.99,30,'Essen'),(3,'Vegetarischischer Salat','Mittag; Fleischlos aber trotzdem lecker',8.99,30,'Essen'),(4,'Tiramisu','Dessert;Zuckersüße Speise!',4.99,30,'Essen'),(5,'Wein','Getränk;Für den Genießer!',12.99,31,'Essen'),(6,'Cola','Getränk;Für den Genießer!',1.99,32,'Essen'),(7,'Cola','Getränk;Für den Genießer!',2.99,33,'Essen'),(8,'Cola','Getränk;Für den Genießer!',5.00,35,'Essen'),(9,'Cola','Getränk;Für den Genießer!',0.35,36,'Essen'),(10,'Cola','Getränk;Für den Genießer!',1.00,37,'Essen'),(11,'Cola','Getränk;Für den Genießer!',2.00,38,'Essen'),(12,'Cola','Getränk;Für den Genießer!',3.00,39,'Essen'),(13,'Cola','Getränk;Für den Genießer!',4.00,40,'Essen'),(14,'Cola','Getränk;Für den Genießer!',1.00,41,'Essen'),(15,'Cola','Getränk;Für den Genießer!',2.00,42,'Essen'),(16,'Cola','Getränk;Für den Genießer!',2.50,43,'Essen'),(17,'Cola','Getränk;Für den Genießer!',3.00,44,'Essen');
 /*!40000 ALTER TABLE `zusatzleistung` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-23  0:54:32
+-- Dump completed on 2017-01-09 22:29:44

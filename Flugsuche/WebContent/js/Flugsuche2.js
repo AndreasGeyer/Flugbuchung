@@ -7,8 +7,15 @@ window.addEventListener("DOMContentLoaded", function() {
 	unsichtibar("HinElement");
 	unsichtibar("RueckElement");
 });
+var hinflugSelected = null;
+var rueckFlugselected = null;
 
 function displayFlightDetails(event, hin) {
+
+	if (hin == "Hin")
+		hinflugSelected = event.target.id;
+	else
+		rueckFlugselected = event.target.id;
 
 	var class_visible = document.getElementsByClassName('visible'
 			+ hin.toString());
@@ -100,11 +107,12 @@ function fillRechung(id, hin) {
 	if (hin == "Hin") {
 		rechnungHin = document.getElementById("RechnungHin");
 		datumHin = document.getElementById("calendarHin").getAttribute("value");
-		stringHinRueck ="HINFLUG";
+		stringHinRueck = "HINFLUG";
 	} else {
 		rechnungHin = document.getElementById("RechnungRueck");
-		datumHin = document.getElementById("calendarRueck").getAttribute("value");
-		stringHinRueck ="RUECKFLUG";
+		datumHin = document.getElementById("calendarRueck").getAttribute(
+				"value");
+		stringHinRueck = "RUECKFLUG";
 	}
 	var abflugzeit = document.getElementById(flightNumber + "abflugzeit");
 	var ankunftzeit = document.getElementById(flightNumber + "ankunftzeit");
@@ -185,7 +193,7 @@ function ajax(hinorRueck) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
 			var fluege = JSON.parse(xmlhttp.responseText);
-		
+
 			if (fluege == null) {
 				return;
 			} else {
@@ -396,11 +404,11 @@ function shiftDate(richtung, HinRueck) {
 	if (newNearest != null) {
 		if (HinRueck == "Hin") {
 			nearestElement[0].setAttribute("name", "");
-/*			newNearest.setAttribute("name", "nearestHin");*/
+			newNearest.setAttribute("name", "nearestHin");
 			unsichtibar("HinElement");
 		} else {
 			nearestElement[0].setAttribute("name", "");
-/*			newNearest.setAttribute("name", "nearestRueck");*/
+			newNearest.setAttribute("name", "nearestRueck");
 			unsichtibar("RueckElement");
 		}
 
@@ -450,4 +458,35 @@ function displayRueckflug(event) {
 		document.getElementById("calendarRueck").setAttribute("value", "");
 
 	}
+}
+
+function g() {
+	var element = document.getElementById("weiterButton");
+	var elementsRueck = document.getElementsByName("RueckflugInput");
+	var url;
+	alert(elementsRueck.length);
+	if (elementsRueck.length == 0) {
+		if (hinflugSelected != null) {
+			url = "/Flugsuche/ServiceLaden?HinflugInput="
+					+ hinflugSelected.toString();
+			element.setAttribute("formaction", url);
+			element.submit();
+			return true;
+		}
+
+	}
+	else{
+		if (hinflugSelected != null && rueckFlugselected != null) {
+			
+			url = "/Flugsuche/ServiceLaden?HinflugInput="
+					+ hinflugSelected.toString()+"&RueckflugInput="+rueckFlugselected.toString();
+			alert(url);
+			element.setAttribute("formaction", url);
+			element.submit();
+			return true;
+			}
+	}
+	return false;
+	// alert(url);
+
 }

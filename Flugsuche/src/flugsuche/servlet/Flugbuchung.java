@@ -140,16 +140,18 @@ public class Flugbuchung extends HttpServlet {
 			babies = Integer.valueOf("" + request.getParameter("babies").charAt(0));
 		}
 
-		request.setAttribute("abflughafen", abflughafen);
-		request.setAttribute("ankufthafen", ankufthafen);
-		request.setAttribute("onlyHinflug", onlyHinflug);
+		session.setAttribute("abflughafen", abflughafen);
+		session.setAttribute("ankufthafen", ankufthafen);
+		session.setAttribute("onlyHinflug", onlyHinflug);
 
-		request.setAttribute("datumHin", hinflug);
-		request.setAttribute("datumRueck", rueckflug);
+		session.setAttribute("datumHin", hinflug);
+		session.setAttribute("datumRueck", rueckflug);
 
-		request.setAttribute("erwachsener", adults);
-		request.setAttribute("childs", childs);
-		request.setAttribute("babies", babies);
+		session.setAttribute("erwachsener", adults);
+		session.setAttribute("childs", childs);
+		session.setAttribute("babies", babies);
+		
+		if(abflughafen != null && ankufthafen != null){
 
 		List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);
 		Collections.sort(direktHin, ComparatorFlug.getComparatorPreis());
@@ -179,7 +181,7 @@ public class Flugbuchung extends HttpServlet {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Flugsuche.jsp");
 		dispatcher.forward(request, response);
 

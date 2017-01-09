@@ -15,17 +15,7 @@ public class Zusatzleistung implements Serializable {
 	 */
 	private static final long serialVersionUID = -587627524333866588L;
 
-	/**
-	zusatzleistungid integer primary key auto_increment,
-    bezeichnung varchar(255),
-    beschreibung blob,
-    preis decimal(10,2),
-    fk_flugzeugtyp integer,
-    constraint fk_zusatzleistung_flugzeugtyp
-		foreign key (fk_flugzeugtyp)
-        references flugzeugtyp(flugzeugtypid)
-        on delete cascade
-        on update cascade*/
+
 	
 	@column(name = "zusatzleistungid")
 	private int id;
@@ -42,7 +32,7 @@ public class Zusatzleistung implements Serializable {
 	@fkColumn(nameFK = "fk_flugzeugtyp", referenceColumnName = "flugzeugtypid", referenceTable = "flugzeugtyp")
 	private Flugzeugtyp flugzeugtyp;
 	
-	
+	private String art;
 
 	public Zusatzleistung() {
 		super();
@@ -94,6 +84,14 @@ public class Zusatzleistung implements Serializable {
 
 	public void setFlugzeugtyp(Flugzeugtyp flugzeugtyp) {
 		this.flugzeugtyp = flugzeugtyp;
+	}
+
+	public String getArt() {
+		return art;
+	}
+
+	public void setArt(String art) {
+		this.art = art;
 	}
 	
 	

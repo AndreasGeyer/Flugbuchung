@@ -25,16 +25,13 @@ DROP TABLE IF EXISTS `buchung`;
 CREATE TABLE `buchung` (
   `buchungid` int(11) NOT NULL AUTO_INCREMENT,
   `zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `preis` decimal(10,2) DEFAULT NULL,
-  `fk_flug` int(11) DEFAULT NULL,
-  `fk_sitzplatz` int(11) DEFAULT NULL,
   `fk_kunde` int(11) DEFAULT NULL,
+  `Zahlungsart` varchar(45) DEFAULT NULL,
+  `Zahlungsnummer` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`buchungid`),
-  KEY `fk_buchung_sitzplatz` (`fk_flug`,`fk_sitzplatz`),
   KEY `fk_buchung_nutzer` (`fk_kunde`),
-  CONSTRAINT `fk_buchung_nutzer` FOREIGN KEY (`fk_kunde`) REFERENCES `kunde` (`kundeid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_buchung_sitzplatz` FOREIGN KEY (`fk_flug`, `fk_sitzplatz`) REFERENCES `sitzplatz` (`fk_flug`, `sitzplatzid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_buchung_nutzer` FOREIGN KEY (`fk_kunde`) REFERENCES `kunde` (`kundeid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +40,7 @@ CREATE TABLE `buchung` (
 
 LOCK TABLES `buchung` WRITE;
 /*!40000 ALTER TABLE `buchung` DISABLE KEYS */;
+INSERT INTO `buchung` VALUES (3,'2017-01-07 15:53:16',1,NULL,NULL);
 /*!40000 ALTER TABLE `buchung` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-23  0:54:31
+-- Dump completed on 2017-01-09 22:29:43

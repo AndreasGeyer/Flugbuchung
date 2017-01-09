@@ -24,7 +24,7 @@ function loadAirports(event) {
 
 				for (var i = 0; i < airports.length; i++) {
 					var li = document.createElement("li");
-					alert(target.value);
+			
 	
 		
 					var firstletter = airports[i].ort.toLowerCase().indexOf(target.value.toLowerCase());
@@ -36,13 +36,13 @@ function loadAirports(event) {
 								+ ort.substring(firstletter, firstletter
 										+ target.value.length) + "</strong>"
 								+ ort.substring(firstletter +target.value.length);
-						alert("ortText1 "+ortText);
+				
 					} else {
 						ortText = "<strong>"
 								+ ort.substring(0, target.value.length)
 								+ "</strong>"
 								+ ort.substring(target.value.length);
-						alert("ortText2 "+ortText);
+			
 					}
 
 					var text = ortText + " (" + airports[i].kuerzel + "), "

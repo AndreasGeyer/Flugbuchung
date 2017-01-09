@@ -237,6 +237,11 @@ table {
 	text-align: center;
 }
 
+#weiterButton{
+	width: 100%;
+	margin-top: 20px;
+}
+
 #prev:hover+.datum div {
 	transform: translate(-100%);
 	background-color: red;
@@ -244,7 +249,7 @@ table {
 }
 
 td p, th p {
-	text-align: left;
+	text-align: center;
 	font-size: : 18px;
 }
 

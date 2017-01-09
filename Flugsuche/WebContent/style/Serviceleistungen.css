@@ -1,4 +1,4 @@
-@import url(../style/main.css);
+ @import url(../style/main.css);
 
 body{
 	background-image: url("../img/Flugsuche/ozean.jpg");
@@ -80,7 +80,15 @@ h1{
 	flex-direction: row;
 }
 
-.service, #food {
+#price{
+		display: flex;
+	flex-direction: column;
+}
+}
+#selector{
+	justify-content: space-around;
+}
+.service, #food, #price {
 	background-color: GhostWhite;
 	margin: 5%;
 	border-radius: 5px;
@@ -142,7 +150,7 @@ input {
 	font-family: Bookman Old Style;
 }
 
-#description {
+.description {
 	position:relative;
 	width: 35%;
 	background-color: #ddd;
@@ -176,6 +184,14 @@ button{
 	height: 30px;
 	border-radius: 3%;
 	url("../html/Passagier.jsp")
+}
+
+.description p{
+	margin-bottom: 50px;
+}
+
+.unvisible{
+	display : none;
 }
 
 
