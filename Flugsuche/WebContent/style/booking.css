@@ -230,6 +230,7 @@ input[type="radio"], input[type="checkbox"] {
 
 table {
 	width: 100%;
+	background-color: ghostwhite;
 }
 
 #ab p {
@@ -320,6 +321,15 @@ td p, th p {
 	background-color: ghostwhite;
 }
 
+#main{
+	width: 62%;
+}
+
+#suchButton{
+	margin-top: 10px;
+	width: 25%;
+}
+
 .Rechnung span {
 	padding: 2%;
 	margin-top: 5px;
@@ -337,6 +347,7 @@ td p, th p {
 
 .tables {
 	text-align: center;
+	background: ghostwhite;
 }
 
 .tables th {

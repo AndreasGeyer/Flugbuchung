@@ -28,7 +28,7 @@ function createBodyCalender(monthNumber, year, calendarHin) {
 
 	var date = new Date(year, monthNumber, 1);
 	var today = new Date();
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i <= 5; i++) {
 		var tr = document.createElement("tr");
 
 		for (var int = 0; int < 7; int++) {
@@ -154,12 +154,14 @@ function equaleDate(date1, date2) {
 function selectDate(date,c) {
 
 	var input = document.getElementById(listInputs);
+
 	if (date != null) {
 		if (date == "today")
 			input.setAttribute("value", new Date().toLocaleDateString());
 		else
 			input.setAttribute("value", date);
 	}
+	input.getAttribute("required", "true");
 	removeCalendar();
 }
 

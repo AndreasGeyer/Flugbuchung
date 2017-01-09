@@ -37,6 +37,7 @@ public class Flug implements Serializable {
 	private Flugzeugtyp flugzeugtyp;
 	
 	private List<Angebot> angebotListe = new ArrayList<>();
+	private List<Sitzplatz> sitzplatzListe = new ArrayList<>();
 	
 	public Flug(Date abflugzeit, Date flugdauer, double preis, Flughafen abFlughafen, Flughafen anFlughafen,
 			Flugzeugtyp flugzeugtyp) {
@@ -94,11 +95,46 @@ public class Flug implements Serializable {
 		this.abflugzeit = abflugzeit;
 	}
 	
+	
+	
+	public List<Angebot> getAngebotListe() {
+		return angebotListe;
+	}
+	public void setAngebotListe(List<Angebot> angebotListe) {
+		this.angebotListe = angebotListe;
+	}
+	public List<Sitzplatz> getSitzplatzListe() {
+		return sitzplatzListe;
+	}
+	public void setSitzplatzListe(List<Sitzplatz> sitzplatzListe) {
+		this.sitzplatzListe = sitzplatzListe;
+	}
 	public Date calculateAnkunftZeit(){
 		
 		Date utc_abflug = new Date((long) (abflugzeit.getTime()-abFlughafen.getZeitzone()*hourInMillis));
 		long hoursUTCAnkunft = (long) (anFlughafen.getZeitzone()*hourInMillis);
 		return new Date(utc_abflug.getTime()+hoursUTCAnkunft+flugdauer.getTime());
+	}
+	
+	public void calculatePreis(){
+		double minPreis = preis;
+		for(Angebot angebot: angebotListe){
+			if(minPreis> angebot.getPreis()){
+				minPreis = angebot.getPreis();
+			}
+		}
+		preis = minPreis;
+	}
+	
+	public int freeSeats(boolean isFirstClass){
+		int max = flugzeugtyp.getSeatsEconomy();
+		int besetzt = 0;
+		for(Sitzplatz platz: sitzplatzListe){
+			if(platz.isFirstClass() == isFirstClass && platz.getStatus().equals("gebucht")){
+				besetzt++;
+			}
+		}
+		return max-besetzt;
 	}
 
 }

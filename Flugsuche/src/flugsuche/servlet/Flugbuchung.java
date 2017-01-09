@@ -34,6 +34,8 @@ import flugsuche.bean.Flug;
 import flugsuche.bean.Fluggesellschaft;
 import flugsuche.bean.Flughafen;
 import flugsuche.bean.Flugzeugtyp;
+import flugsuche.bean.Sitzplatz;
+import flugsuche.bean.Angebot;
 import flugsuche.bean.ComparatorFlug;
 
 /**
@@ -218,9 +220,7 @@ public class Flugbuchung extends HttpServlet {
 
 	}
 
-	private void calculateTicketpreis() {
 
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -266,6 +266,8 @@ public class Flugbuchung extends HttpServlet {
 		}
 		return null;
 	}
+	
+	
 
 	private Flugzeugtyp getFlugzeugTyp(int id) {
 
@@ -300,6 +302,76 @@ public class Flugbuchung extends HttpServlet {
 		return null;
 
 	}
+	
+	private List<Angebot> getAngebote(Flug flug){
+		
+		String sql = "SELECT * FROM angebot WHERE fk_flug = ? ";
+		List<Angebot> listAngebot = new ArrayList<Angebot>();
+
+
+		try {
+	
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, flug.getId());
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				Angebot angebot = new Angebot();
+				angebot.setId(result.getInt("angebotid"));
+				angebot.setPreis(result.getDouble("preis"));
+
+				listAngebot.add(angebot);
+
+			}
+
+		
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listAngebot;
+	}
+	
+	private List<Sitzplatz> getSitzplaetze(Flug flug){
+		
+		String sql = "SELECT * FROM sitzplatz WHERE fk_flug = ? ";
+		List<Sitzplatz> listSitzplatz = new ArrayList<Sitzplatz>();
+
+
+		try {
+	
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, flug.getId());
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				Sitzplatz platz = new Sitzplatz();
+				platz.setId(result.getInt("sitzplatzid"));
+				platz.setFirstClass(result.getBoolean("isFirstClass"));
+				platz.setStatus(result.getString("status"));
+	
+
+				listSitzplatz.add(platz);
+
+			}
+
+		
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listSitzplatz;
+	}
 
 	private Fluggesellschaft getFluggesellschaft(int id) {
 		String statement = "select * from fluggesellschaft where fluggesellschaftid = ?";
@@ -332,7 +404,7 @@ public class Flugbuchung extends HttpServlet {
 
 	private List<Flug> getDirectFlug(Flughafen abFlughafen, Flughafen anFlughafen, Date datum) {
 
-		String sql = "SELECT * FROM flug WHERE fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) = ?";
+		String sql = "SELECT * FROM flug  WHERE fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) = ?";
 		List<Flug> listDirektFluege = new ArrayList<Flug>();
 
 
@@ -355,7 +427,10 @@ public class Flugbuchung extends HttpServlet {
 				flug.setFlugdauer(new Date(result.getTime("fugdauer").getTime()));
 				flug.setPreis(result.getDouble("preis"));
 				flug.setFlugzeugtyp(getFlugzeugTyp(result.getInt("fk_flugzeugtyp")));
-
+				
+				flug.setSitzplatzListe(getSitzplaetze(flug));
+				flug.setAngebotListe(getAngebote(flug));
+				flug.calculatePreis();
 				listDirektFluege.add(flug);
 
 			}

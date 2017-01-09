@@ -71,10 +71,7 @@ input, select {
 	max-width: 150px;
 }
 
-/* .tables { */
-/* 	position: absolute; */
-/* 	display: none; */
-/* } */
+
 .Date {
 	background: url(../img/Flugsuche/kalender.png) no-repeat right top;
 	background-color: white;
@@ -104,7 +101,7 @@ input:CHECKED+.flugLabel, input:CHECKED+label {
 	border: 3px white solid;
 	font-weight: bold;
 	color: white;
-	transition: 2s;
+	transition: .2s;
 }
 
 input:NOT (:CHECKED ) +.flugLabel:HOVER, input:NOT (:CHECKED ) + label:HOVER
@@ -121,7 +118,6 @@ input[type="text"], select {
 	background-color: ghostwhite;
 	border: 3px ghostwhite solid;
 	padding: 1%;
-	margin-top: 15px;
 	border-radius: 10px;
 }
 
@@ -244,7 +240,7 @@ th label {
 	color: white;
 }
 
-#rueckFly{
+#rueckFlyNone{
 	display : none;
 }
 

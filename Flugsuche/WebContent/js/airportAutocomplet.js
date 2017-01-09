@@ -24,7 +24,10 @@ function loadAirports(event) {
 
 				for (var i = 0; i < airports.length; i++) {
 					var li = document.createElement("li");
-					var firstletter = airports[i].ort.indexOf(target.value);
+					alert(target.value);
+	
+		
+					var firstletter = airports[i].ort.toLowerCase().indexOf(target.value.toLowerCase());
 					var ort = airports[i].ort;
 					var ortText = "";
 					if (firstletter > 0) {
@@ -32,12 +35,14 @@ function loadAirports(event) {
 								+ "<strong>"
 								+ ort.substring(firstletter, firstletter
 										+ target.value.length) + "</strong>"
-								+ ort.substring(firstletter + 1);
+								+ ort.substring(firstletter +target.value.length);
+						alert("ortText1 "+ortText);
 					} else {
 						ortText = "<strong>"
 								+ ort.substring(0, target.value.length)
 								+ "</strong>"
 								+ ort.substring(target.value.length);
+						alert("ortText2 "+ortText);
 					}
 
 					var text = ortText + " (" + airports[i].kuerzel + "), "
