@@ -61,7 +61,7 @@ public class UserBildLaden extends HttpServlet {
 				PreparedStatement pstmt = con.prepareStatement("select nutzerbild from kunde where kundeid = ?");) {
 			pstmt.setInt(1, id);
 			try (ResultSet rs = pstmt.executeQuery();) {
-				if (rs!= null && rs.next() && rs.getBlob("nutzerbild").length()!=0) {
+				if (rs!= null && rs.next() && rs.getBlob("nutzerbild")!=null && rs.getBlob("nutzerbild").length()!=0) {
 					Blob bild = rs.getBlob("nutzerbild");
 					response.reset();
 					long length = bild.length();

@@ -13,7 +13,7 @@
 <header>
 	<a href="${pageContext.request.contextPath}/html/Startseite.jsp"><button id="logo"></button></a>
 	<nav>
-		<a href="Startseite.jsp"><button>Startseite</button></a>
+		<a href="${pageContext.request.contextPath}/html/Startseite.jsp"><button>Startseite</button></a>
 		<button>Flugsuche</button>
 		<button>Angebote</button>
 		<!-- Hier muss Cookie Management eingefügt werden -->

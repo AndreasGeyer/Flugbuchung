@@ -31,10 +31,10 @@
 						<tr>
 							<td><input placeholder="Abflughafen" type="text"
 								id="ablflug" onkeyup="loadAirports(event)" autocomplete="off"
-								name="abflug" value="${abflughafen.ort}" required>
+								name="hinflug" value="${abflughafen.ort}" required>
 								<div class="autocompletAirport" id="ablflugAutocomplet"></div></td>
 							<td><input autocomplete="off" placeholder="Ankunftshafen"
-								type="text" id="ankunft" name="ankunft"
+								type="text" id="ankunft" name="rueckflug"
 								onkeyup="loadAirports(event)" value="${ankufthafen.ort}"
 								required>
 								<div class="autocompletAirport" id="ankunftAutocomplet"></div></td>
