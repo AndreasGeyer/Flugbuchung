@@ -1,9 +1,9 @@
 @import url(../style/main.css);
 
 body{
-	background-image: url("../img/Flugsuche/ozean.jpg");
+	background-image: url("../img/HintergrundFlug.jpg");
 	background-repeat: no-repeat;
-	background-size: 300%;	
+	background-size: 150%;	
 }
 
 #navigation{
@@ -49,12 +49,24 @@ article{
   margin-bottom: 25px;
 }
 
-article h1{
-  text-align: center;
-  background-color: ghostwhite;
-  margin-right: 47%;
-	border-radius: 3%;
-		font-family: Bookman Old Style;
+#Passagier2{
+	display: none;
+}
+
+#Passagier3{
+	display: none;
+}
+
+#Passagier4{
+	display: none;
+}
+
+#Passagier5{
+	display: none;
+}
+
+#Passagier6{
+	display: none;
 }
 
 lable{
@@ -66,26 +78,14 @@ input{
 	width: 20em;
 }
 
-textarea{
-	width: 20em;
-	border: 1px soild black;
-}
-
 fieldset{
-	width: 30em;
 	padding-top: 1.5em;
-	padding-left: 1.5em;
-	background: ghostwhite;
+	padding-left: 7em;
 	border-radius: 3%;
-		font-family: Bookman Old Style;
-}
-
-#Speichern button{
-	margin-left: 29%;
-	border-radius: 5px;
-	width: 550px;
-	height: 30px;
-	background-color: F5F5F5;
-	margin-bottom: 30px;
-		font-family: Bookman Old Style;
+	font-family: Bookman Old Style;
+	margin-right: auto;
+	background-image: URL("../img/Passagier/PassagierHintergrund.jpg");
+		background-repeat: no-repeat;
+	background-size: 200%;
+	width: 50%;
 }

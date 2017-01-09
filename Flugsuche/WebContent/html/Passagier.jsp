@@ -7,7 +7,7 @@
 		<title>Flugsuche THI</title>
 		<link rel="stylesheet" type="text/css" href="../style/main.css" />
 		<link rel="stylesheet" type="text/css" href="../style/Passagier.css" />
-		<script type="text/javascript" src="../js/startseite.js"></script>
+		<script type="text/javascript" src="../js/passagier.js"></script>
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>
@@ -27,57 +27,117 @@
 		</div>
 		
 		<article>
-		<form>
-			<h1>Passagiere</h1><br>
-			<br>
-			<fieldset>
+			
+			<fieldset><legend>Passagierdaten</legend>
+			
+			<table>
+				<tr>
+				<td><label>Anzahl Passagiere Wählen: </label></td>
+						<td><select name="passagieranzahl">
+								<option value="Wert1">-</option>
+								<option value="Wert2">1</option>
+								<option value="Wert3">2</option>
+								<option value="Wert4">3</option>
+								<option value="Wert5">4</option>
+								<option value="Wert6">5</option>
+								<option value="Wert7">6</option>
+								</select></td>
+							</tr>
+				</table>
+				<div id="Passagier1">
 				<h4>Passagier 1:</h4>
+				<div class="Eingabe">
 				<label for="vorname">Vorname:</label><br>
-				<input type="text" name="vorname" id="vorname" maxlength="30" required>
+				<input type="text" name="vorname" id="vorname" maxlength="30" value="${kunde.vorname}" required>
 				<br>
 				<label for="nachname">Nachname:</label><br>
-				<input type="text" name="nachname" id="nachname" maxlength="30" required>
+				<input type="text" name="nachname" id="nachname" maxlength="30" value="${kunde.nachname}" required>
 				<br>
 				<label for="gebdat">Geburtsdatum:</label><br>
-				<input type="date" name="Gebdatum" id="Gebdatum">
+				<input type="date" name="Gebdatum" id="Gebdatum" value="${kunde.geburtsdatum}">
+				</div>
                 <br>
                 <br>
+                </div>
+                
+                <div id="Passagier2">
                 <h4>Passagier 2:</h4>
+                <div class="Eingabe">
 				<label for="vorname">Vorname:</label><br>
-				<input type="text" name="vorname" id="vorname" maxlength="30" required>
+				<input type="text" name="vorname" id="vorname" maxlength="30" placeholder="Vorname" required>
 				<br>
 				<label for="nachname">Nachname:</label><br>
-				<input type="text" name="nachname" id="nachname" maxlength="30" required>
+				<input type="text" name="nachname" id="nachname" maxlength="30" placeholder="Nachname" required>
 				<br>
 				<label for="gebdat">Geburtsdatum:</label><br>
 				<input type="date" name="Gebdatum" id="Gebdatum">
+				</div>
                 <br>
                 <br>
+                </div>
+                
+                <div id="Passagier3">
 				<h4>Passagier 3:</h4>
+				<div class = "Eingabe">
 				<label for="vorname">Vorname:</label><br>
-				<input type="text" name="vorname" id="vorname" maxlength="30" required>
+				<input type="text" name="vorname" id="vorname" maxlength="30" placeholder="Vorname" required>
 				<br>
 				<label for="nachname">Nachname:</label><br>
-				<input type="text" name="nachname" id="nachname" maxlength="30" required>
+				<input type="text" name="nachname" id="nachname" maxlength="30" placeholder="Nachname" required>
 				<br>
 				<label for="gebdat">Geburtsdatum:</label><br>
 				<input type="date" name="Gebdatum" id="Gebdatum">
-                <br>
-                <br>
-                <br>				
-				<label for="mail">E-Mail:</label><br>
-				<input id="mail" name="email" type="email" required>
+				</div>
+				</div>
+				
+				<div id="Passagier4">
+				<h4>Passagier 4:</h4>
+				<div class = "Eingabe">
+				<label for="vorname">Vorname:</label><br>
+				<input type="text" name="vorname" id="vorname" maxlength="30" placeholder="Vorname" required>
 				<br>
-				<label for="mail">E-Mail Bestätigung:</label><br>
-				<input id="mailbestätigung" name="email" type="email" required>
+				<label for="nachname">Nachname:</label><br>
+				<input type="text" name="nachname" id="nachname" maxlength="30" placeholder="Nachname" required>
 				<br>
+				<label for="gebdat">Geburtsdatum:</label><br>
+				<input type="date" name="Gebdatum" id="Gebdatum">
+				</div>
+				</div>
+				
+				<div id="Passagier5">
+				<h4>Passagier 5:</h4>
+				<div class = "Eingabe">
+				<label for="vorname">Vorname:</label><br>
+				<input type="text" name="vorname" id="vorname" maxlength="30" placeholder="Vorname" required>
+				<br>
+				<label for="nachname">Nachname:</label><br>
+				<input type="text" name="nachname" id="nachname" maxlength="30" placeholder="Nachname" required>
+				<br>
+				<label for="gebdat">Geburtsdatum:</label><br>
+				<input type="date" name="Gebdatum" id="Gebdatum">
+				</div>
+				</div>
+				
+				<div id="Passagier6">
+				<h4>Passagier 6:</h4>
+				<div class = "Eingabe">
+				<label for="vorname">Vorname:</label><br>
+				<input type="text" name="vorname" id="vorname" maxlength="30" placeholder="Vorname" required>
+				<br>
+				<label for="nachname">Nachname:</label><br>
+				<input type="text" name="nachname" id="nachname" maxlength="30" placeholder="Nachname" required>
+				<br>
+				<label for="gebdat">Geburtsdatum:</label><br>
+				<input type="date" name="Gebdatum" id="Gebdatum">
+				</div>
+				</div>
+				<br>
+				<br>
+					<button type="submit">weiter</button>
 			</fieldset>
 			
-		</form>
 		</article>
-		<div id="Speichern">
-			<button type="submit">weiter</button>
-		</div>
+		
 		
 		</main>
 
