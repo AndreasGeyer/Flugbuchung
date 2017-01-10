@@ -187,4 +187,12 @@ public class Flug implements Serializable {
 			}
 			return listEssen;
 	}
+	
+	public Zusatzleistung getZusatzleistung(int id){
+		for(Zusatzleistung liestung: zusatzleistungList){
+			if(liestung.getId() == id){
+				return liestung;
+			}
+		}return null;
+	}
 }

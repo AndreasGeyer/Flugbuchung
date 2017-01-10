@@ -1,6 +1,3 @@
-
-
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.sql.Time"%>
@@ -41,29 +38,24 @@
 	<%
 		List<Flug> direktflug = (List<Flug>) session.getAttribute("direktflug");
 		List<Flug> direktflugRueck = (List<Flug>) session.getAttribute("direktflugRueck");
-
 		DateFormat simDateFormat = new SimpleDateFormat("HH:mm");
 		Date flugHin = (Date) session.getAttribute("datumHin");
 		boolean onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
-
 		Date flugdauerHinMin = new Date(86400000L);
 		Date flugdauerHinMax = new Date(1L);
 		Date abflugHinMin = new Date(100 * 365 * 86400000L);
 		Date abflugHinMax = new Date(1L);
 		double minPrice = 99999999;
 		double maxPrice = 0;
-
 		Date flugdauerRueckMin = new Date(86400000L);
 		Date flugdauerRueckMax = new Date(1L);
 		Date abflugRueckMin = new Date(100 * 365 * 86400000L);
 		Date abflugRueckMax = new Date(1L);
 		double minPriceRueck = 99999999;
 		double maxPriceRueck = 0;
-
 		List<Fluggesellschaft> gesellschaftList = new ArrayList<>();
-
+		if(direktflug != null)
 		for (Flug flug : direktflug) {
-
 			if (flugdauerHinMin.after(flug.getFlugdauer()))
 				flugdauerHinMin = flug.getFlugdauer();
 			if (flugdauerHinMax.before(flug.getFlugdauer()))
@@ -76,7 +68,6 @@
 				minPrice = flug.getPreis();
 			if (maxPrice < flug.getPreis())
 				maxPrice = flug.getPreis();
-
 			if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
 				gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
 			}
@@ -95,7 +86,6 @@
 					minPriceRueck = flug.getPreis();
 				if (maxPriceRueck < flug.getPreis())
 					maxPriceRueck = flug.getPreis();
-
 				if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
 					gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
 				}
@@ -107,7 +97,7 @@
 	<div id="navigation">
 		<nav>
 			<ul>
-				<li><a href="../html/Flugsuche.jsp">Flug wählen</a></li>
+				<li><a href="${pageContext.request.contextPath}/Flugbuchung">Flug wählen</a></li>
 				<li><a href="../html/Serviceleistungen.jsp">Serviceleistungen</a></li>
 				<li><a href="../html/Passagier.jsp">Passagierdaten</a></li>
 				<li><a href="../html/Zahlungsart.jsp">Zahlung</a></li>
@@ -119,7 +109,7 @@
 	<main>
 	<form id="suchForm" method="POST" action="/Flugsuche/Flugbuchung">
 		<%
-			if (direktflug.size() > 0) {
+			if (direktflug!= null &&  direktflug.size() > 0) {
 		%>
 		<div class="mainField">
 			<div id="filter">
@@ -293,7 +283,6 @@
 								class="flugLabel" id="Hinflug" for="HinflugRadio"
 								onclick="displayRueckflug(event)"> nur Hinflug </label>
 						</div>
-
 						<div id="flugWrapper">
 							<div class="Flug">
 								<div class="imageDiv">
@@ -306,9 +295,6 @@
 									onkeyup="loadAirports(event)" autocomplete="off" name="abflug"
 									value="${abflughafen.ort}" required>
 								<div class="autocompletAirport" id="ablflugAutocomplet"></div>
-
-
-
 								<table class="tables" id="möglicheFlüge"></table>
 								<div class="imageDiv">
 									<img
@@ -321,12 +307,8 @@
 									onkeyup="loadAirports(event)" value="${ankufthafen.ort}"
 									required>
 								<div class="autocompletAirport" id="ankunftAutocomplet"></div>
-
 								<table class="tables" id="möglicheFlüge"></table>
-
 							</div>
-
-
 							<div class="kalender">
 								<div class="flyDate" id="hinFly">
 									<h4>Hinflug</h4>
@@ -356,7 +338,6 @@
 									<h4>Rückflug</h4>
 									<%
 										Date flugRueck = (Date) session.getAttribute("datumRueck");
-
 										String rueckDate = "";
 										if (flugRueck != null)
 											rueckDate = dateFormat.format(flugRueck);
@@ -595,11 +576,9 @@
 								<div class="priceField">
 									<%
 										String preis = "zu wenige Plätze";
-
 												int anzahl_firstClassPlätze = flug.freeSeats(true);
 												int anzahl_ecoPlätze = flug.freeSeats(false);
 												int passagierZahl = baby + adults + kind;
-
 												if (flug.getPreis() == minPrice) {
 									%>
 									<div>
@@ -957,7 +936,6 @@
 											<%
 												UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
 																UhrzeitAnkunft = UhrzeitAnkunft + " Uhr: " + flug.getAnFlughafen().getOrt();
-
 																String flugnr = flug.getFlugzeugtyp().getGesellschaft().getBezeichnung().substring(0, 1)
 																		+ flug.getId();
 																if (flugnr.length() > 5)

@@ -14,6 +14,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import flugsuche.bean.Angebot;
 import flugsuche.bean.Buchung;
 import flugsuche.bean.Buchungsposition;
 import flugsuche.bean.Flug;
+import flugsuche.bean.Kunde;
 import flugsuche.bean.Zusatzleistung;
 
 /**
@@ -50,6 +52,27 @@ public class ServiceLaden extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		
+		Kunde k = null;
+		Cookie cookies[] = request.getCookies();
+		String id = "";
+		for (int i = 0; i < cookies.length; i++) {
+			Cookie c = cookies[i];
+			if (c.getName().equals("kundenid")) {
+				id = c.getValue();
+			}
+		}
+		try {
+			if(id != "")
+			k = getUser(Integer.parseInt(id), response);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		HttpSession session = request.getSession();
 
@@ -57,6 +80,7 @@ public class ServiceLaden extends HttpServlet {
 		String rueckflugid = (String) request.getParameter("RueckflugInput");
 
 		Buchung buchung = new Buchung();
+		buchung.setKunde(k);
 
 		List<Flug> hinflugList = (List<Flug>) session.getAttribute("direktflug");
 		List<Flug> rueckflugList = (List<Flug>) session.getAttribute("direktflugRueck");
@@ -82,11 +106,13 @@ public class ServiceLaden extends HttpServlet {
 
 				Buchungsposition pos = new Buchungsposition();
 				pos.setFlug(hinflug);
+				buchung.setHinflug(hinflug);
 				pos.setPreis(preisNachlass[i] * hinflug.getPreis());
 				buchung.getPositionen().add(pos);
 
 				if (onlyHinflug == false) {
 					Buchungsposition pos2 = new Buchungsposition();
+					buchung.setRueckflug(rueckFlug);
 					pos2.setFlug(rueckFlug);
 					pos2.setPreis(preisNachlass[i] * rueckFlug.getPreis());
 					buchung.getPositionen().add(pos2);
@@ -98,12 +124,14 @@ public class ServiceLaden extends HttpServlet {
 		hinflug.setZusatzleistungList(getZusatzleistungen(hinflug));
 		session.setAttribute("serviceHin", hinflug.getZusatzleistungList());
 		request.setAttribute("hinflug", hinflug);
-		System.out.println(hinflug.getZusatzleistungList().size());
+		
 		if (onlyHinflug == false) {
 			rueckFlug.setZusatzleistungList(getZusatzleistungen(rueckFlug));
 			session.setAttribute("serviceRueck", rueckFlug.getZusatzleistungList());
 			request.setAttribute("rueckFlug", rueckFlug);
 		}
+		
+		session.setAttribute("Buchung", buchung);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Serviceleistungen.jsp");
 		dispatcher.forward(request, response);
@@ -161,6 +189,41 @@ public class ServiceLaden extends HttpServlet {
 				return flug;
 		}
 		return null;
+	}
+	
+	public Kunde getUser(int id, HttpServletResponse response) throws Exception {
+		Kunde kunde = null;
+
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("select * from kunde where kundeid = ?");) {
+			pstmt.setInt(1, id);
+			try (ResultSet rs = pstmt.executeQuery();) {
+				if (rs.next()) {
+					kunde = new Kunde();
+					kunde.setId(id);
+					kunde.setAnrede(rs.getString("anrede"));
+					kunde.setTitel(rs.getString("titel"));
+					kunde.setVorname(rs.getString("vorname"));
+					kunde.setNachname(rs.getString("nachname"));
+					kunde.setStrasse(rs.getString("strasse"));
+					kunde.setPLZ(rs.getString("postleitzahl"));
+					kunde.setHausnummer(rs.getString("hausnummer"));
+					kunde.setOrt(rs.getString("ort"));
+					kunde.setGeburtsdatum(rs.getDate("geburtsdatum"));
+					kunde.setMail(rs.getString("email"));
+					kunde.setPasswort(rs.getString("passwort"));
+					kunde.setBild(rs.getBytes("nutzerbild"));
+					kunde.setPremium(rs.getBoolean("istPremium"));
+				} else {
+
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return kunde;
 	}
 
 }

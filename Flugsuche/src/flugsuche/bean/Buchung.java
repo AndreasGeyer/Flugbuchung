@@ -29,6 +29,9 @@ public class Buchung implements Serializable {
 	private String zahlungsart;
 	private String zahlungsnummer;
 	
+	private Flug hinflug;
+	private Flug rueckflug;
+	
 	
 	public Buchung() {
 		super();
@@ -92,6 +95,26 @@ public class Buchung implements Serializable {
 
 	public void setZahlungsnummer(String zahlungsnummer) {
 		this.zahlungsnummer = zahlungsnummer;
+	}
+
+
+	public Flug getHinflug() {
+		return hinflug;
+	}
+
+
+	public void setHinflug(Flug hinflug) {
+		this.hinflug = hinflug;
+	}
+
+
+	public Flug getRueckflug() {
+		return rueckflug;
+	}
+
+
+	public void setRueckflug(Flug rueckflug) {
+		this.rueckflug = rueckflug;
 	}
 
 	

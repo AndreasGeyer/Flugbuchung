@@ -141,7 +141,7 @@
 			<div id="insurance">
 				<h2>Verpflegung</h2>
 				<div id="a">
-					<%
+					<%DecimalFormat df = new DecimalFormat("#.##");
 						List<Zusatzleistung> hinZus = hinflug.getMahlzeiten();
 							int sizehinZus = hinZus.size();
 							int counter = 0;
@@ -171,7 +171,7 @@
 						id="<%=leistung.getId() + "_" + zusatz%>">
 						<h3 ><%=beschreibung[0]%></h3>
 						<h4 id="<%=leistung.getId() + "_" + zusatz+"_Bez"%>"><%=leistung.getBezeichnung()%></h4>
-						<br> <label id="<%=leistung.getId() + "_" + zusatz+"_Preis"%>">nur <%=leistung.getPreis()%>
+						<br> <label id="<%=leistung.getId() + "_" + zusatz+"_Preis"%>">nur <%=df.format(leistung.getPreis())%>
 							€
 						</label>
 						<p><%=beschreibung[1] %></p>
@@ -254,11 +254,10 @@
 	
 	<div id="price">
 	
-	<h1>Gesamtsumme: <span id="gesamtsumme"></span></h1>
-	<h2>Hinflug: 600€ </h2>
-	<h2>Rückflug: 600</h2>
-	<span id="restSumme"></span>
-	
+	<h1>Gewählte Zusatzleistung: </h1>
+
+	<h2 id="restSumme"></h2>
+	<button id = "weiterPass" formaction="/Flugsuche/Flugbuchung" formmethod="post" type="submit" onsubmit="submit()">Weiter zu den Passagieren</button>
 	
 	</div>
 	

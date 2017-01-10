@@ -23,6 +23,7 @@ import java.util.TreeMap;
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +65,7 @@ public class Flugbuchung extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
 			connection = ds.getConnection();
 		} catch (SQLException e2) {
@@ -108,36 +109,75 @@ public class Flugbuchung extends HttpServlet {
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-	
-
 
 			}
 
 		} else {
 			abflughafen = getAirport(request.getParameter("abflug"));
+
+			if (abflughafen == null) {
+				abflughafen = (Flughafen) session.getAttribute("abflughafen");
+			}
+
 			ankufthafen = getAirport(request.getParameter("ankunft"));
+
+			if (ankufthafen == null) {
+				ankufthafen = (Flughafen) session.getAttribute("ankufthafen");
+			}
+
 			request.setAttribute("abflughafen", abflughafen);
 			request.setAttribute("ankufthafen", ankufthafen);
 
 			if (request.getParameter("Flugart") != null) {
 				onlyHinflug = request.getParameter("Flugart").equals("2");
 				System.out.println("onlyHinflug" + onlyHinflug);
+			} else {
+				if (session.getAttribute("onlyHinflug") != null)
+					onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 			}
 
 			try {
-				hinflug = format.parse(request.getParameter("DateHinflug"));
+				if (request.getParameter("DateHinflug") != null && !request.getParameter("DateHinflug").equals(""))
+					hinflug = format.parse(request.getParameter("DateHinflug"));
+				else if (session.getAttribute("datumHin") != null) {
+					hinflug = (Date) session.getAttribute("datumHin");
+				} else {
+					hinflug = new Date(System.currentTimeMillis());
+				}
 				if (!onlyHinflug)
-					rueckflug = format.parse(request.getParameter("DateRueckflug"));
+					if (request.getParameter("DateRueckflug") != null)
+						rueckflug = format.parse(request.getParameter("DateRueckflug"));
+					else
+						rueckflug = (Date) session.getAttribute("datumRueck");
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println(request.getParameter("babies").charAt(0) + "charat");
-			System.out.println(request.getParameter("babies"));
-			adults = Integer.parseInt("" + request.getParameter("adults").charAt(0));
 
-			childs = Integer.valueOf("" + request.getParameter("children").charAt(0));
-			babies = Integer.valueOf("" + request.getParameter("babies").charAt(0));
+			if (request.getParameter("adults") != null) {
+				adults = Integer.parseInt("" + request.getParameter("adults").charAt(0));
+			} else {
+				if (session.getAttribute("erwachsener") != null)
+					adults = (int) session.getAttribute("erwachsener");
+				;
+			}
+
+			if (request.getParameter("children") != null) {
+				childs = Integer.valueOf("" + request.getParameter("children").charAt(0));
+
+			} else {
+				if (session.getAttribute("childs") != null)
+					childs = (int) session.getAttribute("childs");
+			}
+
+			if (request.getParameter("babies") != null) {
+				babies = Integer.valueOf("" + request.getParameter("babies").charAt(0));
+			} else {
+				if (session.getAttribute("babies") != null)
+					babies = (int) session.getAttribute("babies");
+
+			}
+
 		}
 
 		session.setAttribute("abflughafen", abflughafen);
@@ -150,38 +190,35 @@ public class Flugbuchung extends HttpServlet {
 		session.setAttribute("erwachsener", adults);
 		session.setAttribute("childs", childs);
 		session.setAttribute("babies", babies);
-		
-		if(abflughafen != null && ankufthafen != null){
 
-		List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);
-		Collections.sort(direktHin, ComparatorFlug.getComparatorPreis());
-		Map<Date, Double> minPreisMap = getMinPreisPerDate(abflughafen, ankufthafen, hinflug);
-		 
+		if (abflughafen != null && ankufthafen != null && hinflug != null) {
 
-		List<Flug> direktRueck = null;
-		if (!onlyHinflug) {
-			 direktRueck = getDirectFlug(ankufthafen, abflughafen, rueckflug);
-			Collections.sort(direktRueck, ComparatorFlug.getComparatorPreis());
-			Map<Date, Double >minPreisMapRueck = getMinPreisPerDate(ankufthafen, abflughafen, rueckflug);
-			session.setAttribute("mapRueck", minPreisMapRueck);
-			session.setAttribute("direktflugRueck", direktRueck);
+			List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);
+			Collections.sort(direktHin, ComparatorFlug.getComparatorPreis());
+			Map<Date, Double> minPreisMap = getMinPreisPerDate(abflughafen, ankufthafen, hinflug);
 
+			List<Flug> direktRueck = null;
+			if (!onlyHinflug) {
+				direktRueck = getDirectFlug(ankufthafen, abflughafen, rueckflug);
+				Collections.sort(direktRueck, ComparatorFlug.getComparatorPreis());
+				Map<Date, Double> minPreisMapRueck = getMinPreisPerDate(ankufthafen, abflughafen, rueckflug);
+				session.setAttribute("mapRueck", minPreisMapRueck);
+				session.setAttribute("direktflugRueck", direktRueck);
+
+			} else {
+				session.setAttribute("direktflugRueck", null);
+			}
+
+			session.setAttribute("map", minPreisMap);
+			session.setAttribute("direktflug", direktHin);
+			try {
+				connection.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		else{
-			session.setAttribute("direktflugRueck", null);
-		}
 
-		
-		
-
-		session.setAttribute("map", minPreisMap);
-		session.setAttribute("direktflug", direktHin);
-		try {
-			connection.close();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Flugsuche.jsp");
 		dispatcher.forward(request, response);
 
@@ -192,16 +229,15 @@ public class Flugbuchung extends HttpServlet {
 		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? group by date(abflugzeit) order by abflugzeit asc ";
 		Map<Date, Double> minPreis = new TreeMap<>();
 		Map<Date, Double> maxPreis = new TreeMap<>();
-	
-	
+
 		try {
-			
+
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
 			preparedStatement.setDate(3, new java.sql.Date(datum.getTime() - 86400000L * 15));
 			preparedStatement.setDate(4, new java.sql.Date(datum.getTime() + 86400000L * 15));
-			
+
 			ResultSet result = preparedStatement.executeQuery();
 			System.out.println(preparedStatement.toString());
 			while (result.next()) {
@@ -209,7 +245,6 @@ public class Flugbuchung extends HttpServlet {
 				maxPreis.put(result.getDate("abflugdatum"), result.getDouble("maxPreis"));
 
 			}
-		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -221,8 +256,6 @@ public class Flugbuchung extends HttpServlet {
 		return minPreis;
 
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -238,9 +271,8 @@ public class Flugbuchung extends HttpServlet {
 
 		String statement = "SELECT * FROM FLUGHAFEN WHERE ORT = ?";
 
-
 		try {
-			
+
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setString(1, code);
 			ResultSet result = preparedStatement.executeQuery();
@@ -256,7 +288,6 @@ public class Flugbuchung extends HttpServlet {
 			}
 			System.out.println(preparedStatement.toString());
 
-		
 			return hafen;
 
 		} catch (SQLException e) {
@@ -268,16 +299,13 @@ public class Flugbuchung extends HttpServlet {
 		}
 		return null;
 	}
-	
-	
 
 	private Flugzeugtyp getFlugzeugTyp(int id) {
 
 		String statement = "select * from flugzeugtyp where flugzeugtypid = ?";
 
-
 		try {
-		
+
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, id);
 			ResultSet result = preparedStatement.executeQuery();
@@ -292,7 +320,6 @@ public class Flugbuchung extends HttpServlet {
 				typ.setGesellschaft(getFluggesellschaft(result.getInt("fk_flugzeuggesellschaft")));
 				return typ;
 			}
-		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -304,15 +331,14 @@ public class Flugbuchung extends HttpServlet {
 		return null;
 
 	}
-	
-	private List<Angebot> getAngebote(Flug flug){
-		
+
+	private List<Angebot> getAngebote(Flug flug) {
+
 		String sql = "SELECT * FROM angebot WHERE fk_flug = ? ";
 		List<Angebot> listAngebot = new ArrayList<Angebot>();
 
-
 		try {
-	
+
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, flug.getId());
 
@@ -327,8 +353,6 @@ public class Flugbuchung extends HttpServlet {
 
 			}
 
-		
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -338,15 +362,14 @@ public class Flugbuchung extends HttpServlet {
 		}
 		return listAngebot;
 	}
-	
-	private List<Sitzplatz> getSitzplaetze(Flug flug){
-		
+
+	private List<Sitzplatz> getSitzplaetze(Flug flug) {
+
 		String sql = "SELECT * FROM sitzplatz WHERE fk_flug = ? ";
 		List<Sitzplatz> listSitzplatz = new ArrayList<Sitzplatz>();
 
-
 		try {
-	
+
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, flug.getId());
 
@@ -357,13 +380,10 @@ public class Flugbuchung extends HttpServlet {
 				platz.setId(result.getInt("sitzplatzid"));
 				platz.setFirstClass(result.getBoolean("isFirstClass"));
 				platz.setStatus(result.getString("status"));
-	
 
 				listSitzplatz.add(platz);
 
 			}
-
-		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -378,13 +398,11 @@ public class Flugbuchung extends HttpServlet {
 	private Fluggesellschaft getFluggesellschaft(int id) {
 		String statement = "select * from fluggesellschaft where fluggesellschaftid = ?";
 
-	
 		try {
-	
+
 			PreparedStatement preparedStatement = connection.prepareStatement(statement);
 			preparedStatement.setInt(1, id);
 			ResultSet result = preparedStatement.executeQuery();
-	
 
 			if (result.next()) {
 				Fluggesellschaft gesellschaft = new Fluggesellschaft();
@@ -392,7 +410,6 @@ public class Flugbuchung extends HttpServlet {
 				gesellschaft.setId(id);
 				return gesellschaft;
 			}
-	
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -409,9 +426,8 @@ public class Flugbuchung extends HttpServlet {
 		String sql = "SELECT * FROM flug  WHERE fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) = ?";
 		List<Flug> listDirektFluege = new ArrayList<Flug>();
 
-
 		try {
-	
+
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
@@ -429,15 +445,13 @@ public class Flugbuchung extends HttpServlet {
 				flug.setFlugdauer(new Date(result.getTime("fugdauer").getTime()));
 				flug.setPreis(result.getDouble("preis"));
 				flug.setFlugzeugtyp(getFlugzeugTyp(result.getInt("fk_flugzeugtyp")));
-				
+
 				flug.setSitzplatzListe(getSitzplaetze(flug));
 				flug.setAngebotListe(getAngebote(flug));
 				flug.calculatePreis();
 				listDirektFluege.add(flug);
 
 			}
-
-		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -38,7 +38,7 @@
 								onkeyup="loadAirports(event)" value="${ankufthafen.ort}"
 								required>
 								<div class="autocompletAirport" id="ankunftAutocomplet"></div></td>
-							<td><input type="date" name="datumhin" /></td>
+							<td><input type="date" name="datumhin" required /></td>
 						</tr>
 					</table>
 					<button type="submit" class="submitButton"

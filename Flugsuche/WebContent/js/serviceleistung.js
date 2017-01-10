@@ -1,12 +1,15 @@
 var matrixEssen = null;
+var matrixID = null;
 
 function select() {
 	var hinRueck = document.getElementById("flyt");
 	var person = document.getElementById("pass");
 	if (matrixEssen == null) {
 		 matrixEssen = new Array(hinRueck.length);
+		 matrixID = new Array(hinRueck.length);
 		for (var i = 0; i < hinRueck.length; i++) {
 			matrixEssen[i] = new Array(person.length);
+			matrixID[i] = new Array(person.length);
 		}
 	}
 	var essen = getVisibleEssen().id;
@@ -23,10 +26,25 @@ function select() {
 	var s = person.value + " " + ishin + ": " + bezeichnung + " " + preis
 			+ " €";
 	matrixEssen[hinRueck.selectedIndex][person.selectedIndex] = s;
-
-	alert(s);
+	matrixID[hinRueck.selectedIndex][person.selectedIndex] = essen.substring(essen.indexOf("_"));
+	
 	calculateGesamtsumme();
 
+}
+
+function submit(){
+	alert("sad");
+	var hinRueck = document.getElementById("flyt");
+	var person = document.getElementById("pass");
+	var url = "/Flugsuche/PassagierLaden?leistung=";
+	for (var i = 0; i < hinRueck.length; i++) {
+		for (var j = 0; j < person.length; j++) {
+			url = url+matrixID[i][j]+",";
+		}
+	}
+	var weiterPass = document.getElementById("weiterPass");
+	weiterPass.setAttribute("formaction", url);
+	return true;
 }
 
 function calculateGesamtsumme() {
@@ -39,7 +57,7 @@ function calculateGesamtsumme() {
 		for (var j = 0; j < person.length; j++) {
 			alert("vv");
 			if (matrixEssen[i][j] != null)
-				string = string + "<h3>" + matrixEssen[i][j] + "</h3>";
+				string = string + "<h4>" + matrixEssen[i][j] + "</h4>";
 		}
 	}
 	rest.innerHTML = string;
