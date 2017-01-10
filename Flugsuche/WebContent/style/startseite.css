@@ -156,6 +156,13 @@ article#Angebote p{
 	margin: 0px;
 }
 
+article#Angebote c{
+	margin: 0px;
+	font-size: 25px;
+	font-weight: bold;
+	color: LightBlue;
+}
+
 article#Angebote button{
 	width: 150px;
 	height: 30px;

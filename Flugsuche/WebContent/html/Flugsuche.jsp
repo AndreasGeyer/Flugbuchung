@@ -8,7 +8,6 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="flugsuche.bean.*"%>
-<%@ page import="flugsuche.bean.*"%>
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>

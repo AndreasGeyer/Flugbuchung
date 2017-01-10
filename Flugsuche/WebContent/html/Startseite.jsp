@@ -46,53 +46,71 @@
 				</form>
 			</div>
 		</article>
-		<article id="Angebote">
+				<article id="Angebote">
 			<h1>Angebote</h1>
 			<div class="visible Angebot1">
-				<h2>One Night in Bankog</h2>
+				<h2>Von Berlin nach London</h2>
 				<div id="Angebotsinhalt">
 					<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-					<img src="../img/Bangkok.jpg" />
+					<img src="../img/Angebot/London.jpg" />
 					<div>
-						<p>Hier ist irgendein Beschreibungstext</p>
-						<p class="alterPreis">999,99€</p>
-						<p class="neuerPreis">399,99€</p>
+						<c>Ready for Tee-Time?</c> <br>
+						<p>London gilt als größte, aufregendste und auch als teuerste Stadt Westeuropas. Die englische Hauptstadt ist quirlig und modern.  Im historischen Zentrum reiht sich eine Sehenswürdigkeit an die nächste. Traditionen wie die Schlüsselzeremonie im Tower überdauern die rasanten Veränderungen, denen die Stadt ausgesetzt ist.</p>
+						<p class="alterPreis">115,99€</p>
+						<p class="neuerPreis">89,89€</p>
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot2">
-				<h2>Yolo Night in Bankog</h2>
+				<h2>Von München nach Madrid</h2>
 				<div id="Angebotsinhalt">
 					<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-					<img src="../img/Bangkok.jpg" />
+					<img src="../img/Angebot/madrid.jpg" />
 					<div>
-						<p>Hier ist irgendein Beschreibungstext</p>
-						<p class="alterPreis">999,99€</p>
-						<p class="neuerPreis">399,99€</p>
+						<c>Madrid: Das pulsierende Herz Spaniens </c><br> 
+						<p>Madrid zeigt sich als aufregende Metropole, die bis in den frühen Morgen hinein in Bewegung ist. Ausgezeichnete Kultur, gute Gastronomie, Lebendigkeit und Sehenswürdigkeiten machen die spanische Hauptstadt zu einem der spannendsten Städtereiseziele in Spanien.</p>
+						<p class="alterPreis">135,50€</p>
+						<p class="neuerPreis">100,50€</p>
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot3">
-				<h2>GUTE Night in Bankog</h2>
+				<h2>Von Frankfurt nach Zürich</h2>
 				<div id="Angebotsinhalt">
 					<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-					<img src="img/Bangkok.jpg" />
+					<img src="../img/Angebot/zuerich.jpg"/>
 					<div>
-						<p>Sichern Sie sich jetzt das ultimative Erholungswochenende
-							in der Erlebnismetropole Bangkog.</p>
-						<p class="alterPreis">999,99€</p>
-						<p class="neuerPreis">299,99€</p>
+						<c>Einmal in die Berge </c><br> 
+						<p>Die Stadt Zürich liegt an der nördlichen Spitze des Zürichsees im Schweizer Mittelland. Zu den Sehenswürdigkeiten von Zürich zählen die engen Gassen in der westlichen Altstadt wie die historische 'Schipfe'. Im Osten liegt das Großmünster, das Rathaus und sowie die Spiegelgasse und der Neumarkt.</p>
+						<p class="alterPreis">88,25</p>
+						<p class="neuerPreis">66,00€</p>
 					</div>
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
-				<button id="AlleAngebote">Weitere Angebote</button>
-				<button class="submitButton">Zum Angebot</button>
+				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
+			</div>
+			<div class="unvisible Angebot4">
+				<h2>Von München nach Barcelona</h2>
+				<div id="Angebotsinhalt">
+					<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
+					<img src="..img/Angebot/Barcelona.jpg" />
+					<div>
+						<c>Ein Gefühl von Leidenschaft</c> <br> 
+						<p>Direkt am Mittelmeer gelegen bietet die Barcelona eine perfekte Kombination von Städtereise und Urlaub am Meer. Die Arbeiten des katalanischen Architekten Antonio Gaudí zählen zum Weltkulturerbe.</p>
+						<p class="alterPreis">187,87</p>
+						<p class="neuerPreis">123,99€</p>
+					</div>
+					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
+				</div>
+				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
 			</div>
 		</article>
 	</div>

@@ -1,0 +1,51 @@
+@import url(../style/main.css);
+
+body{
+	background-image: url("../img/ErrorPage/Hintergrund.ErrorPage.jpg");
+	background-size: 100%;
+}
+
+.mainField{
+	display: flex;
+	flex-wrapper: row wrap;
+	margin-top: 5%;
+}
+
+.mainField>aside>img{
+	float: left;
+	border-radius: 10px;
+	margin-left: 20%;
+	margin-right: 20%;;
+	margin-top: 20%;
+	border-radius: 90px;
+}
+
+#sidebar >img{
+	float: right;
+	
+}
+#main{
+	float: right;
+}
+
+#main > p{
+
+	text-align: center;
+	font-family: "Calisto MT";
+	font-size: 70px;
+	font-weight: bold;
+	margin-top: 15%;
+	
+}
+
+body > #Beschreibung{
+	text-align: center;
+	font-family: "Calisto MT";
+	font-size: 25px;
+	margin-left: 12%;
+	margin-right: 10%;
+	margin-top: 5%;
+	margin-bottom: 5%; 
+}
+
+

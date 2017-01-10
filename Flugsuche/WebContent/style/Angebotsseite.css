@@ -6,45 +6,10 @@ body{
 	flex-flow: row wrap;
 	background-image: url("../img/Angebot/Flug.jpg");
 	background-repeat: no-repeat;
-	background-size: 155%;	
+	background-size: 200%;	
 	
 }
 
-#TabelleAngebote{
-	display: flex;
-	flex-flow: row wrap;
-	margin-top: 20px;
-	margin-bottom: 30px;
-	margin-left: 24%;
-	margin-right: 20%;
-	padding-left: 3%;
-	
-}
-
-#Berlin{
-	margin-right: 3%;
-}
-
-#München{
-	margin-right: 3%;
-}
-
-#Essen{
-	margin-right: 3%;
-}
-
-#Frankfurt{
-	margin-right: 3%;
-}
-
-#Dresden{
-	margin-right: 3%;
-}
-
-#Kiel{
-	margin-right: 3%;
-	margin-left: 3%;
-}
 
 #ueberschrift h1{
 	background-color: white;
@@ -55,98 +20,118 @@ body{
 	font-style: italic;
 }
 
+.Beschreibung{
+	margin-top: 33%;
+	font-style: italic;
+	text-align: center;
+  font-family: "Bookman Old Style";
+	font-size: 15px;
+}
+
 .fotoButton {
 
-	height: 220px;
-	width: 300px;
+	height: 300px;
+	width: 320px;
+	margin-bottom: 15px;
+	margin-left: 10px;
+	border-radius: 3px;
+	border: 3px solid black;
+  background-color: whitesmoke;
+	box-shadow: 10px 10px 10px gray;
+	border-radius: 10px;
+}
+
+.fotoButton:hover {
+
+	height: 400px;
+	width: 460px;
 	margin-bottom: 10px;
 	border-radius: 3px;
-	border: 3px solid white;
-
+	border: 3px solid black;
+  box-shadow: 10px 10px 10px white;
+	border-radius: 10px;
 }
 
 
-#button-moskau{
-	background-image: url(http://img.fotocommunity.com/basilius-kathedrale-moskau-6e9708b9-87cf-4a1c-8a05-895f5ca12d2f.jpg?height=1080);	
-	background-size: 100% 100%;
+#moskau{
+	background-image: Url("../img/Angebot/Moskau.jpg");	
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-düsseldorf{
+#düsseldorf{
 	
-  background-image: Url(https://upload.wikimedia.org/wikipedia/commons/6/69/Duesseldorf_Rheinturm_Medienhafen.jpg);
-	background-size: 100% 100%;
+  background-image: Url("../img/Angebot/Duesseldorf.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 	
 }
 
-#button-rom{
+#rom{
 
-   	background-image: Url(https://www.mcsail.net/images/47849313/Rom.jpg?RES=xy300);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Rom.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-paris{
+#paris{
 	
-   	background-image: Url(https://durhamhistoryblog.files.wordpress.com/2015/11/o-paris-facebook.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Paris.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-dublin{
+#dublin{
 
-   	background-image: Url(http://www.brasseriesixty6.com/wp-content/uploads/2015/01/Dublin.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Dublin.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-sideny{
+#sideny{
 
-   	background-image: Url(https://upload.wikimedia.org/wikipedia/commons/7/7c/Sydney_Opera_House_-_Dec_2008.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Sidney.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-side{
+#side{
 
-   	background-image: Url(http://www.orangesmile.com/common/img_final_large/side_sightseeing.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Side.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-barcelona{
+#barcelona{
 
-   	background-image: Url(http://www.stadt-barcelona.de/images/stadt-barcelona.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Barcelona.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-bali{
+#bali{
 
-   	background-image: Url(http://nachbalireisen.de/wp-content/uploads/2013/09/Bali-Ubud-Radausflug.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Bali.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#button-miami{
+#miami{
 
-   	background-image: Url(http://www.miamiandbeaches.com/~/media/images/miamiandbeaches/plan-your-trip/gettingaround/miami-from-ft-lauderdale/causeway-miami-skyline-612x338.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Miami.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #button-lissabon{
-
-   	background-image: Url(http://cdn.goeuro.com/static_content/web/content/destination/Lisboa-deluxe2.jpg);
-	background-size: 100% 100%;
+   	background-image: Url("../img/Angebot/Lissabon.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
 #button-hamburg{
-
-  background-image: Url(http://images.trvl-media.com/media/content/shared/images/travelguides/Hamburg-and-vicinity-180004-smallTabletRetina.jpg);
-	background-size: 100% 100%;
+  background-image: Url("../img/Angebot/Hamburg.jpg");
+	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
@@ -165,16 +150,6 @@ b{
 	font-size: 20px;
 	margin-right: 100px;
 	margin-left: 100px;
+	margin-bottom: 5%;
 }
-.Angebote{
-	margin-bottom: 5px;
-	border-radius: 5px;
-	border: 3px solid white;
-	height: 80px;
-	width: 500px;
-	text-align: center;
-  font-family: "Bookman Old Style";
-	font-size: 20px;
-	background-color: FireBrick;
-	margin-left: 20%;
-}
+

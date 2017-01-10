@@ -96,6 +96,7 @@ public class Flugbuchung extends HttpServlet {
 
 		}
 		System.out.println("paraende");
+		System.out.println(request.getParameter("hinflug"));
 
 		if (request.getParameter("hinflug") != null && request.getParameter("rueckflug") != null
 				&& request.getParameter("datumhin") != null) {
