@@ -54,24 +54,24 @@
 		double minPriceRueck = 99999999;
 		double maxPriceRueck = 0;
 		List<Fluggesellschaft> gesellschaftList = new ArrayList<>();
-		if(direktflug != null)
-		for (Flug flug : direktflug) {
-			if (flugdauerHinMin.after(flug.getFlugdauer()))
-				flugdauerHinMin = flug.getFlugdauer();
-			if (flugdauerHinMax.before(flug.getFlugdauer()))
-				flugdauerHinMax = flug.getFlugdauer();
-			if (abflugHinMax.before(flug.getAbflugzeit()))
-				abflugHinMax = flug.getAbflugzeit();
-			if (abflugHinMin.after(flug.getAbflugzeit()))
-				abflugHinMin = flug.getAbflugzeit();
-			if (minPrice > flug.getPreis())
-				minPrice = flug.getPreis();
-			if (maxPrice < flug.getPreis())
-				maxPrice = flug.getPreis();
-			if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
-				gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
+		if (direktflug != null)
+			for (Flug flug : direktflug) {
+				if (flugdauerHinMin.after(flug.getFlugdauer()))
+					flugdauerHinMin = flug.getFlugdauer();
+				if (flugdauerHinMax.before(flug.getFlugdauer()))
+					flugdauerHinMax = flug.getFlugdauer();
+				if (abflugHinMax.before(flug.getAbflugzeit()))
+					abflugHinMax = flug.getAbflugzeit();
+				if (abflugHinMin.after(flug.getAbflugzeit()))
+					abflugHinMin = flug.getAbflugzeit();
+				if (minPrice > flug.getPreis())
+					minPrice = flug.getPreis();
+				if (maxPrice < flug.getPreis())
+					maxPrice = flug.getPreis();
+				if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
+					gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
+				}
 			}
-		}
 		if (direktflugRueck != null)
 			for (Flug flug : direktflugRueck) {
 				if (flugdauerRueckMin.after(flug.getFlugdauer()))
@@ -97,7 +97,8 @@
 	<div id="navigation">
 		<nav>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/Flugbuchung">Flug wählen</a></li>
+				<li><a href="${pageContext.request.contextPath}/Flugbuchung">Flug
+						wählen</a></li>
 				<li><a href="../html/Serviceleistungen.jsp">Serviceleistungen</a></li>
 				<li><a href="../html/Passagier.jsp">Passagierdaten</a></li>
 				<li><a href="../html/Zahlungsart.jsp">Zahlung</a></li>
@@ -109,7 +110,7 @@
 	<main>
 	<form id="suchForm" method="POST" action="/Flugsuche/Flugbuchung">
 		<%
-			if (direktflug!= null &&  direktflug.size() > 0) {
+			if (direktflug != null && direktflug.size() > 0) {
 		%>
 		<div class="mainField">
 			<div id="filter">
@@ -432,21 +433,22 @@
 
 
 				</div>
+								<%
+					TreeMap<Date, Double> map = (TreeMap) session.getAttribute("map");
+					DecimalFormat df = new DecimalFormat("#.##");
+					int counter = 1;
+					if (map != null && map.size() > 0) {
+				%>
 				<div id="hinflug">
 					<img
-						src="${pageContext.request.contextPath}/img/Flugusuche/planeUp.png"
+						src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
 						style="width: 50px; height: 50px;">
 					<h1>
 						Ihr Hinflug: <span>${abflughafen.ort} - ${ankufthafen.ort}</span>
 
 					</h1>
 				</div>
-				<%
-					TreeMap<Date, Double> map = (TreeMap) session.getAttribute("map");
-					DecimalFormat df = new DecimalFormat("#.##");
-					int counter = 1;
-					if (map.size() > 0) {
-				%>
+
 				<div class="wrapper_flugtage">
 					<ul>
 
@@ -658,9 +660,9 @@
 									</thead>
 									<tbody>
 										<tr>
-	
 
-											<% 
+
+											<%
 												UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
 														UhrzeitAnkunft = UhrzeitAnkunft + " Uhr: " + flug.getAnFlughafen().getOrt();
 														String flugnr = flug.getFlugzeugtyp().getGesellschaft().getBezeichnung().substring(0, 2)
@@ -688,12 +690,14 @@
 					%>
 					<p class="fehler">
 						<span> <%
- 	if (map.size() == 0) {
+ 	if (map != null) {
+ 			if (map.size() == 0) {
  %>Es existiert kein Flug von ${abflughafen.ort} nach
 							${ankufthafen.ort}! <%
  	} else {
  %>Es konnte leider am <%=hinDate%> kein passender Flug gefunden werden!<%
  	}
+ 		}
  %>
 						</span>
 					</p>
@@ -708,7 +712,7 @@
 
 				<div id="rueckflug">
 					<img
-						src="${pageContext.request.contextPath}/img/Flugusuche/planeUp.png"
+						src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
 						style="width: 50px; height: 50px;">
 					<h1>
 						Ihr Rückflug: <span>${ankufthafen.ort} - ${abflughafen.ort}</span>
