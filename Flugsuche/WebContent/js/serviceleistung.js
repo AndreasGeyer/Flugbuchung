@@ -33,7 +33,7 @@ function select() {
 }
 
 function submit(){
-	alert("sad");
+
 	var hinRueck = document.getElementById("flyt");
 	var person = document.getElementById("pass");
 	var url = "/Flugsuche/PassagierLaden?leistung=";
@@ -44,6 +44,7 @@ function submit(){
 	}
 	var weiterPass = document.getElementById("weiterPass");
 	weiterPass.setAttribute("formaction", url);
+	weiterPass.submit();
 	return true;
 }
 

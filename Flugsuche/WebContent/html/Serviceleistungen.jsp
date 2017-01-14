@@ -257,8 +257,9 @@
 	<h1>Gewählte Zusatzleistung: </h1>
 
 	<h2 id="restSumme"></h2>
-	<button id = "weiterPass" formaction="/Flugsuche/Flugbuchung" formmethod="post" type="submit" onsubmit="submit()">Weiter zu den Passagieren</button>
-	
+	<form method="post">
+	<button id = "weiterPass" formaction="/Flugsuche/Flugbuchung" formmethod="post" type="submit" onclick="return submit()">Weiter zu den Passagieren</button>
+	</form>
 	</div>
 	
 	</main>
