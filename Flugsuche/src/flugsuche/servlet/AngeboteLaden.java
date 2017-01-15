@@ -1,5 +1,4 @@
 package flugsuche.servlet;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class AngeboteLaden
+ * Autor Magdalena Hora 
  */
 @WebServlet("/AngeboteLaden")
 public class AngeboteLaden extends HttpServlet {

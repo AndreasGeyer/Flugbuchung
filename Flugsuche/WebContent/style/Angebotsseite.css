@@ -1,4 +1,5 @@
 @import url(../style/main.css);
+/** Autor Magdalena Hora*/
 
 body{
 	
@@ -18,6 +19,7 @@ body{
 	padding-bottom: 20px;
 	padding-top: 20px;
 	font-style: italic;
+	margin-top: 0px;
 }
 
 .Beschreibung{

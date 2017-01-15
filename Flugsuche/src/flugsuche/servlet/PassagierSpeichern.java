@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class PassagierSpeichern
+ * Autor: Magdalena Hora
  */
 @WebServlet("/PassagierSpeichern")
 public class PassagierSpeichern extends HttpServlet {

@@ -62,7 +62,7 @@
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
 				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung?hinflug=London?rueckflug=Berlin?datumhin=02.12.2017" formmethod="get">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot2">
 				<h2>Von München nach Madrid</h2>
@@ -78,7 +78,7 @@
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
 				<button id="AlleAngebote" href="../html/Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung?hinflug=Madrid?rueckflug=München?datumhin=05.03.2017" formmethod="get">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot3">
 				<h2>Von Frankfurt nach Zürich</h2>
@@ -94,7 +94,7 @@
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
 				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung?hinflug=Zürich?rueckflug=Frankfurt?datumhin=08.07.2017" formmethod="get">Zum Angebot</button>
 			</div>
 			<div class="unvisible Angebot4">
 				<h2>Von München nach Barcelona</h2>
@@ -110,7 +110,7 @@
 					<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 				</div>
 				<button id="AlleAngebote" herf="../html/Angebotsseite.jsp">Weitere Angebote</button>
-				<button class="submitButton" formaction="/Flugsuche/Flugbuchung" formmethod="post">Zum Angebot</button>
+				<button class="submitButton" formaction="/Flugsuche/Flugbuchung?hinflug=Barcelona?rueckflug=München?datumhin=08.05.2017" formmethod="get">Zum Angebot</button>
 			</div>
 		</article>
 	</div>

@@ -17,6 +17,7 @@ import flugsuche.bean.Zusatzleistung;
 
 /**
  * Servlet implementation class PassgierLaden
+ * Autor: Magdalena Hora
  */
 @WebServlet("/PassgierLaden")
 public class PassgierLaden extends HttpServlet {
