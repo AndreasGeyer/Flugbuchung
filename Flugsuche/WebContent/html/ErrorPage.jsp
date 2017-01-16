@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Flugsuche THI</title>
-		<link rel="stylesheet" type="text/css" href="../style/main.css" />
-		<link rel="stylesheet" type="text/css" href="../style/ErrorPage.css" />
-		<script type="text/javascript" src="../js/startseite.js"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/ErrorPage.css" />
+		<!-- Autor Magdalena Hora -->
 	</head>
 	<body>
 		<%@ include file="Header.jspf" %>
