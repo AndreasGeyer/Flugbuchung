@@ -46,6 +46,7 @@
 				</form>
 			</div>
 		</article>
+		<form method="POST">
 				<article id="Angebote">
 			<h1>Angebote</h1>
 			<div class="visible Angebot1">
@@ -113,6 +114,7 @@
 				<button class="submitButton" formaction="/Flugsuche/Flugbuchung?hinflug=Barcelona?rueckflug=München?datumhin=08.05.2017" formmethod="get">Zum Angebot</button>
 			</div>
 		</article>
+		</form>
 	</div>
 	<%@ include file="Footer.jspf"%>
 </body>
