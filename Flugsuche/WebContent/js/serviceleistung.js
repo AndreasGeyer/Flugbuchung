@@ -25,30 +25,32 @@ function select() {
 	}
 	var s = person.value + " " + ishin + ": " + bezeichnung + " " + preis
 			+ " €";
-	matrixEssen[hinRueck.selectedIndex][person.selectedIndex] = s;
-	matrixID[hinRueck.selectedIndex][person.selectedIndex] = essen.substring(essen.indexOf("_"));
 	
-	calculateGesamtsumme();
+	matrixEssen[hinRueck.selectedIndex][person.selectedIndex] = s;
+	alert(essen);
+	matrixID[hinRueck.selectedIndex][person.selectedIndex] = essen.substring(0,essen.indexOf("_"))+"_"+ishin;
+	
+
 
 }
 
-function submit(){
+function sub(){
 
 	var hinRueck = document.getElementById("flyt");
 	var person = document.getElementById("pass");
-	var url = "/Flugsuche/PassagierLaden?leistung=";
+	var url = "/Flugsuche/ServiceSpeichern?leistung=";
 	for (var i = 0; i < hinRueck.length; i++) {
 		for (var j = 0; j < person.length; j++) {
 			url = url+matrixID[i][j]+",";
 		}
 	}
 	var weiterPass = document.getElementById("weiterPass");
-	weiterPass.setAttribute("formaction", url);
-	weiterPass.submit();
-	return true;
+	document.getElementById("weiterPass").setAttribute("formaction", url);
+
+
 }
 
-function calculateGesamtsumme() {
+/*function calculateGesamtsumme() {
 	var i = 0;
 	var rest = document.getElementById("restSumme");
 	var hinRueck = document.getElementById("flyt");
@@ -62,7 +64,7 @@ function calculateGesamtsumme() {
 		}
 	}
 	rest.innerHTML = string;
-}
+}*/
 
 function move(richtung) {
 

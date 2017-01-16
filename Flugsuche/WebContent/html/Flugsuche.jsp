@@ -98,10 +98,10 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/Flugbuchung">Flug
 						wählen</a></li>
-				<li><a href="../html/Serviceleistungen.jsp">Serviceleistungen</a></li>
-				<li><a href="../html/Passagier.jsp">Passagierdaten</a></li>
-				<li><a href="../html/Zahlungsart.jsp">Zahlung</a></li>
-				<li><a href="#">Bestätigung</a></li>
+				<li><a >Serviceleistungen</a></li>
+				<li><a >Passagierdaten</a></li>
+				<li><a >Zahlung</a></li>
+				<li><a >Bestätigung</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -423,8 +423,9 @@
 
 							</div>
 						</div>
-						<button id="suchButton" type="submit" onclick="checkValidity()"
-							formaction="/Flugsuche/Flugbuchung" formmethod="post">Suchen</button>
+						<button id="suchButton" class="submitButton" type="submit"
+							onclick="return check()" formaction="/Flugsuche/Flugbuchung"
+							formmethod="post">Suchen</button>
 
 					</section>
 
@@ -432,7 +433,7 @@
 
 
 				</div>
-								<%
+				<%
 					TreeMap<Date, Double> map = (TreeMap) session.getAttribute("map");
 					DecimalFormat df = new DecimalFormat("#.##");
 					int counter = 1;
@@ -686,21 +687,22 @@
 					</table>
 					<%
 						} else {
+
+							if (map != null) {
 					%>
 					<p class="fehler">
 						<span> <%
- 	if (map != null) {
- 			if (map.size() == 0) {
+ 	if (map.size() == 0) {
  %>Es existiert kein Flug von ${abflughafen.ort} nach
 							${ankufthafen.ort}! <%
  	} else {
  %>Es konnte leider am <%=hinDate%> kein passender Flug gefunden werden!<%
  	}
- 		}
  %>
 						</span>
 					</p>
 					<%
+						}
 						}
 					%>
 				</div>
@@ -757,11 +759,12 @@
 
 
 
-				<%
-					if (direktflugRueck != null && direktflugRueck.size() > 0) {
-				%>
+
 
 				<div class="flightPlan">
+								<%
+					if (direktflugRueck != null && direktflugRueck.size() > 0) {
+				%>
 
 					<table id="rueckTable">
 						<colgroup>
@@ -955,6 +958,9 @@
 
 									</tbody>
 								</table>
+												<%
+					}
+				%>
 						</tbody>
 					</table>
 
@@ -962,9 +968,7 @@
 
 
 
-				<%
-					}
-				%>
+
 
 				<%
 					} else {
@@ -977,13 +981,13 @@
  	} else {
  %>Es konnte leider am <%=hinDate%> kein passender Flug gefunden werden!<%
  	}
- 			}
  %>
 					</span>
 				</p>
 
 				<%
 					}
+						}
 				%>
 
 
@@ -993,10 +997,10 @@
 				if (onlyHinflug == true) {
 			%>
 		</div>
-		<%
-			}
-			if (direktflug != null && direktflug.size() > 0) {
-		%>
+			<%
+				}
+				if (direktflug != null && direktflug.size() > 0) {
+			%>
 		<div id="preis">
 
 			<div class="Rechnung" id="RechnungHin">
@@ -1015,13 +1019,14 @@
 			<%
 				}
 			%>
-			<button id="weiterButton" type="submit" onclick="return g()"
-				formaction="/Flugsuche/ServiceLaden" formmethod="post">Weiter</button>
-		</div>
+			<button class="submitButton" id="weiterButton" type="submit"
+				onclick="return g()" formaction="/Flugsuche/ServiceLaden"
+				formmethod="post">Weiter</button>
 
-		<%
-			}
-		%>
+		</div>
+			<%
+				}
+			%>
 
 	</form>
 

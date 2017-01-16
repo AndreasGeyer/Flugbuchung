@@ -66,6 +66,10 @@ public class ServiceLaden extends HttpServlet {
 		try {
 			if(id != "")
 			k = getUser(Integer.parseInt(id), response);
+			else{
+				RequestDispatcher dispatcher = request.getRequestDispatcher("html/Registrierung.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +93,7 @@ public class ServiceLaden extends HttpServlet {
 		int adult = (int) session.getAttribute("erwachsener");
 		int baby = (int) session.getAttribute("childs");
 		int kind = (int) session.getAttribute("babies");
-		System.out.println(hinflugid);
+
 		int tickets[] = new int[3];
 		tickets[0] = adult;
 		tickets[1] = kind;
@@ -98,6 +102,7 @@ public class ServiceLaden extends HttpServlet {
 
 		Flug hinflug = getFlug(hinflugList, Integer.parseInt(hinflugid.substring(0, hinflugid.indexOf("_"))));
 		Flug rueckFlug = null;
+		
 		if (onlyHinflug == false)
 			rueckFlug = getFlug(rueckflugList, Integer.parseInt(rueckflugid.substring(0, rueckflugid.indexOf("_"))));
 

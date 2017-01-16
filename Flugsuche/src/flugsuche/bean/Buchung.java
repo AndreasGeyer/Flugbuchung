@@ -117,7 +117,13 @@ public class Buchung implements Serializable {
 		this.rueckflug = rueckflug;
 	}
 
-	
+	public double getGesamtpreis(){
+		double preis = 0;
+		for(Buchungsposition pos: positionen){
+			preis = preis+pos.getPreis();
+		}
+		return preis;
+	}
 
 	
 	

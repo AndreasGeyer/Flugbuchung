@@ -430,8 +430,8 @@ function submitDate(date, HinRueck) {
 
 }
 
-function checkValidity() {
-	alert("sds");
+function check() {
+	
 	var rueckFly = document.getElementById("rueckFly");
 	if (rueckFly != null) {
 		var calendar = document.getElementById("calendarRueck");
@@ -464,13 +464,13 @@ function g() {
 	var element = document.getElementById("weiterButton");
 	var elementsRueck = document.getElementsByName("RueckflugInput");
 	var url;
-	alert(elementsRueck.length);
+	
 	if (elementsRueck.length == 0) {
 		if (hinflugSelected != null) {
 			url = "/Flugsuche/ServiceLaden?HinflugInput="
 					+ hinflugSelected.toString();
 			element.setAttribute("formaction", url);
-			element.submit();
+		 
 			return true;
 		}
 
@@ -480,7 +480,7 @@ function g() {
 			
 			url = "/Flugsuche/ServiceLaden?HinflugInput="
 					+ hinflugSelected.toString()+"&RueckflugInput="+rueckFlugselected.toString();
-			alert(url);
+	
 			element.setAttribute("formaction", url);
 			element.submit();
 			return true;

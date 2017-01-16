@@ -19,7 +19,7 @@
 	href="${pageContext.request.contextPath}/style/Serviceleistungen.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/startseite.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/serviceleistung.js"></script>
 </head>
 <body>
@@ -131,7 +131,8 @@
 			}
 		%>
 		<%
-			if ((hinflug.getMahlzeiten() != null && hinflug.getMahlzeiten().size()>0) || (rueckflug != null && rueckflug.getMahlzeiten() != null && rueckflug.getMahlzeiten().size()>0)) {
+			if ((hinflug.getMahlzeiten() != null && hinflug.getMahlzeiten().size() > 0) || (rueckflug != null
+					&& rueckflug.getMahlzeiten() != null && rueckflug.getMahlzeiten().size() > 0)) {
 		%>
 		<div id="food">
 
@@ -141,8 +142,9 @@
 			<div id="insurance">
 				<h2>Verpflegung</h2>
 				<div id="a">
-					<%DecimalFormat df = new DecimalFormat("#.##");
-						List<Zusatzleistung> hinZus = hinflug.getMahlzeiten();
+					<%
+						DecimalFormat df = new DecimalFormat("#.##");
+							List<Zusatzleistung> hinZus = hinflug.getMahlzeiten();
 							int sizehinZus = hinZus.size();
 							int counter = 0;
 							if (rueckflug != null) {
@@ -169,12 +171,13 @@
 
 					<div class="<%=description%>"
 						id="<%=leistung.getId() + "_" + zusatz%>">
-						<h3 ><%=beschreibung[0]%></h3>
-						<h4 id="<%=leistung.getId() + "_" + zusatz+"_Bez"%>"><%=leistung.getBezeichnung()%></h4>
-						<br> <label id="<%=leistung.getId() + "_" + zusatz+"_Preis"%>">nur <%=df.format(leistung.getPreis())%>
+						<h3><%=beschreibung[0]%></h3>
+						<h4 id="<%=leistung.getId() + "_" + zusatz + "_Bez"%>"><%=leistung.getBezeichnung()%></h4>
+						<br> <label
+							id="<%=leistung.getId() + "_" + zusatz + "_Preis"%>">nur <%=df.format(leistung.getPreis())%>
 							€
 						</label>
-						<p><%=beschreibung[1] %></p>
+						<p><%=beschreibung[1]%></p>
 					</div>
 
 					<%
@@ -217,7 +220,7 @@
 
 							<div>
 								<h4>Flug</h4>
-								<select class="selectFood" id="flyt" onchange ="switchFlight()">
+								<select class="selectFood" id="flyt" onchange="switchFlight()">
 
 									<option selected><%="Hinflug: " + hinflug.getAbFlughafen().getOrt() + " nach " + hinflug.getAnFlughafen().getOrt()%></option>
 									<%
@@ -240,7 +243,7 @@
 				<br> <br>
 				<div>
 					<button type="submit" onclick="move('weiter')">weiter</button>
-					<button type="submit"  onclick="move('zurück')">zurück</button>
+					<button type="submit" onclick="move('zurück')">zurück</button>
 					<button type="submit" onclick="select()">wählen</button>
 				</div>
 			</div>
@@ -250,18 +253,20 @@
 	</div>
 	<%
 		}
-	%> 
-	
-	<div id="price">
-	
-	<h1>Gewählte Zusatzleistung: </h1>
+	%>
 
-	<h2 id="restSumme"></h2>
-	<form method="post">
-	<button id = "weiterPass" formaction="/Flugsuche/Flugbuchung" formmethod="post" type="submit" onclick="return submit()">Weiter zu den Passagieren</button>
-	</form>
+	<div id="price">
+
+		<h1>Gewählte Zusatzleistung:</h1>
+
+		<h2 id="restSumme"></h2>
+		<form method="post">
+			<button id="weiterPass" formaction="/Flugsuche/Flugbuchung"
+				formmethod="post" type="submit" onclick="sub()">Weiter zu
+				den Passagieren</button>
+		</form>
 	</div>
-	
+
 	</main>
 
 

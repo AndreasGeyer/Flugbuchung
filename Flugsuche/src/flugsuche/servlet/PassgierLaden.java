@@ -38,33 +38,9 @@ public class PassgierLaden extends HttpServlet {
 		HttpSession session = request.getSession();
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
 		
-		Flug hin = buchung.getHinflug();
-		Flug rueck = buchung.getRueckflug();
-		
-		String leistung = request.getParameter("leistung");
-		String[] leistungen = leistung.split(",");
-		
-		for(int i = 0; i<leistungen.length;i++){
-			Flug flug = null;
-			Zusatzleistung leist = hin.getZusatzleistung(Integer.parseInt(leistungen[i]));
-			flug = hin;
-			if(leist == null){
-				leist = rueck.getZusatzleistung(Integer.parseInt(leistungen[i]));
-				flug = rueck;
-			}
-			
-			if(leist != null){
-				Buchungsposition pos = new Buchungsposition();
-				pos.setZusatzleistung(leist);
-				pos.setFlug(flug);
-				pos.setPreis(leist.getPreis());
-				buchung.getPositionen().add(pos);
-			}
-		}
-		
-		session.setAttribute("Buchung", buchung);
+		System.out.println("fuckgeladen"+buchung.toString());
 				
-		
+		response.sendRedirect(request.getContextPath()+"/Flugbuchung");
 	}
 
 	/**

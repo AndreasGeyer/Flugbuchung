@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8">
 <title>Flugsuche THI</title>
-<link rel="stylesheet" type="text/css" href="../style/main.css" />
-<link rel="stylesheet" type="text/css" href="../style/Registrierung.css" />
-<script type="text/javascript" src="../js/user.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/Registrierung.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/user.js"></script>
 </head>
 <body>
 	<%@ include file="Header.jspf"%>
@@ -21,13 +21,13 @@
 			<h4>Normalkunde</h4>
 			<p>Als Normalekunde bekommen Sie nur bestimmte Angebote
 				vorgeschlagen.</p>
-			<br> <img src="../img/Registrierung/Basic.jpg" alt="Normaltarif"
+			<br> <img src="${pageContext.request.contextPath}/img/Registrierung/Basic.jpg" alt="Normaltarif"
 				style="width: 150px; height: 83px;"> <br>
 			<h4>Premiumkunde</h4>
 			<p>Als Premiumkunde bekommen Sie all unsere Topangebote. Wir
 				zeigen Ihnen die aktuellsten Sparmöglichkeiten und alle
 				Lieblingsziele.</p>
-			<br> <img src="../img/Registrierung/premium.png" alt="Premium"
+			<br> <img src="${pageContext.request.contextPath}/img/Registrierung/premium.png" alt="Premium"
 				style="width: 150px; height: 93px;"> <br>
 		</div>
 
