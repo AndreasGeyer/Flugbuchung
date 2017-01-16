@@ -22,10 +22,11 @@
 		
 		<button class="fotoButton" id="moskau" formaction="/Flugsuche/Flugbuchung?hinflug=Moskau" formmethod="get">
 		<div id= "Bezeichnung">
-		<b>nach Moskau</b>
+		//wie bekomm ich das hier rein?
+		<b>value="${angebot.bezeichung}"</b>
 		</div><br>
 		<div class= "Beschreibung">
-		<c>In Moskau sind von den schier unzähligen Sehenswürdigkeiten sind der Kreml, die Altstadt, die Einkaufsstraße "Arbat", die Basilius-Kathedrale, das Bolschoitheater und die Christ-Erlöser-Kathedrale besonders hervorzuheben.</c>
+		<c>value="${angebot.beschreibung}"</c>
 		</div>
 		</button>
 		<button class="fotoButton" id="düsseldorf" formaction="/Flugsuche/Flugbuchung?hinflug=Düsseldorf" formmethod="get">
