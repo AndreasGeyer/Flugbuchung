@@ -98,10 +98,10 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/Flugbuchung">Flug
 						wählen</a></li>
-				<li><a >Serviceleistungen</a></li>
-				<li><a >Passagierdaten</a></li>
-				<li><a >Zahlung</a></li>
-				<li><a >Bestätigung</a></li>
+				<li><a>Serviceleistungen</a></li>
+				<li><a>Passagierdaten</a></li>
+				<li><a>Zahlung</a></li>
+				<li><a>Bestätigung</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -112,6 +112,7 @@
 			if (direktflug != null && direktflug.size() > 0) {
 		%>
 		<div class="mainField">
+
 			<div id="filter">
 
 				<div class="stopps">
@@ -591,7 +592,7 @@
 									%>
 									<div class="selectorPrice">
 										<span class="price"> <%
- 	if (anzahl_ecoPlätze > passagierZahl) {
+ 	if (anzahl_ecoPlätze >= passagierZahl) {
  				preis = df.format(flug.getPreis()) + "€";
  %> <input type="radio" onclick="displayFlightDetails(event,'Hin')"
 											name="HinflugInput" id="<%=flugid + "_preisEco"%>"> <%
@@ -762,9 +763,9 @@
 
 
 				<div class="flightPlan">
-								<%
-					if (direktflugRueck != null && direktflugRueck.size() > 0) {
-				%>
+					<%
+						if (direktflugRueck != null && direktflugRueck.size() > 0) {
+					%>
 
 					<table id="rueckTable">
 						<colgroup>
@@ -957,10 +958,10 @@
 										</tr>
 
 									</tbody>
-								</table>
-												<%
-					}
-				%>
+								</table> <%
+ 	}
+ %>
+							
 						</tbody>
 					</table>
 
@@ -971,7 +972,8 @@
 
 
 				<%
-					} else {
+					}
+						} else {
 				%>
 				<p class="fehler">
 					<span> <%
@@ -987,20 +989,17 @@
 
 				<%
 					}
-						}
+					}
 				%>
 
 
 			</div>
-			<%
-				}
-				if (onlyHinflug == true) {
-			%>
-		</div>
-			<%
-				}
-				if (direktflug != null && direktflug.size() > 0) {
-			%>
+			
+
+		<%
+			
+			if (direktflug != null && direktflug.size() > 0) {
+		%>
 		<div id="preis">
 
 			<div class="Rechnung" id="RechnungHin">
@@ -1024,16 +1023,14 @@
 				formmethod="post">Weiter</button>
 
 		</div>
-			<%
-				}
-			%>
+		<%
+			}
+		%>
 
 	</form>
 
 	</main>
 
-	<footer>
-		<p>Copyright: THI</P>
-	</footer>
+	<%@ include file="Footer.jspf"%>
 </body>
 </html>

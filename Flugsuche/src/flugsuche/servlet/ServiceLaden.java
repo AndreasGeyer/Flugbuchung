@@ -1,3 +1,4 @@
+
 package flugsuche.servlet;
 
 import java.io.IOException;
@@ -26,10 +27,12 @@ import flugsuche.bean.Buchung;
 import flugsuche.bean.Buchungsposition;
 import flugsuche.bean.Flug;
 import flugsuche.bean.Kunde;
+import flugsuche.bean.Sitzplatz;
 import flugsuche.bean.Zusatzleistung;
 
 /**
  * Servlet implementation class ServiceLaden
+ * Autor Jürgen Bauer
  */
 @WebServlet("/ServiceLaden")
 public class ServiceLaden extends HttpServlet {
@@ -109,8 +112,13 @@ public class ServiceLaden extends HttpServlet {
 		for (int i = 0; i < tickets.length; i++) {
 			for (int j = 0; j < tickets[i]; j++) {
 
-				Buchungsposition pos = new Buchungsposition();
+				Buchungsposition pos = new Buchungsposition();	
+				Sitzplatz platz = new Sitzplatz();
+				platz.setFlug(hinflug);
+				setFirstClass(hinflugid, platz);
+				
 				pos.setFlug(hinflug);
+				pos.setSitzplatz(platz);
 				buchung.setHinflug(hinflug);
 				pos.setBuchung(buchung);
 				pos.setPreis(preisNachlass[i] * hinflug.getPreis());
@@ -118,8 +126,13 @@ public class ServiceLaden extends HttpServlet {
 
 				if (onlyHinflug == false) {
 					Buchungsposition pos2 = new Buchungsposition();
+					Sitzplatz platz2 = new Sitzplatz();
+					platz2.setFlug(rueckFlug);
+					setFirstClass(rueckflugid, platz2);
+					
 					buchung.setRueckflug(rueckFlug);
 					pos2.setFlug(rueckFlug);
+					pos2.setSitzplatz(platz2);
 					pos.setBuchung(buchung);
 					pos2.setPreis(preisNachlass[i] * rueckFlug.getPreis());
 					buchung.getPositionen().add(pos2);
@@ -154,6 +167,16 @@ public class ServiceLaden extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	private void setFirstClass(String id, Sitzplatz platz){
+		if(id.substring(id.indexOf("_")+1).contains("First")){
+			platz.setFirstClass(true);
+		}
+		else{
+			platz.setFirstClass(false);
+		}
+		
+	}
 
 	private List<Zusatzleistung> getZusatzleistungen(Flug flug) {
 
@@ -164,7 +187,7 @@ public class ServiceLaden extends HttpServlet {
 			Connection connection = ds.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, flug.getFlugzeugtyp().getId());
-			System.out.println(preparedStatement.toString());
+
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {

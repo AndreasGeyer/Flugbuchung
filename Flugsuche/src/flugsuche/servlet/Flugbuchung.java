@@ -97,7 +97,9 @@ public class Flugbuchung extends HttpServlet {
 		}
 		System.out.println("paraende");
 		System.out.println(request.getParameter("hinflug"));
-
+		
+		// if Zweig: Eingabe über Startseite
+		//else Zweig Eingabe über Flugsuche
 		if (request.getParameter("hinflug") != null && request.getParameter("rueckflug") != null
 				&& request.getParameter("datumhin") != null) {
 
@@ -114,21 +116,30 @@ public class Flugbuchung extends HttpServlet {
 			}
 
 		} else {
+			
+			// Suche der Flughäfen
 			abflughafen = getAirport(request.getParameter("abflug"));
 
-			if (abflughafen == null) {
+/*			if (abflughafen == null) {
 				abflughafen = (Flughafen) session.getAttribute("abflughafen");
-			}
+			}*/
 
 			ankufthafen = getAirport(request.getParameter("ankunft"));
 
-			if (ankufthafen == null) {
+			/*	if (ankufthafen == null) {
 				ankufthafen = (Flughafen) session.getAttribute("ankufthafen");
+			}*/
+			
+			if(abflughafen == null && ankufthafen == null ){
+				ankufthafen = (Flughafen) session.getAttribute("ankufthafen");
+				abflughafen = (Flughafen) session.getAttribute("abflughafen");
 			}
 
 			request.setAttribute("abflughafen", abflughafen);
 			request.setAttribute("ankufthafen", ankufthafen);
 
+
+			//Prüfung auf Flugart: nur Hinflug oder Hin- und Rueckflug
 			if (request.getParameter("Flugart") != null) {
 				onlyHinflug = request.getParameter("Flugart").equals("2");
 				System.out.println("onlyHinflug" + onlyHinflug);
@@ -136,7 +147,8 @@ public class Flugbuchung extends HttpServlet {
 				if (session.getAttribute("onlyHinflug") != null)
 					onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 			}
-
+			
+			// Konvertierung des Flugdatums
 			try {
 				if (request.getParameter("DateHinflug") != null && !request.getParameter("DateHinflug").equals(""))
 					hinflug = format.parse(request.getParameter("DateHinflug"));
@@ -155,12 +167,13 @@ public class Flugbuchung extends HttpServlet {
 				e1.printStackTrace();
 			}
 
+			//Prüfung der Anzahl der Passagiere
 			if (request.getParameter("adults") != null) {
 				adults = Integer.parseInt("" + request.getParameter("adults").charAt(0));
 			} else {
 				if (session.getAttribute("erwachsener") != null)
 					adults = (int) session.getAttribute("erwachsener");
-				;
+				
 			}
 
 			if (request.getParameter("children") != null) {
@@ -181,6 +194,7 @@ public class Flugbuchung extends HttpServlet {
 
 		}
 
+		// Speicherung der Flugdaten in der Session
 		session.setAttribute("abflughafen", abflughafen);
 		session.setAttribute("ankufthafen", ankufthafen);
 		session.setAttribute("onlyHinflug", onlyHinflug);
@@ -192,6 +206,7 @@ public class Flugbuchung extends HttpServlet {
 		session.setAttribute("childs", childs);
 		session.setAttribute("babies", babies);
 
+		// Suche nach passenden Flügen: Unterscheidung Hin- und Rückflug
 		if (abflughafen != null && ankufthafen != null && hinflug != null) {
 
 			List<Flug> direktHin = getDirectFlug(abflughafen, ankufthafen, hinflug);

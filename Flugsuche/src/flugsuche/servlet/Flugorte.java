@@ -97,7 +97,7 @@ public class Flugorte extends HttpServlet {
 
 			Connection con = ds.getConnection();
 			PreparedStatement statement = con
-					.prepareStatement("SELECT * FROM flughafen WHERE LOWER(ort) LIKE ? ORDER BY ort DESC");
+					.prepareStatement("SELECT * FROM flughafen WHERE LOWER(ort) LIKE ? ORDER BY ort ASC");
 
 			String flughafen_Bezeichnung = (String) request.getParameter(request.getParameterNames().nextElement())
 					.toLowerCase();
