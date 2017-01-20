@@ -12,10 +12,15 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/meineFluege.js"></script>
 </head>
+<jsp:useBean id="buchung" class="flugsuche.bean.Buchung" />
+<jsp:useBean id="flug" class="flugsuche.bean.Flug" />
 <body>
 	<%@ include file="Header.jspf"%>
 	<div id="main">
 		<h1>Ihre gebuchten Flüge</h1>
+		<c:forEach items="${buchungen}" var="buchung"> 
+				<p><c:out value="${buchung.id}" /></p>
+			</c:forEach>
 		<table>
 			<tr class="ueberschriftbuchung">
 				<th>Buchungsnummer</th>
@@ -23,258 +28,69 @@
 				<th>Zahlungsart</th>
 				<th>Gesamtpreis</th>
 			</tr>
-			<tr class="buchung" id="buchung1234" onclick="switchDetails('1234')">
-					<td>1234</td>
-					<td>01.01.2017</td>
-					<td>Kredikarte</td>
-					<td>130,00 €</td>
+			
+			<c:forEach items="${buchungen}" var="buchung">
+				<tr class="buchung" id="buchung${buchung.id}" onclick="switchDetails('${buchung.id}')">
+					<td><c:out value="${buchung.id}" /></td>
+					<td><c:out value="${buchung.timestamp}" /></td>
+					<td><c:out value="${buchung.zahlungsart}" /></td>
+					<td><c:out value="${buchung.gesamtPreis}" /> €</td>
 				</tr>
-			<tr class="detail">
-			<td colspan="4" id="detail1234" class="unsichtbar"><table>
-				
-				<tr class="ueberschriftSitzplatz">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th>Sitzplatz</th>
-					<th>Reisender</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1231</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A5</td>
-					<td>Geyer, Andreas</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1232</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A4</td>
-					<td>Fresia, Jessica</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="ueberschriftZusatzleistung">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th colspan="2">Zusatzleistung</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1233</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1234</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				</table>
-				</td>
-			</tr>
-			<tr class="buchung" id="buchung1235" onclick="switchDetails('1235')">
-					<td>1235</td>
-					<td>01.01.2017</td>
-					<td>Kredikarte</td>
-					<td>130,00 €</td>
-				</tr>
-			<tr class="detail">
-			<td colspan="4" id="detail1235" class="unsichtbar"><table>
-				
-				<tr class="ueberschriftSitzplatz">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th>Sitzplatz</th>
-					<th>Reisender</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1231</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A5</td>
-					<td>Geyer, Andreas</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1232</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A4</td>
-					<td>Fresia, Jessica</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="ueberschriftZusatzleistung">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th colspan="2">Zusatzleistung</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1233</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1234</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				</table>
-				</td>
-			</tr>
-			<tr class="buchung" id="buchung1236" onclick="switchDetails('1236')">
-					<td>1236</td>
-					<td>01.01.2017</td>
-					<td>Kredikarte</td>
-					<td>130,00 €</td>
-				</tr>
-			<tr class="detail">
-			<td colspan="4" id="detail1236" class="unsichtbar"><table>
-				
-				<tr class="ueberschriftSitzplatz">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th>Sitzplatz</th>
-					<th>Reisender</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1231</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A5</td>
-					<td>Geyer, Andreas</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1232</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A4</td>
-					<td>Fresia, Jessica</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="ueberschriftZusatzleistung">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th colspan="2">Zusatzleistung</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1233</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1234</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				</table>
-				</td>
-			</tr>
-			<tr class="buchung" id="buchung12323" onclick="switchDetails('12323')">
-					<td>12323</td>
-					<td>01.01.2017</td>
-					<td>Kredikarte</td>
-					<td>130,00 €</td>
-				</tr>
-			<tr class="detail">
-			<td colspan="4" id="detail12323" class="unsichtbar"><table>
-				
-				<tr class="ueberschriftSitzplatz">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th>Sitzplatz</th>
-					<th>Reisender</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1231</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A5</td>
-					<td>Geyer, Andreas</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="positionSitzplatz">
-					<td>1232</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td>A4</td>
-					<td>Fresia, Jessica</td>
-					<td>55,00 €</td>
-				</tr>
-				<tr class="ueberschriftZusatzleistung">
-					<th>Positionsnummer</th>
-					<th>Flugnr.</th>
-					<th>Flug</th>
-					<th>Zeit</th>
-					<th colspan="2">Zusatzleistung</th>
-					<th>Positionspreis</th>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1233</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				<tr class="positionZusatzleistung">
-					<td>1234</td>
-					<td>abs123</td>
-					<td>Berlin nach München</td>
-					<td>7:30 - 8:45</td>
-					<td colspan="2">Frühstück</td>
-					<td>10,00 €</td>
-				</tr>
-				</table>
-				</td>
-			</tr>
+				<tr class="detail">
+				<td colspan="4" id="detail${buchung.id}" class="unsichtbar">
+				<table>
+					<tr class="ueberschriftSitzplatz">
+						<th>Positionsnummer</th>
+						<th>Flugnr.</th>
+						<th>Flug</th>
+						<th>Zeit</th>
+						<th>Sitzplatz</th>
+						<th>Reisender</th>
+						<th>Positionspreis</th>
+					</tr>
+					<c:forEach items="${buchung.positionen}" var="position">
+					<c:if test="${position.sitzplatz.id != 0}">
+					<tr class="positionSitzplatz">
+						<td><c:out value="${position.positionid}" /></td>
+						<td><c:out value="${position.flug.id}" /></td>
+						<td><c:out value="${position.flug.abFlughafen.ort}" /> 
+							(<c:out value="${position.flug.abFlughafen.kuerzel}" />)
+							nach 
+							<c:out value="${position.flug.anFlughafen.ort}" /> 
+							(<c:out value="${position.flug.anFlughafen.kuerzel}" />)</td>
+						<td><c:out value="${position.flug.abflugzeit}" />(<c:out value="${position.flug.flugdauer}" />)</td>
+						<td><c:out value="${position.sitzplatz.id}" /></td>
+						<td><c:out value="${position.passagierNachname}" />, <c:out value="${position.passagierVorname}" /></td>
+						<td><c:out value="${position.preis}" /> €</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+					<tr class="ueberschriftZusatzleistung">
+						<th>Positionsnummer</th>
+						<th>Flugnr.</th>
+						<th>Flug</th>
+						<th>Zeit</th>
+						<th colspan="2">Zusatzleistung</th>
+						<th>Positionspreis</th>
+					</tr>
+					<c:forEach items="${buchung.positionen}" var="position">
+					<c:if test="${position.sitzplatz.id == 0}">
+					<tr class="positionZusatzleistung">
+						<td><c:out value="${position.positionid}" /></td>
+						<td><c:out value="${position.flug.id}" /></td>
+						<td><c:out value="${position.flug.abFlughafen.ort}" /> 
+							(<c:out value="${position.flug.abFlughafen.kuerzel}" />)
+							nach 
+							<c:out value="${position.flug.anFlughafen.ort}" /> 
+							(<c:out value="${position.flug.anFlughafen.kuerzel}" />)</td>
+						<td><c:out value="${position.flug.abflugzeit}" />(<c:out value="${position.flug.flugdauer}" />)</td>
+						<td colspan="2"><c:out value="${position.zusatzleistung.bezeichnung}" /></td>
+						<td><c:out value="${position.preis}" /> €</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+				</table></td></tr>
+			</c:forEach>
 		</table>
 	</div>
 	<%@ include file="Footer.jspf"%>

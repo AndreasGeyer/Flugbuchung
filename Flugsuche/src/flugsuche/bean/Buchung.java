@@ -22,17 +22,25 @@ public class Buchung implements Serializable {
 
 	private Timestamp timestamp;
 
-
 	private List<Buchungsposition> positionen = new ArrayList<>();
 
 	private Kunde kunde;
 	private String zahlungsart;
 	private String zahlungsnummer;
+	private double gesamtPreis;
+
 	
-	private Flug hinflug;
-	private Flug rueckflug;
 	
-	
+	public double getGesamtPreis() {
+		return gesamtPreis;
+	}
+
+
+	public void setGesamtPreis(double gesamtPreis) {
+		this.gesamtPreis = gesamtPreis;
+	}
+
+
 	public Buchung() {
 		super();
 	}
@@ -98,25 +106,7 @@ public class Buchung implements Serializable {
 	}
 
 
-	public Flug getHinflug() {
-		return hinflug;
-	}
-
-
-	public void setHinflug(Flug hinflug) {
-		this.hinflug = hinflug;
-	}
-
-
-	public Flug getRueckflug() {
-		return rueckflug;
-	}
-
-
-	public void setRueckflug(Flug rueckflug) {
-		this.rueckflug = rueckflug;
-	}
-
+	
 	public double getGesamtpreis(){
 		double preis = 0;
 		for(Buchungsposition pos: positionen){
