@@ -14,13 +14,11 @@
 </head>
 <jsp:useBean id="buchung" class="flugsuche.bean.Buchung" />
 <jsp:useBean id="flug" class="flugsuche.bean.Flug" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <body>
 	<%@ include file="Header.jspf"%>
 	<div id="main">
 		<h1>Ihre gebuchten Flüge</h1>
-		<c:forEach items="${buchungen}" var="buchung"> 
-				<p><c:out value="${buchung.id}" /></p>
-			</c:forEach>
 		<table>
 			<tr class="ueberschriftbuchung">
 				<th>Buchungsnummer</th>
@@ -32,9 +30,11 @@
 			<c:forEach items="${buchungen}" var="buchung">
 				<tr class="buchung" id="buchung${buchung.id}" onclick="switchDetails('${buchung.id}')">
 					<td><c:out value="${buchung.id}" /></td>
-					<td><c:out value="${buchung.timestamp}" /></td>
+					<td><fmt:formatDate value="${buchung.timestamp}" pattern="dd.MM.yyyy" /></td>
 					<td><c:out value="${buchung.zahlungsart}" /></td>
-					<td><c:out value="${buchung.gesamtPreis}" /> €</td>
+					<fmt:setLocale value="de_DE" scope="session"/>
+
+					<td><fmt:formatNumber value="${buchung.gesamtPreis}" type="currency"/></td>
 				</tr>
 				<tr class="detail">
 				<td colspan="4" id="detail${buchung.id}" class="unsichtbar">
@@ -43,7 +43,7 @@
 						<th>Positionsnummer</th>
 						<th>Flugnr.</th>
 						<th>Flug</th>
-						<th>Zeit</th>
+						<th>Abflug</th>
 						<th>Sitzplatz</th>
 						<th>Reisender</th>
 						<th>Positionspreis</th>
@@ -58,7 +58,8 @@
 							nach 
 							<c:out value="${position.flug.anFlughafen.ort}" /> 
 							(<c:out value="${position.flug.anFlughafen.kuerzel}" />)</td>
-						<td><c:out value="${position.flug.abflugzeit}" />(<c:out value="${position.flug.flugdauer}" />)</td>
+						<td><fmt:formatDate value="${position.flug.abflugzeit}" pattern="HH:mm - dd.MM.yyyy" />
+						(Dauer: <fmt:formatDate value="${position.flug.abflugzeit}" pattern="HH:mm" />)</td>
 						<td><c:out value="${position.sitzplatz.id}" /></td>
 						<td><c:out value="${position.passagierNachname}" />, <c:out value="${position.passagierVorname}" /></td>
 						<td><c:out value="${position.preis}" /> €</td>
@@ -69,7 +70,7 @@
 						<th>Positionsnummer</th>
 						<th>Flugnr.</th>
 						<th>Flug</th>
-						<th>Zeit</th>
+						<th>Abflug</th>
 						<th colspan="2">Zusatzleistung</th>
 						<th>Positionspreis</th>
 					</tr>
@@ -83,7 +84,8 @@
 							nach 
 							<c:out value="${position.flug.anFlughafen.ort}" /> 
 							(<c:out value="${position.flug.anFlughafen.kuerzel}" />)</td>
-						<td><c:out value="${position.flug.abflugzeit}" />(<c:out value="${position.flug.flugdauer}" />)</td>
+						<td><fmt:formatDate value="${position.flug.abflugzeit}" pattern="HH:mm - dd.MM.yyyy" />
+						(Dauer: <fmt:formatDate value="${position.flug.abflugzeit}" pattern="HH:mm" />)</td>
 						<td colspan="2"><c:out value="${position.zusatzleistung.bezeichnung}" /></td>
 						<td><c:out value="${position.preis}" /> €</td>
 					</tr>

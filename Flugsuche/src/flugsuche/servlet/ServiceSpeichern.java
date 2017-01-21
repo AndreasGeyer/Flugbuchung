@@ -40,8 +40,6 @@ public class ServiceSpeichern extends HttpServlet {
 		HttpSession session = request.getSession();
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
 
-		Flug hin = buchung.getHinflug();
-		Flug rueck = buchung.getRueckflug();
 
 		String leistung = request.getParameter("leistung");
 		String[] leistungen = leistung.split(",");
@@ -53,13 +51,7 @@ public class ServiceSpeichern extends HttpServlet {
 			if (!leistungen[i].equals("undefined")) {
 				String string = leistungen[i].substring(0, leistungen[i].indexOf("_"));
 				Zusatzleistung leist = null;
-				if (leistungen[i].substring(leistungen[i].indexOf("_")).contains("Hinflug"))
-					leist = hin.getZusatzleistung(Integer.parseInt(string));
-				flug = hin;
-				if (leist == null) {
-					leist = rueck.getZusatzleistung(Integer.parseInt(string));
-					flug = rueck;
-				}
+				
 
 				if (leist != null) {
 					Buchungsposition pos = new Buchungsposition();

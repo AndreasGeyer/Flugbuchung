@@ -119,7 +119,6 @@ public class ServiceLaden extends HttpServlet {
 				
 				pos.setFlug(hinflug);
 				pos.setSitzplatz(platz);
-				buchung.setHinflug(hinflug);
 				pos.setBuchung(buchung);
 				pos.setPreis(preisNachlass[i] * hinflug.getPreis());
 				buchung.getPositionen().add(pos);
@@ -130,7 +129,6 @@ public class ServiceLaden extends HttpServlet {
 					platz2.setFlug(rueckFlug);
 					setFirstClass(rueckflugid, platz2);
 					
-					buchung.setRueckflug(rueckFlug);
 					pos2.setFlug(rueckFlug);
 					pos2.setSitzplatz(platz2);
 					pos.setBuchung(buchung);

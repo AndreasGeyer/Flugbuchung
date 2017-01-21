@@ -54,16 +54,12 @@ public class PassgierLaden extends HttpServlet {
 		HttpSession session = request.getSession();
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
 		
-
-		Flug hin = buchung.getHinflug();
-		Flug rueck = buchung.getRueckflug();
 		
 		boolean onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 		
 		int adult = (int) session.getAttribute("erwachsener");
 		int baby = (int) session.getAttribute("childs");
 		int kind = (int) session.getAttribute("babies");
-		System.out.println(hin);
 		int tickets[] = new int[3];
 		tickets[0] = adult;
 		tickets[1] = kind;

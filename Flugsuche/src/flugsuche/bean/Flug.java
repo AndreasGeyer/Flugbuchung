@@ -23,9 +23,9 @@ public class Flug implements Serializable {
 	@column(name = "flugid")
 	private int id;
 	@column(name = "abflugzeit")
-	private Date abflugzeit;
+	private Timestamp abflugzeit;
 	@column(name = "fugdauer")
-	private Date flugdauer;
+	private Timestamp flugdauer;
 	@column(name = "preis")
 	private double preis;
 	@fkColumn(nameFK = "fk_abflughafen", referenceColumnName = "flughafenid", referenceTable = "flughafen")
@@ -40,7 +40,7 @@ public class Flug implements Serializable {
 	private List<Sitzplatz> sitzplatzListe = new ArrayList<>();
 	private List<Zusatzleistung> zusatzleistungList = new ArrayList<>();
 
-	public Flug(Date abflugzeit, Date flugdauer, double preis, Flughafen abFlughafen, Flughafen anFlughafen,
+	public Flug(Timestamp abflugzeit, Timestamp flugdauer, double preis, Flughafen abFlughafen, Flughafen anFlughafen,
 			Flugzeugtyp flugzeugtyp) {
 		super();
 		this.abflugzeit = abflugzeit;
@@ -63,11 +63,11 @@ public class Flug implements Serializable {
 		this.id = id;
 	}
 
-	public Date getFlugdauer() {
+	public Timestamp getFlugdauer() {
 		return flugdauer;
 	}
 
-	public void setFlugdauer(Date flugdauer) {
+	public void setFlugdauer(Timestamp flugdauer) {
 		this.flugdauer = flugdauer;
 	}
 
@@ -103,11 +103,11 @@ public class Flug implements Serializable {
 		this.flugzeugtyp = flugzeugtyp;
 	}
 
-	public Date getAbflugzeit() {
+	public Timestamp getAbflugzeit() {
 		return abflugzeit;
 	}
 
-	public void setAbflugzeit(Date abflugzeit) {
+	public void setAbflugzeit(Timestamp abflugzeit) {
 		this.abflugzeit = abflugzeit;
 	}
 

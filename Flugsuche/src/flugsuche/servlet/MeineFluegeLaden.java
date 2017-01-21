@@ -61,19 +61,7 @@ public class MeineFluegeLaden extends HttpServlet {
 		}
 		List<Buchung> buchungen = getBuchungen(Integer.parseInt(id));
 		request.setAttribute("buchungen", buchungen);
-		/*
-		final PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html>"); 
-		out.println("<html>"); 
-		out.println("<body>"); 
-		for(int i = 0; i<buchungen.size(); i++){
-			out.println(buchungen.get(i).getId());
-			for(int j = 0; j<buchungen.get(i).getPositionen().size(); j++){
-				out.println(buchungen.get(i).getPositionen().get(j).getPositionid());
-			}
-		}
-		out.println("</body>");
-		out.println("</html>");*/
+		response.setCharacterEncoding("utf-8");
 		RequestDispatcher disp = request.getRequestDispatcher("/html/MeineFluege.jsp");
 		disp.forward(request, response);
 	}
@@ -118,8 +106,8 @@ public class MeineFluegeLaden extends HttpServlet {
 							Flug f = new Flug();
 							f.setAbFlughafen(abhafen);
 							f.setAnFlughafen(anhafen);
-							f.setAbflugzeit(rs.getDate("abflugzeit"));
-							f.setFlugdauer(rs.getDate("flugdauer"));
+							f.setAbflugzeit(rs.getTimestamp("abflugzeit"));
+							f.setFlugdauer(rs.getTimestamp("flugdauer"));
 							f.setId(rs.getInt("flugnr"));
 							// Sitzplatz
 							Sitzplatz s = new Sitzplatz();
@@ -156,8 +144,8 @@ public class MeineFluegeLaden extends HttpServlet {
 						Flug f = new Flug();
 						f.setAbFlughafen(abhafen);
 						f.setAnFlughafen(anhafen);
-						f.setAbflugzeit(rs.getDate("abflugzeit"));
-						f.setFlugdauer(rs.getDate("flugdauer"));
+						f.setAbflugzeit(rs.getTimestamp("abflugzeit"));
+						f.setFlugdauer(rs.getTimestamp("flugdauer"));
 						f.setId(rs.getInt("flugnr"));
 						// Sitzplatz
 						Sitzplatz s = new Sitzplatz();
