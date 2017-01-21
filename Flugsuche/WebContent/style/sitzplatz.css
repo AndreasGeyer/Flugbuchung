@@ -1,0 +1,73 @@
+
+
+
+#infos{
+	text-align: center;
+	background-color: GhostWhite;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	border: white solid 3px;
+	width: 800px;
+	max-width: 90%;
+}
+
+#infos h1, #infos p{
+	color: black;
+}
+
+#infos .buttons{
+  ;
+}
+#infos .buttons button, #infos .buttons a{
+  width: 40%;
+}
+#grundriss{
+  background-image: url(../img/querschnitt2.png);
+  background-size: 750px 510px;
+  background-repeat: no-repeat;
+  width: 780px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+table.Sitzplatz{
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background: none;
+  padding-right: 150px;
+  padding-left: 80px;
+}
+table.Sitzplatz button{
+
+  margin-right: 20px;
+  maring-top: 0px;
+  width: 20px;
+  height: 20px;
+}
+
+
+p{
+	color: white;
+	size: 60px;
+}
+
+table.Sitzplatz tr{
+  line-height: 0px;
+}
+
+table.Sitzplatz tr:nth-child(3){
+  line-height: 30px;
+}
+
+.frei{
+  background-color: green;
+}
+.besetzt{
+  background-color: red;
+}
+.reserviert{
+  background-color: blue;
+}
