@@ -8,162 +8,83 @@
 	href="${pageContext.request.contextPath}/style/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/sitzplatz.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/sitzplatz.js"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="Header.jspf"%>
 	<div id=main>
-			
-			<div id="infos">
-				<h1>Sitzplatzbuchung</h1>
-<<<<<<< HEAD
-				<p>Anzahl noch zu vergebener PlÃ¤tze: 5</p>
-				<div class="buttons">
-					<a href="meineFluege.html"><button>ZurÃ¼ck zu meinen FlÃ¼gen</button></a>
-					<button>Sitzplatz buchen</button>
+		<h1>Sitzplatzbuchung</h1>
+		<form action="SitzplatzSpeichern" method="post">
+			<c:forEach begin="1" end="${erwachsener}" var="val">
+				<div id="Erwachsener${val}">
+					<h4>
+						Erwachsener
+						<c:out value="${val}" />
+						:
+					</h4>
+					<div class="Eingabe">
+						<select name="Sitzplatz${val}H">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+						</select>
+					</div>
+					<br> <br>
 				</div>
-			</div>
-			
-			
-		
-			<div id="grundriss">
-				<table class="Sitzplatz">
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr><tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-				</table>
-			</div>	
+			</c:forEach>
+			<c:forEach begin="1" end="${childs}" var="val">
+				<div id="Kind${val}">
+					<h4>
+						Kind
+						<c:out value="${val}" />
+						:
+					</h4>
+					<div class="Eingabe">
+						<label for="vornameK${val}">Vorname:</label><br> <input
+							type="text" name="vornameK${val}" id="vornameK${val}"
+							maxlength="30" required> <br> <label
+							for="nachnameK${val}">Nachname:</label><br> <input
+							type="text" name="nachnameK${val}" id="nachnameK${val}"
+							maxlength="30" required> <br> <label
+							for="gebdatK${val}">Geburtsdatum:</label><br> <input
+							type="date" name="GebdatumK${val}" id="GebdatumK${val}"
+							pattern="\d{1,2}.\d{1,2}.\d{4}">
+					</div>
+					<br> <br>
+				</div>
+			</c:forEach>
+
+			<c:forEach begin="1" end="${babies}" var="val">
+				<div id="Baby${val}">
+					<h4>
+						Baby
+						<c:out value="${val}" />
+						:
+					</h4>
+					<div class="Eingabe">
+						<label for="vornameB${val}">Vorname:</label><br> <input
+							type="text" name="vornameB${val}" id="vornameB${val}"
+							maxlength="30" required> <br> <label
+							for="nachnameB${val}">Nachname:</label><br> <input
+							type="text" name="nachnameB${val}" id="nachnameB${val}"
+							maxlength="30" required> <br> <label
+							for="gebdatB${val}">Geburtsdatum:</label><br> <input
+							type="date" name="GebdatumB${val}" id="GebdatumB${val}"
+							pattern="\d{1,2}.\d{1,2}.\d{4}">
+					</div>
+					<br> <br>
+				</div>
+			</c:forEach>
+			<button type="submit">Weiter</button>
+		</form>
 	</div>
 	<%@ include file="Footer.jspf"%>
-	<%@ include file="Header.jspf"%>
-	<div id=main>
-			
-			<div id="infos">
-				<h1>Sitzplatzbuchung</h1>
-=======
->>>>>>> branch 'Magda' of https://github.com/AndreasGeyer/Flugbuchung.git
-				<p>Anzahl noch zu vergebener Plätze: 5</p>
-				<div class="buttons">
-					<a href="meineFluege.html"><button>Zurück zu meinen Flügen</button></a>
-					<button>Sitzplatz buchen</button>
-				</div>
-			</div>
-			
-			
-		
-			<div id="grundriss">
-				<table class="Sitzplatz">
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-					<tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr><tr>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-						<td><button class="frei"/></td>
-					</tr>
-				</table>
-			</div>	
-	</div>
-	<%@ include file="Footer.jspf"%>
+
 </body>
 </html>

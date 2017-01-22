@@ -90,8 +90,9 @@ public class ServiceSpeichern extends HttpServlet {
 		}
 
 		session.setAttribute("Buchung", buchung);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Zahlungsart.jsp");
+		
+		//response.sendRedirect(request.getContextPath() + "/PassagierLaden");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/html/Passagier.jsp");
 		dispatcher.forward(request, response);
 	}
 

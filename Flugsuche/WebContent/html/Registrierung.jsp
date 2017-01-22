@@ -23,20 +23,7 @@
 
 	<div class="mainField">
 
-		<div id="sidebar">
-			<h4>Normalkunde</h4>
-			<p>Als Normalekunde bekommen Sie nur bestimmte Angebote
-				vorgeschlagen.</p>
-			<br> <img src="${pageContext.request.contextPath}/img/Registrierung/Basic.jpg" alt="Normaltarif"
-				style="width: 150px; height: 83px;"> <br>
-			<h4>Premiumkunde</h4>
-			<p>Als Premiumkunde bekommen Sie all unsere Topangebote. Wir
-				zeigen Ihnen die aktuellsten Sparmöglichkeiten und alle
-				Lieblingsziele.</p>
-			<br> <img src="${pageContext.request.contextPath}/img/Registrierung/premium.png" alt="Premium"
-				style="width: 150px; height: 93px;"> <br>
-		</div>
-
+	
 		<div id="main">
 
 			<article>
@@ -77,8 +64,8 @@
 						</div>
 						
 						<div>	
-						<label for="gebdat">Geburtsdatum:</label> 
-							<input type="date" name="Gebdatum" id="Gebdatum"> <span></span>
+						<label for="gebdatum">Geburtsdatum:</label> 
+							<input type="date" name="gebdatum" id="Gebdatum"> <span></span>
 						</div>
 						
 						<div>
@@ -112,7 +99,7 @@
 						</div>
 						
 						<div>	
-							<button type="submit" onclick="prüfung()">speichern</button>
+							<button type="submit" >speichern</button>
 						</div>
 					</fieldset>
 

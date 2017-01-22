@@ -60,42 +60,8 @@ public class PassgierLaden extends HttpServlet {
 		int adult = (int) session.getAttribute("erwachsener");
 		int baby = (int) session.getAttribute("childs");
 		int kind = (int) session.getAttribute("babies");
-		int tickets[] = new int[3];
-		tickets[0] = adult;
-		tickets[1] = kind;
-		tickets[2] = baby;
-
-
-
 		
-		for (int i = 0; i < tickets.length; i++) {
-			for (int j = 0; j < tickets[i]; j++) {
-
-				//hier müsste das hin, dass je nach Anzahl oben das angezeigt wird	
-				
-			}
-		}
 		
-/*		String leistung = request.getParameter("leistung");
-		String[] leistungen = leistung.split(",");
-		
-		for(int i = 0; i<leistungen.length;i++){
-			Flug flug = null;
-			Zusatzleistung leist = hin.getZusatzleistung(Integer.parseInt(leistungen[i]));
-			flug = hin;
-			if(leist == null){
-				leist = rueck.getZusatzleistung(Integer.parseInt(leistungen[i]));
-				flug = rueck;
-			}
-			
-			if(leist != null){
-				Buchungsposition pos = new Buchungsposition();
-				pos.setZusatzleistung(leist);
-				pos.setFlug(flug);
-				pos.setPreis(leist.getPreis());
-				buchung.getPositionen().add(pos);
-			}
-		}*/
 		
 		session.setAttribute("Buchung", buchung);
 		

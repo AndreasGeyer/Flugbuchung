@@ -23,7 +23,7 @@ body{
 }
 
 .Beschreibung{
-	margin-top: 33%;
+
 	font-style: italic;
 	text-align: center;
   font-family: "Bookman Old Style";
@@ -41,6 +41,7 @@ body{
   background-color: whitesmoke;
 	box-shadow: 10px 10px 10px gray;
 	border-radius: 10px;
+	position: relative;
 }
 
 .fotoButton:hover {
@@ -52,90 +53,31 @@ body{
 	border: 3px solid black;
   box-shadow: 10px 10px 10px white;
 	border-radius: 10px;
+	position: relative;
 }
 
 
-#moskau{
-	background-image: Url("../img/Angebot/Moskau.jpg");	
+.angebot{
+
 	background-size: 100% 50%;
 	background-repeat: no-repeat;
 }
 
-#düsseldorf{
-	
-  background-image: Url("../img/Angebot/Duesseldorf.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-	
+
+
+img{
+	width: 100%;
+	height: 50%;
+	display: block;
 }
 
-#rom{
-
-   	background-image: Url("../img/Angebot/Rom.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
+#Bezeichnung{
+	position: absolute;
+	top: 5%;
+	left: 25%;
+right: 25%;
 }
 
-#paris{
-	
-   	background-image: Url("../img/Angebot/Paris.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#dublin{
-
-   	background-image: Url("../img/Angebot/Dublin.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#sideny{
-
-   	background-image: Url("../img/Angebot/Sidney.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#side{
-
-   	background-image: Url("../img/Angebot/Side.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#barcelona{
-
-   	background-image: Url("../img/Angebot/Barcelona.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#bali{
-
-   	background-image: Url("../img/Angebot/Bali.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#miami{
-
-   	background-image: Url("../img/Angebot/Miami.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#button-lissabon{
-   	background-image: Url("../img/Angebot/Lissabon.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
-
-#button-hamburg{
-  background-image: Url("../img/Angebot/Hamburg.jpg");
-	background-size: 100% 50%;
-	background-repeat: no-repeat;
-}
 
 
 b{

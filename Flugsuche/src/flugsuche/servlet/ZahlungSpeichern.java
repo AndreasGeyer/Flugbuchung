@@ -79,9 +79,10 @@ public class ZahlungSpeichern extends HttpServlet {
 		}
 
 		insertBuchung(buchung);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Bestellbestaetigung.jsp");
-		dispatcher.forward(request, response);
+		session.setAttribute("buchung", buchung);
+		response.sendRedirect(request.getContextPath() + "/BestaetigungLaden");
+		//RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() + "BestaetigungLaden");
+		//dispatcher.forward(request, response);
 
 	}
 
@@ -145,7 +146,7 @@ public class ZahlungSpeichern extends HttpServlet {
 				preparedStatement.setString(5, pos.getPassagierNachname());
 
 				if (pos.getGeburtsdatum() != null)
-					preparedStatement.setTime(6, new Time(pos.getGeburtsdatum().getTime()));
+					preparedStatement.setDate(6, new Date(pos.getGeburtsdatum().getTime()));
 				else
 					preparedStatement.setNull(6, Types.TIMESTAMP);
 

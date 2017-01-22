@@ -242,6 +242,7 @@ public class Flugbuchung extends HttpServlet {
 			session.setAttribute("direktflugRueck", null);
 		}
 		calculateMinMax(request);
+		response.setCharacterEncoding("utf-8");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Flugsuche.jsp");
 		dispatcher.forward(request, response);
 

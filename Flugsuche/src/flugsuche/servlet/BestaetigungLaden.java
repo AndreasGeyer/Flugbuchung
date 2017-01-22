@@ -50,11 +50,13 @@ public class BestaetigungLaden extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Enumeration<String> attributes = session.getAttributeNames();
+		int buchungsnr = ((Buchung)session.getAttribute("buchung")).getId();
 		while(attributes.hasMoreElements()){
 			String att = attributes.nextElement();
 			session.removeAttribute(att);
 		}
-		int buchungsnr = 3;
+
+		System.out.println("Buchungsnr:" +buchungsnr);
 		Buchung buchung = getBuchung(buchungsnr);
 		System.out.println(buchung.getZahlungsart());
 		request.setAttribute("buchungb", buchung);

@@ -20,7 +20,7 @@
 			<ul>
 				<li class="anzeigen" onclick="oeffneAendern('Name')">
 					<h2>Name</h2> <span class="inhalt">${kunde.anrede}
-						${kunde.titel} ${kunde.vorname} ${kunde.nachname}</span><span
+						<c:if test="${kunde.titel != 'null'}"> ${kunde.titel} </c:if>${kunde.vorname} ${kunde.nachname}</span><span
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Name" class="aendern">

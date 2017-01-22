@@ -1,11 +1,15 @@
 package flugsuche.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -49,7 +53,67 @@ public class PassagierSpeichern extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		Buchung buchung = (Buchung) session.getAttribute("Buchung");
 		
+		List<Buchungsposition> positionen = buchung.getPositionen();
+		
+		int adult = (int) session.getAttribute("erwachsener");
+		int baby = (int) session.getAttribute("babies");
+		int kind = (int) session.getAttribute("childs");
+		
+		int adultzaehler = 1;
+		int babyzaehler = 1;
+		int kindzaehler = 1;
+		
+		for(int i = 0; i<positionen.size(); i++){
+			Buchungsposition pos = positionen.get(i);
+			if(pos.getZusatzleistung() == null){
+				if(adult < adultzaehler && kind < kindzaehler && baby < babyzaehler){
+					adultzaehler = 1;
+					babyzaehler = 1;
+					kindzaehler = 1;
+				}
+				if(adultzaehler <= adult){
+					pos.setPassagierVorname(request.getParameter("vornameE" + adultzaehler));
+					pos.setPassagierNachname(request.getParameter("nachnameE" + adultzaehler));
+					try {
+						pos.setGeburtsdatum(new Date(new SimpleDateFormat("dd.MM.yyyy").parse(request.getParameter("GebdatumE" + adultzaehler)).getTime()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					adultzaehler++;
+				}
+				else if(kindzaehler <= kind){
+					System.out.println("Anzahl Kind: " +kindzaehler);
+					pos.setPassagierVorname(request.getParameter("vornameK" + kindzaehler));
+					pos.setPassagierNachname(request.getParameter("nachnameK" + kindzaehler));
+					try {
+						pos.setGeburtsdatum(new Date(new SimpleDateFormat("dd.MM.yyyy").parse(request.getParameter("GebdatumK" + kindzaehler)).getTime()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					kindzaehler++;
+				}
+				else if(babyzaehler <= baby){
+					pos.setPassagierVorname(request.getParameter("vornameB" + babyzaehler));
+					pos.setPassagierNachname(request.getParameter("nachnameB" + babyzaehler));
+					try {
+						pos.setGeburtsdatum(new Date(new SimpleDateFormat("dd.MM.yyyy").parse(request.getParameter("GebdatumB" + babyzaehler)).getTime()));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					babyzaehler++;
+				}
+				
+			}
+		}
+		
+		
+		/*
 		Kunde k = null;
 		Cookie cookies[] = request.getCookies();
 		String id = "";
@@ -74,49 +138,13 @@ public class PassagierSpeichern extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Passagier.jsp");
 		dispatcher.forward(request, response);
 
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		*/
+		response.sendRedirect(request.getContextPath() + "/SitzplatzLaden");
 	}
 
 
 
-	
 
-	private Kunde getUser(int id, HttpServletResponse response) {
-		Kunde kunde = null;
-
-		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("select * from kunde where kundeid = ?");) {
-			pstmt.setInt(1, id);
-			try (ResultSet rs = pstmt.executeQuery();) {
-				if (rs.next()) {
-					kunde = new Kunde();
-					kunde.setId(id);
-					kunde.setAnrede(rs.getString("anrede"));
-					kunde.setTitel(rs.getString("titel"));
-					kunde.setVorname(rs.getString("vorname"));
-					kunde.setNachname(rs.getString("nachname"));
-					kunde.setStrasse(rs.getString("strasse"));
-					kunde.setPLZ(rs.getString("postleitzahl"));
-					kunde.setHausnummer(rs.getString("hausnummer"));
-					kunde.setOrt(rs.getString("ort"));
-					kunde.setGeburtsdatum(rs.getDate("geburtsdatum"));
-					kunde.setMail(rs.getString("email"));
-					kunde.setPasswort(rs.getString("passwort"));
-					kunde.setBild(rs.getBytes("nutzerbild"));
-					kunde.setPremium(rs.getBoolean("istPremium"));
-				} else {
-
-				}
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return kunde;
-
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

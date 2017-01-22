@@ -94,8 +94,8 @@ public class ServiceLaden extends HttpServlet {
 
 		boolean onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 		int adult = (int) session.getAttribute("erwachsener");
-		int baby = (int) session.getAttribute("childs");
-		int kind = (int) session.getAttribute("babies");
+		int baby = (int) session.getAttribute("babies");
+		int kind = (int) session.getAttribute("childs");
 
 		int tickets[] = new int[3];
 		tickets[0] = adult;

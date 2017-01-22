@@ -26,4 +26,6 @@ function vorherigesAngebot(){
 	var naechstesDiv = document.querySelector("article#Angebote > div.unvisible.Angebot" + naechstenummer);
 	aktuellesDiv.className = "unvisible Angebot" + angebotnummer;
 	naechstesDiv.className = "visible Angebot" + naechstenummer;
+	
+	return false;
 }

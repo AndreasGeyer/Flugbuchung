@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.mysql.jdbc.Statement;
+
 import flugsuche.bean.Kunde;
 
 /**
@@ -31,6 +33,7 @@ public class UserAnlegen extends HttpServlet {
        
 	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
+	
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,77 +49,78 @@ public class UserAnlegen extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Kunde k = null;
-		
-		//setzen der Cookies in eine Liste
-		Cookie cookies[] = request.getCookies();
-		String id = "";
-		for (int i = 0; i < cookies.length; i++) {
-			Cookie c = cookies[i];
-			//Cookieid wird auf Kundenid gesetzt
-			if (c.getName().equals("kundenid")) {
-				id = c.getValue();
-			}
-		}
-		System.out.println(id);
-		//was macht das try?
+		Kunde k= null;
 		try {
-			setUser(Integer.parseInt(id), request);
+			k = setUser(request);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//was macht das?
-		response.sendRedirect(request.getContextPath() + "/UserAnlegen");
+		
+		String idStr = k.getId()+"";
+		while(idStr.length()<8){
+			idStr = "0" + idStr;
+		}
+		Cookie loginCookie = new Cookie("kundenid", idStr);
+		loginCookie.setMaxAge(30*600);
+		response.addCookie(loginCookie);
+		response.sendRedirect(request.getContextPath() + "/html/Startseite.jsp");
 	}
 
-	private void setUser(int id, HttpServletRequest request) throws ParseException {
-		// TODO Auto-generated method stub
+	public Kunde setUser(HttpServletRequest request) throws ParseException {
 
-		//Wie geht das das er Passwortbe also die Bestätigung nicht mit speicher?
+		Kunde k = new Kunde();
 		
-		//Paramenter einlesen 
-		String statement = "UserAnlegen ";
-		Enumeration<String> names = request.getParameterNames();
-		while (names.hasMoreElements()) {
-			statement += names.nextElement() + " = ? , ";
+		String[] generatedKeys = new String[] {"id"};
+		
+		String anrede=request.getParameter("anrede"); 
+		String titel=request.getParameter("titel"); 
+		System.out.println("Vorname: " + request.getParameter("vorname"));
+		String vorname=request.getParameter("vorname"); 
+		String nachname=request.getParameter("nachname");
+		System.out.println("Geburtsdatum: " + request.getParameter("gebdatum"));
+		Date gebdatum=new Date(new SimpleDateFormat("dd.MM.yyyy").parse(request.getParameter("gebdatum")).getTime());
+		String passwort=request.getParameter("passwort");
+		String email=request.getParameter("email");
+		String strasse=request.getParameter("strasse");
+		String hausnr=request.getParameter("hausnr");
+		String plz=request.getParameter("plz");
+		String ort=request.getParameter("ort");
+		
+		try {
+			Connection connection = ds.getConnection();
+			PreparedStatement pstmt = connection.prepareStatement("INSERT INTO kunde (anrede, titel, vorname, nachname, geburtsdatum,  email, passwort, strasse, hausnummer, postleitzahl, ort) values(?,?,?,?, ?, ?, ?, ?, ?, ?, ?)", generatedKeys);
 			
-		}
-		
-		//Useranlegen request.getParameterNames() where kundeid=? 
-		statement = statement.substring(0, statement.length() - 3) + " where kundeid = ?";
-		System.out.println(statement);
-		
-		//Datenbankaufbau
-		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(statement);
-				) {
-			
-			names = request.getParameterNames();
-			int i = 1;
+		      //mit Prepared Statement ID mit Übergeben!!
 
-			//solange names noch nicht alle übergebenen Parameter durch hat weitermachen 
-			while (names.hasMoreElements()) {
-				String n = names.nextElement();
-				if (n.equals("bday")) {
-					//wenn der Parameter bday ist, dann soll er ein neues Datum setzen/ was ist parse?
-					pstmt.setDate(i, new Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter(n)).getTime()));
-				}
-				 else {
-					pstmt.setString(i, request.getParameter(n));
-					System.out.println(n + " : " + request.getParameter(n) + ";" + i);
-				}
-
-				i++;
-			}
-			//warum als letztes die ID setzen? 
-			pstmt.setInt(i, id);
-			System.out.println(pstmt.executeUpdate());
-
+		      pstmt.setString(1, anrede); 
+		      pstmt.setString(2,titel);
+		      pstmt.setString(3, vorname);
+		      pstmt.setString(4, nachname);
+		      pstmt.setDate(5, gebdatum);
+		      pstmt.setString(6, passwort);
+		      pstmt.setString(7, email);
+		      pstmt.setString(8, strasse);
+		      pstmt.setString(9, hausnr);
+		      pstmt.setString(10, plz);
+		      pstmt.setString(11, ort);
+		      pstmt.executeUpdate();
+		      
+		      ResultSet rs = pstmt.getGeneratedKeys();
+		      int id = 0;
+		      while(rs.next()){
+		    	  k.setId(rs.getInt(1));
+		  		
+		      }
+			   
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return k;
+		
+	
 	}
 		
 
