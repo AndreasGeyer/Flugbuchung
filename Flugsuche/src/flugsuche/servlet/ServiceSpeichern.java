@@ -41,13 +41,16 @@ public class ServiceSpeichern extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
+
 		
 		response.setCharacterEncoding("utf-8");
 		
 		Flug hin = buchung.getHinflug();
 		Flug rueck = buchung.getRueckflug();
 
+
 		String leistung = request.getParameter("leistung");
+
 		if (leistung != null) {
 			String[] leistungen = leistung.split(",");
 			System.out.println(leistungen.toString());
@@ -58,11 +61,14 @@ public class ServiceSpeichern extends HttpServlet {
 				}
 			}
 
+
+
 			for (int i = 0; i < leistungen.length; i++) {
 				Flug flug = null;
 
 				if (!leistungen[i].equals("undefined")) {
 					String string = leistungen[i].substring(0, leistungen[i].indexOf("_"));
+					System.out.println(string);
 					Zusatzleistung leist = null;
 					if (leistungen[i].substring(leistungen[i].indexOf("_")).contains("Hinflug"))
 						leist = hin.getZusatzleistung(Integer.parseInt(string));

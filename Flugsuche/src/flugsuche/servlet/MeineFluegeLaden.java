@@ -35,16 +35,23 @@ public class MeineFluegeLaden extends HttpServlet {
 
        
 
-
 	@Resource(lookup = "jdbc/__default")
 	private DataSource ds;
+
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+
 	public MeineFluegeLaden() {
 		super();
 		// TODO Auto-generated constructor stub
+
 	}
 
 	/**
@@ -80,6 +87,9 @@ public class MeineFluegeLaden extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	
+
 
 	public List<Buchung> getBuchungen(int kundenid) {
 		List<Buchung> buchungen = new ArrayList<Buchung>();

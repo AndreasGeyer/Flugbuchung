@@ -1,0 +1,53 @@
+h1{
+	background-color: white;
+	font-size: 40px;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	font-style: italic;
+  margin-top: 0px;
+}
+
+#main > article >#allgDaten, #main >article > #bestellpositionen{
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+#main > article > div >h2{
+	width: 100%;
+	text-align: center;
+}
+
+#main > article > div > table{
+	margin-left: 10%;
+	width: 80%;
+	border: 3px black solid;
+	border-radius: 5px;
+	border-spacing: 0;
+}
+
+
+
+#main > article >div > table >tbody > tr{
+	width: 100%;
+}
+
+#main > article > div > table > tbody > tr > td:first-of-type{
+	width: 40%;
+	font-weight: bold;
+	
+}
+
+#main > article > div > table > tbody > tr > td{
+	padding: 2px;
+	
+}
+
+#main > article > div > table > tbody > tr.nr{
+	background-color: lightgrey;
+	
+}
+
+article{
+	padding-bottom: 50px;
+}

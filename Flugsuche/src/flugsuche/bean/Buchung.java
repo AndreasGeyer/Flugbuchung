@@ -28,6 +28,7 @@ public class Buchung implements Serializable {
 	private String zahlungsart;
 	private String zahlungsnummer;
 	private double gesamtPreis;
+
 	
 
 	
@@ -35,7 +36,8 @@ public class Buchung implements Serializable {
 	private Flug hinflug;
 	private Flug rueckflug;
 
-	
+
+
 
 
 
@@ -121,6 +123,7 @@ public class Buchung implements Serializable {
 			preis = preis+pos.getPreis();
 		}
 		return preis;
+
 	}
 
 
@@ -141,6 +144,7 @@ public class Buchung implements Serializable {
 
 	public void setRueckflug(Flug rueckflug) {
 		this.rueckflug = rueckflug;
+
 	}
 
 	

@@ -9,7 +9,10 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/bestaetigung.css" />
 
-<title>BestellbesTÄtigung</title>
+
+
+<title>Bestellbestätigung</title>
+
 </head>
 <jsp:useBean id="buchung" class="flugsuche.bean.Buchung" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>

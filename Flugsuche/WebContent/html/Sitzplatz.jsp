@@ -17,6 +17,7 @@
 			
 			<div id="infos">
 				<h1>Sitzplatzbuchung</h1>
+<<<<<<< HEAD
 				<p>Anzahl noch zu vergebener PlÃ¤tze: 5</p>
 				<div class="buttons">
 					<a href="meineFluege.html"><button>ZurÃ¼ck zu meinen FlÃ¼gen</button></a>
@@ -92,6 +93,8 @@
 			
 			<div id="infos">
 				<h1>Sitzplatzbuchung</h1>
+=======
+>>>>>>> branch 'Magda' of https://github.com/AndreasGeyer/Flugbuchung.git
 				<p>Anzahl noch zu vergebener Plätze: 5</p>
 				<div class="buttons">
 					<a href="meineFluege.html"><button>Zurück zu meinen Flügen</button></a>
