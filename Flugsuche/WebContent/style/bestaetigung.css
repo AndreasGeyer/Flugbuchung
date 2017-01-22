@@ -1,3 +1,11 @@
+body{
+	background-image: url("../img/Registrierung/HintergrundRegistrierung.jpg");
+	background-repeat: no-repeat;
+	background-size: 300%;	
+
+}
+
+
 h1{
 	background-color: white;
 	font-size: 40px;

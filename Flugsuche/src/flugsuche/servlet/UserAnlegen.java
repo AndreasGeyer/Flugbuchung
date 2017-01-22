@@ -99,8 +99,8 @@ public class UserAnlegen extends HttpServlet {
 		      pstmt.setString(3, vorname);
 		      pstmt.setString(4, nachname);
 		      pstmt.setDate(5, gebdatum);
-		      pstmt.setString(6, passwort);
-		      pstmt.setString(7, email);
+		      pstmt.setString(7, passwort);
+		      pstmt.setString(6, email);
 		      pstmt.setString(8, strasse);
 		      pstmt.setString(9, hausnr);
 		      pstmt.setString(10, plz);
