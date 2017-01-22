@@ -66,7 +66,7 @@
 							<p>
 								<label>Prüfnummer</label> <input type="text" name ="preufnr" id ="preufnr" pattern=".{3}"required>
 							</p>
-							<button type="submit" class="submitButton" onclick="checkKreditkarte">Buchung
+							<button type="submit" class="submitButton" onclick="checkKreditkarte()">Buchung
 								abschließen!</button>
 						</form>
 						<form id="lastschrift"  method="post" action="/Flugsuche/ZahlungSpeichern">

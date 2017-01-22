@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; utf-8"
+	pageEncoding="utf-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.sql.Time"%>
@@ -6,14 +8,17 @@
 <%@page import="java.text.*"%>
 
 
+
 <%@ page import="java.util.*"%>
 <%@ page import="flugsuche.bean.*"%>
-<%@ page language="java" contentType="text/html; utf-8"
-	pageEncoding="utf-8"%>
+
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta content="content-type" content="text/html; charset=utf-8">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/style/booking.css">
@@ -91,7 +96,8 @@
 			}
 	%>
 
-
+	<fmt:requestEncoding value="utf-8" />
+	<fmt:setLocale value="de_DE" />
 
 	<div id="navigation">
 		<nav>
@@ -108,159 +114,186 @@
 
 	<main>
 	<form id="suchForm" method="POST" action="/Flugsuche/Flugbuchung">
-		<%
-			if (direktflug != null && direktflug.size() > 0) {
-		%>
+
 		<div class="mainField">
 
 			<div id="filter">
+				<%-- 				<%
+					if (direktflug != null && direktflug.size() > 0) {
+				%> --%>
 
-				<div class="stopps">
+				<c:if test="${not empty direktflug}">
+					<div class="stopps">
 
-					<h4>Anzahl Stopps</h4>
+						<h4>Anzahl Stopps</h4>
 
-					<div>
-						<input id="nonStopp" type="checkbox" name="stopp" checked>
-						<label for="nonStopp">Non Stopp</label>
-					</div>
-					<div>
-						<input id="oneStopp" type=checkbox name="stopp" checked> <label
-							for="oneStopp">1 Stopp</label>
-					</div>
-
-
-				</div>
-
-				<div class="maxPrice">
-					<h4>Preis</h4>
-
-
-
-					<div>
 						<div>
-							<span class="info" id="maxPriceHin_span"><strong><%=minPrice + " € bis " + maxPrice + "€"%></strong>
-							</span>
+							<input id="nonStopp" type="checkbox" name="stopp" checked>
+							<label for="nonStopp">Non Stopp</label>
 						</div>
-						<input id="maxPriceHin_input" name="maxPriceHin"
-							oninput="displayFlyTime(event)" min="<%=minPrice%>"
-							max="<%=maxPrice%>" step="0.01" value="<%=maxPrice%>"
-							type="range"> <span class="abstand">Hinflug</span>
+						<div>
+							<input id="oneStopp" type=checkbox name="stopp" checked>
+							<label for="oneStopp">1 Stopp</label>
+						</div>
+
+
 					</div>
 
-					<%
+					<div class="maxPrice">
+						<h4>Preis</h4>
+
+
+
+						<div>
+							<div>
+								<span class="info" id="maxPriceHin_span"><strong>
+										<fmt:formatNumber minFractionDigits="2" value="${minPrice}"
+											type="currency" /> bis
+										<fmt:formatNumber minFractionDigits="2" type="currency" pattern="#.##"
+											value="${maxPrice}" /> €
+								</strong> </span>
+							</div>
+							<input id="maxPriceHin_input" name="maxPriceHin"
+								oninput="displayFlyTime(event)" min="${minPrice}"
+								max="${maxPrice}" step="0.01" value="${maxPrice}" type="range">
+							<span class="abstand">Hinflug</span>
+						</div>
+
+						<%-- 				 				<% 
 						if (direktflugRueck != null && direktflugRueck.size() > 0) {
-					%>
-					<div>
-						<div>
-							<span class="info" id="maxPriceRueck_span"><strong><%=minPriceRueck + " € bis " + maxPriceRueck%></strong>
-							</span>
-						</div>
-						<input id="maxPriceRueck_input" oninput="displayFlyTime(event)"
-							min="<%=minPriceRueck%>" max="<%=maxPriceRueck%>" step="0.01"
-							value="<%=maxPriceRueck%>" type="range"> <span
-							class="abstand">Rueckflug</span>
-					</div>
-					<%
+					%>  --%>
+						<c:if test="${not empty direktflugRueck}">
+							<div>
+								<div>
+
+									<span class="info" id="maxPriceRueck_span"><strong>
+											<fmt:formatNumber minFractionDigits="2" type="currency" pattern="#.##"
+												value="${minPriceRueck}" /> €  bis <fmt:formatNumber minFractionDigits="2"
+												type="currency" pattern="#.##" value="${maxPriceRueck} " /> €
+									</strong> </span>
+								</div>
+								<input id="maxPriceRueck_input" oninput="displayFlyTime(event)"
+									min="${minPriceRueck}" max="${maxPriceRueck}" step="0.01"
+									value="${maxPriceRueck}" type="range"> <span
+									class="abstand">Rückflug</span>
+							</div>
+							<%-- 											<%
 						}
-					%>
-
-				</div>
-
-				<div class="dauer">
-					<h4>Uhrzeit</h4>
-
-
-					<div>
-						<div>
-							<span id="UhrzeitHin_span"><strong><%=simDateFormat.format(abflugHinMin) + "Uhr bis " + simDateFormat.format(abflugHinMax) + "Uhr"%></strong>
-							</span>
-						</div>
-						<input id="UhrzeitHin_input" oninput="displayFlyTime(event)"
-							type="range" min="<%=abflugHinMin.getTime()%>"
-							max="<%=abflugHinMax.getTime()%>" step="1"
-							value="<%=abflugHinMax.getTime()%>"> <span
-							class="abstand">Hinflug</span>
+					%>  --%>
+						</c:if>
 					</div>
 
-					<%
+					<div class="dauer">
+						<h4>Uhrzeit</h4>
+
+
+						<div>
+							<div>
+
+								<span id="UhrzeitHin_span"> <strong> <fmt:formatDate
+											value="${abflugHinMin}" pattern="HH:mm" /> Uhr bis <fmt:formatDate
+											value="${abflugHinMax}" pattern="HH:mm" /> Uhr
+								</strong>
+								</span>
+							</div>
+							<input id="UhrzeitHin_input" oninput="displayFlyTime(event)"
+								type="range" min="${abflugHinMin.getTime()}"
+								max="${abflugHinMax.getTime()}" step="1"
+								value="${abflugHinMax.getTime()}"> <span class="abstand">Hinflug</span>
+						</div>
+
+						<%-- 				<%
 						if (direktflugRueck != null && direktflugRueck.size() > 0) {
-					%>
-					<div>
-						<div>
-							<span class="with"><strong id="UhrzeitRueck_span"><%=simDateFormat.format(abflugRueckMin) + "Uhr bis " + simDateFormat.format(abflugRueckMax)
-							+ "Uhr"%></strong> </span>
-						</div>
-						<input id="UhrzeitRueck_input" oninput="displayFlyTime(event)"
-							type="range" min="<%=abflugRueckMin.getTime()%>"
-							max="<%=abflugRueckMax.getTime()%>" step="1"
-							value="<%=abflugRueckMax.getTime()%>"> <span
-							class="abstand">Rückflug</span>
-					</div>
-					<%
+					%> --%>
+						<c:if test="${not empty direktflugRueck}">
+							<div>
+								<div>
+
+									<span class="with"><strong id="UhrzeitRueck_span">
+											<fmt:formatDate value="${abflugRueckMin}" pattern="HH:MM" />
+											Uhr bis <fmt:formatDate value="${abflugRueckMax}"
+												pattern="HH:MM" /> Uhr
+									</strong> </span>
+								</div>
+								<input id="UhrzeitRueck_input" oninput="displayFlyTime(event)"
+									type="range" min="${abflugRueckMin.getTime()}"
+									max="${abflugRueckMax.getTime()}" step="1"
+									value="${abflugRueckMax.getTime()}"> <span
+									class="abstand">Rückflug</span>
+							</div>
+							<%-- 			<%
 						}
-					%>
-
-				</div>
-
-				<div class="zeit">
-					<h4>Flugdauer</h4>
-
-
-					<div>
-						<div>
-							<span id="zeitHin_span"><strong><%=simDateFormat.format(flugdauerHinMin) + "h bis " + simDateFormat.format(flugdauerHinMax) + "h"%></strong>
-							</span>
-						</div>
-						<input id="zeitHin_input" oninput="displayFlyTime(event)"
-							type="range" min="<%=flugdauerHinMin.getTime()%>"
-							max="<%=flugdauerHinMax.getTime()%>" step="1"
-							value="<%=flugdauerHinMax.getTime()%>"><span
-							class="abstand">Hinflug</span>
+					%> --%>
+						</c:if>
 					</div>
-					<%
+
+					<div class="zeit">
+						<h4>Flugdauer</h4>
+
+
+						<div>
+							<div>
+								<span id="zeitHin_span"><strong> <fmt:formatDate
+											value="${flugdauerHinMin}" pattern="HH:mm" /> h bis <fmt:formatDate
+											value="${flugdauerHinMax}" pattern="HH:mm" /> h
+								</strong> </span>
+							</div>
+							<input id="zeitHin_input" oninput="displayFlyTime(event)"
+								type="range" min="${flugdauerHinMin.getTime()}"
+								max="${flugdauerHinMax.getTime()}" step="1"
+								value="${flugdauerHinMax.getTime()}"><span
+								class="abstand">Hinflug</span>
+						</div>
+						<%-- 					<%
 						if (direktflugRueck != null && direktflugRueck.size() > 0) {
-					%>
-					<div>
-						<div>
-							<span id="zeitRueck_span"><strong><%=simDateFormat.format(flugdauerRueckMin) + "h bis "
-							+ simDateFormat.format(flugdauerRueckMax) + "h"%></strong> </span>
+					%> --%>
 
-						</div>
-						<input id="zeitRueck_input" oninput="displayFlyTime(event)"
-							type="range" min="<%=flugdauerRueckMin.getTime()%>"
-							max="<%=flugdauerRueckMax.getTime()%>" step="1"
-							value="<%=flugdauerRueckMax.getTime()%>"> <span
-							class="abstand">Rückflug</span>
-					</div>
-					<%
+						<c:if test="${not empty direktflugRueck}">
+							<div>
+								<div>
+									<span id="zeitRueck_span"><strong><fmt:formatDate
+												value="${flugdauerRueckMin}" pattern="HH:mm" /> h bis <fmt:formatDate
+												value="${flugdauerRueckMax}" pattern="HH:mm" /> h</strong> </span>
+
+								</div>
+								<input id="zeitRueck_input" oninput="displayFlyTime(event)"
+									type="range" min="${flugdauerRueckMin.getTime()}"
+									max="${flugdauerRueckMax.getTime()}" step="1"
+									value="${flugdauerRueckMax.getTime()}"> <span
+									class="abstand">Rückflug</span>
+							</div>
+							<%-- 				<%
 						}
-					%>
-				</div>
+					%> --%>
+						</c:if>
+					</div>
 
-				<div class="airline">
+					<div class="airline">
 
-					<h4>Fluggesellschaft</h4>
+						<h4>Fluggesellschaft</h4>
 
-					<%
+						<%-- 					<%
 						for (Fluggesellschaft gesellschaft : gesellschaftList) {
-					%>
-
-					<div>
-						<input oninput="ajax('HinRueck')"
-							id="<%=gesellschaft.getBezeichnung()%> " type="checkbox"
-							name="fluggesellschaft" checked> <label for="lh"><%=gesellschaft.getBezeichnung()%></label>
-					</div>
-					<%
+					%> --%>
+						<c:forEach items="${gesellschaftList}" var="gesellschaft">
+							<div>
+								<input oninput="ajax('HinRueck')"
+									id="${gesellschaft.bezeichnung } " type="checkbox"
+									name="fluggesellschaft" checked> <label for="lh">${gesellschaft.bezeichnung }</label>
+							</div>
+							<%-- 						 					<%
 						}
-					%>
+					%>  --%>
+						</c:forEach>
 
-
-				</div>
+					</div>
+					<%-- 				<%
+					}
+				%> --%>
+				</c:if>
 			</div>
 
-			<%
-				}
-			%>
+
 
 			<div id="main">
 
@@ -319,23 +352,36 @@
 										if (flugHin != null)
 											hinDate = dateFormat.format(flugHin);
 									%>
+									<fmt:formatDate pattern="dd.MM.yyy" value="${datumHin}"
+										var="hinDate" scope="session" />
 									<input type="date" id="calendarHin" name="DateHinflug"
 										class="Date" placeholder="TT.MM.JJJJ"
-										onclick="currentMonthName(calendarHin.id)"
-										value="<%=hinDate%>" readonly>
+										onclick="currentMonthName(calendarHin.id)" value="${hinDate }"
+										readonly>
 
 								</div>
 
-								<%
+								<%-- 								<%
 									String id = "";
 									if (onlyHinflug == true) {
 										id = "rueckFlyNone";
 									} else {
 										id = "rueckFly";
 									}
-								%>
+								%> --%>
 
-								<div class="flyDate" id="<%=id%>">
+								<c:choose>
+
+									<c:when test="${onlyHinflug == true}">
+										<c:set var="id" value="rueckFlyNone" scope="session" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="id" value="rueckFly" scope="session" />
+									</c:otherwise>
+
+								</c:choose>
+
+								<div class="flyDate" id="${id }">
 									<h4>Rückflug</h4>
 									<%
 										Date flugRueck = (Date) session.getAttribute("datumRueck");
@@ -343,11 +389,12 @@
 										if (flugRueck != null)
 											rueckDate = dateFormat.format(flugRueck);
 									%>
+									<fmt:formatDate pattern="dd.MM.yyyy" value="${datumRueck}"
+										var="rueckDate" />
 									<input type="date" id="calendarRueck" class="Date"
 										name="DateRueckflug" placeholder="TT.MM.JJJJ"
 										onclick="currentMonthName(calendarRueck.id)"
-										value="<%=rueckDate%>" pattern="\d{1,2}.\d{1,2}.\d{4}"
-										readonly>
+										value="${rueckDate}" pattern="\d{1,2}.\d{1,2}.\d{4}" readonly>
 
 
 
@@ -438,283 +485,353 @@
 					TreeMap<Date, Double> map = (TreeMap) session.getAttribute("map");
 					DecimalFormat df = new DecimalFormat("#.##");
 					int counter = 1;
-					if (map != null && map.size() > 0) {
+					//if (map != null && map.size() > 0) {
 				%>
-				<div id="hinflug">
-					<img
-						src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
-						style="width: 50px; height: 50px;">
-					<h1>
-						Ihr Hinflug: <span>${abflughafen.ort} - ${ankufthafen.ort}</span>
+				<c:set var="counter" value="1" scope="session" />
+				<c:if test="${not empty map }">
+					<div id="hinflug">
+						<img
+							src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
+							style="width: 50px; height: 50px;">
+						<h1>
+							Ihr Hinflug: <span>${abflughafen.ort} - ${ankufthafen.ort}</span>
 
-					</h1>
-				</div>
+						</h1>
+					</div>
 
-				<div class="wrapper_flugtage">
-					<ul>
+					<div class="wrapper_flugtage">
+						<ul>
 
-						<li class="arrow-flugtag" onclick="shiftDate('links','Hin')"><span><</span></li>
-						<%
+							<li class="arrow-flugtag" onclick="shiftDate('links','Hin')"><span><</span></li>
+							<%-- 						<%
 							for (Date date : map.keySet()) {
 									String selectedDate = date.toLocaleString().substring(0, 10);
-						%>
+						%> --%>
 
-						<li onclick="submitDate('<%=selectedDate%>','Hin')"
-							class="element" id="HinElement_<%=counter++%>"
-							<%if (date.compareTo(Utils.getNearestDate(map, flugHin)) == 0) {%>
-							name="nearestHin" <%}%>>
+							<c:forEach items="${map.keySet()}" var="dateMapHin">
 
-							<p>
-								<b><%=selectedDate%></b>
-							</p>
-							<p>
-								ab
-								<%=df.format(map.get(date))%>
-								€
-							</p>
-						</li>
-						<%
+								<li
+									onclick="submitDate('${dateMapHin.toLocaleString().substring(0, 10)}','Hin')"
+									class="element" id="HinElement_${counter}"
+									<%Date dateUtils = Utils.getNearestDate(map, flugHin);
+									request.setAttribute("dateUtils", dateUtils);%>
+									<c:if test="${dateMapHin.compareTo(dateUtils) == 0}">
+									
+								name="nearestHin"
+								 </c:if>>
+
+									<p>
+										<b>${dateMapHin.toLocaleString().substring(0, 10)}</b>
+									</p>
+									<p>
+										ab
+										<fmt:formatNumber minFractionDigits="2" type="currency" pattern="#.##"
+											value="${map.get(dateMapHin)}" /> €
+
+										
+									</p>
+								</li>
+								<%-- 				<%
 							}
-						%>
-						<li class="arrow-flugtag" onclick="shiftDate('rechts','Hin')"><span>></span></li>
+						%> --%>
+						<c:set var="counter" value="${counter +1 }" scope="session" />
+							</c:forEach>
+							<li class="arrow-flugtag" onclick="shiftDate('rechts','Hin')"><span>></span></li>
 
-					</ul>
-				</div>
-				<%
+						</ul>
+					</div>
+					<%-- 				<%
 					}
 				%>
+ --%>
 
-
-
+				</c:if>
 
 
 				<div class="flightPlan">
-					<%
+					<%-- 				<%
 						if (direktflug != null && direktflug.size() > 0) {
-					%>
-					<table id="hinTable">
-						<colgroup>
-							<col width="60%">
+					%> --%>
+					<c:choose>
+						<c:when test="${not empty direktflug}">
+							<table id="hinTable">
+								<colgroup>
+									<col width="60%">
 
-							<col width="20%">
-							<col width="20%">
+									<col width="20%">
+									<col width="20%">
 
-						</colgroup>
+								</colgroup>
 
-						<thead>
-							<tr>
-							<tr>
-								<th>
-									<div class="flug_column">
-										<p>
-											<span>Sortieren nach</span>
-										</p>
-										<div class="Sortieren">
+								<thead>
 
-
-											<input class="FlugartRadio" id="PreisHin" name="Preis"
-												value="1" checked type="radio" onclick="ajax('Hin')">
-											<label for="PreisHin"> Preis </label> <input
-												onclick="ajax('Hin')" class="FlugartRadio" id="Dauer"
-												name="Preis" value="2" type="radio"> <label
-												for="Dauer"> Flugdauer </label> <input onclick="ajax('Hin')"
-												class="FlugartRadio" id="Stopp" name="Preis" value="3"
-												type="radio"> <label for="Stopp"> Abflugzeit
-											</label>
-
-										</div>
-								</th>
-								<th class="flugKlasse" id="economy">Economy Class</th>
-								<th class="flugKlasse" id="business">Business Class</th>
-							</tr>
-						</thead>
+									<tr>
+										<th>
+											<div class="flug_column">
+												<p>
+													<span>Sortieren nach</span>
+												</p>
+												<div class="Sortieren">
 
 
-						<%
+													<input class="FlugartRadio" id="PreisHin" name="Preis"
+														value="1" checked type="radio" onclick="ajax('Hin')">
+													<label for="PreisHin"> Preis </label> <input
+														onclick="ajax('Hin')" class="FlugartRadio" id="Dauer"
+														name="Preis" value="2" type="radio"> <label
+														for="Dauer"> Flugdauer </label> <input
+														onclick="ajax('Hin')" class="FlugartRadio" id="Stopp"
+														name="Preis" value="3" type="radio"> <label
+														for="Stopp"> Abflugzeit </label>
+
+												</div>
+											</div>
+										</th>
+										<th class="flugKlasse" id="economy">Economy Class</th>
+										<th class="flugKlasse" id="business">Business Class</th>
+									</tr>
+								</thead>
+
+
+								<%-- 								<%
 							for (Flug flug : direktflug) {
 									int flugid = flug.getId();
-						%>
-						<tr id="<%=flugid%>">
+						%> --%>
+								<c:forEach items="${direktflug}" var="flug">
+									<tr id="${flug.id}">
 
-							<td class="flug_row" colspan="1">
-								<div class="wrapper_flugplan">
+										<td class="flug_row" colspan="1">
+											<div class="wrapper_flugplan">
 
-									<p class="flugplan">
-										<%
+												<p class="flugplan">
+													<%-- 																				<%
 											String UhrzeitAbflug = simDateFormat.format(flug.getAbflugzeit());
-										%>
-										<span id="<%=flugid + "_abflugzeit"%>"><strong><%=UhrzeitAbflug%>
-												Uhr:&nbsp;</strong></span> <span id="<%=flugid + "_abflugort"%>">
-											${abflughafen.ort} (<%=flug.getAbFlughafen().getKuerzel()%>)
-										</span>
-									</p>
-									<%
+										%>  --%>
+													<fmt:formatDate pattern="HH:mm" value="${flug.abflugzeit}"
+														var="UhrzeitAbflug" scope="session" />
+													<span id="${flug.id}_abflugzeit"><strong>${UhrzeitAbflug}
+															Uhr:&nbsp;</strong></span> <span id="${flug.id}_abflugort">
+														${abflughafen.ort} (${flug.abFlughafen.kuerzel}) </span>
+												</p>
+												<%-- 								<%
 										String UhrzeitAnkunft = simDateFormat.format(flug.calculateAnkunftZeit());
-									%>
-									<p class="flugplan">
-										<span id="<%=flugid + "_ankunftzeit"%>"><strong><%=UhrzeitAnkunft%>
-												Uhr:&nbsp;</strong></span> <span id="<%=flugid + "_ankunftort"%>">
-											${ankufthafen.ort} (<%=flug.getAnFlughafen().getKuerzel()%>)
-										</span>
-									</p>
+									%> --%>
+												<fmt:formatDate pattern="HH:mm"
+													value="${flug.calculateAnkunftZeit()}" var="UhrzeitAnkunft"
+													scope="session" />
+												<p class="flugplan">
+													<span id="${flug.id}_ankunftzeit"><strong>${UhrzeitAnkunft}
+															Uhr:&nbsp;</strong></span> <span id="${flug.id}_ankunftort">
+														${ankufthafen.ort} (${flug.anFlughafen.kuerzel}) </span>
+												</p>
 
-								</div>
-								<div class="wrapper_flugdetail">
-									<p class="flugdetails">
-										<%
-											String reisedauer = simDateFormat.format(flug.getFlugdauer());
-										%>
-										<span><strong>Reisedauer:&nbsp;</strong></span> <span><%=reisedauer + " h"%></span>
-									</p>
-									<p class="flugdetails">
-										<span><strong>Stopps:&nbsp;</strong>0</span>
-									</p>
+											</div>
+											<div class="wrapper_flugdetail">
+												<p class="flugdetails">
+													<%-- 													<%
+														String reisedauer = simDateFormat.format(flug.getFlugdauer());
+													%> --%>
+													<fmt:formatDate pattern="HH:mm" value="${flug.flugdauer}"
+														var="reisedauer" scope="session" />
+													<span><strong>Reisedauer:&nbsp;</strong></span> <span>${reisedauer } h</span>
+												</p>
+												<p class="flugdetails">
+													<span><strong>Stopps:&nbsp;</strong>0</span>
+												</p>
 
-								</div>
+											</div>
 
 
 
-							</td>
-							<td>
-								<div class="priceField">
-									<%
-										String preis = "zu wenige Plätze";
-												int anzahl_firstClassPlätze = flug.freeSeats(true);
-												int anzahl_ecoPlätze = flug.freeSeats(false);
-												int passagierZahl = baby + adults + kind;
-												if (flug.getPreis() == minPrice) {
-									%>
-									<div>
-										<span class="cheapest">Günstigster Preis</span>
-									</div>
-									<%
-										}
-									%>
-									<div class="selectorPrice">
-										<span class="price"> <%
- 	if (anzahl_ecoPlätze >= passagierZahl) {
- 				preis = df.format(flug.getPreis()) + "€";
- %> <input type="radio" onclick="displayFlightDetails(event,'Hin')"
-											name="HinflugInput" id="<%=flugid + "_preisEco"%>"> <%
- 	}
- %> <strong> <%=preis%>
-										</strong>
-										</span>
-									</div>
-									<%
-										if (anzahl_ecoPlätze <= passagierZahl + 4) {
-									%>
-									<div>
-										<span class="lastSeats">Noch <%=anzahl_ecoPlätze%>
-											Plätze
-										</span>
-									</div>
-									<%
-										}
-									%>
-								</div>
-							</td>
-							<td>
-								<div class="priceField">
-									<div></div>
-									<div class="selectorPrice">
-										<span class="price"> <%
+										</td>
+										<td>
+											<div class="priceField">
+												<%-- 					<%
+													String preis = "zu wenige Plätze";
+																int anzahl_firstClassPlätze = flug.freeSeats(true);
+																int anzahl_ecoPlätze = flug.freeSeats(false);
+																int passagierZahl = baby + adults + kind;
+																if (flug.getPreis() == minPrice) {
+												%> --%>
+
+												<c:set var="preisHinflug" value="zu wenige Plätze"
+													scope="session" />
+												<c:set var="anzahl_firstClassPlätze"
+													value="${flug.freeSeats(true)}" scope="session" />
+												<c:set var="anzahl_ecoPlätze"
+													value="${flug.freeSeats(true)}" scope="session" />
+												<c:set var="passagierZahl"
+													value="${babies+childs+erwachsener}" scope="session" />
+
+												<c:if test="${flug.preis == minPrice}">
+													<div>
+														<span class="cheapest">Günstigster Preis</span>
+													</div>
+												</c:if>
+												<div class="selectorPrice">
+													<span class="price"> <c:if
+															test="${anzahl_ecoPlätze >= passagierZahl}">
+															<%-- 	 <% --%>
+															<%--  	if (anzahl_ecoPlätze >= passagierZahl) {
+ 					preis = df.format(flug.getPreis()) + "€";
+ %> --%>
+															<input type="radio"
+																onclick="displayFlightDetails(event,'Hin')"
+																name="HinflugInput" id="${flug.id}_preisEco">
+														</c:if> <strong> <fmt:formatNumber minFractionDigits="2" type="currency"
+																pattern="#.##" value="${flug.preis}" /> €
+													</strong>
+													</span>
+												</div>
+												<%-- 												<%
+													if (anzahl_ecoPlätze <= passagierZahl + 4) {
+												%> --%>
+												<c:if test="${anzahl_ecoPlätze <= passagierZahl + 4}">
+													<div>
+														<span class="lastSeats">Noch ${anzahl_ecoPlätze}
+															Plätze </span>
+													</div>
+													<%-- 	<%
+													}
+												%> --%>
+												</c:if>
+											</div>
+										</td>
+										<td>
+											<div class="priceField">
+												<div></div>
+												<div class="selectorPrice">
+													<span class="price"> <%-- <%
  	if (anzahl_firstClassPlätze > passagierZahl) {
- 				preis = df.format(flug.getPreis() * 3) + "€";
- %> <input type="radio" name="HinflugInput"
-											onclick="displayFlightDetails(event,'Hin')"
-											id="<%=flugid + "_preisFirst"%>"> <%
+ 					preis = df.format(flug.getPreis() * 3) + "€"; --%> <c:if
+															test="${anzahl_firstClassPlätze > passagierZahl}">
+
+															<input type="radio" name="HinflugInput"
+																onclick="displayFlightDetails(event,'Hin')"
+																id="${flug.id}_preisFirst">
+														</c:if><strong> <fmt:formatNumber minFractionDigits="2" type="currency"
+																pattern="#.##" value="${flug.preis*3}" /> €
+													</strong>
+													</span>
+												</div>
+
+												<%-- 								<%
+													if (anzahl_firstClassPlätze <= passagierZahl + 4) {
+												%> --%>
+												<c:if test="${anzahl_firstClassPlätze <= passagierZahl + 4}">
+													<div>
+														<span class="lastSeats">Noch
+															${anzahl_firstClassPlätze} Plätze </span>
+													</div>
+													<%-- 							<%
+													}
+												%> --%>
+												</c:if>
+											</div>
+										</td>
+
+									</tr>
+
+									<tr class="unvisibleHin" id="${flug.id}_detail">
+										
+										<td colspan="4">
+											<table id="detail">
+												<thead>
+													<tr>
+														<th>Airline</th>
+														<th>Flug</th>
+														<th>Abflug</th>
+														<th>Ankunft</th>
+														<th>Reisedauer</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+
+
+														<%
+															// 															UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
+																		// 																		UhrzeitAnkunft = UhrzeitAnkunft + " Uhr: " + flug.getAnFlughafen().getOrt();
+																		//	String flugnr = flug.getFlugzeugtyp().getGesellschaft().getBezeichnung().substring(0, 2)
+																		//			+ flug.getId();
+																		//		if (flugnr.length() > 5)
+																		//		flugnr = flugnr.substring(0, 4);
+														%>
+														<c:set var="flugnr"
+															value="${flug.flugzeugtyp.gesellschaft.bezeichnung.substring(0, 2)}${flug.id}"
+															scope="session" />
+														<c:if test="${fn:length(flugnr)>5 }">
+															<c:set var="flugnr" value="${flugnr.substring(0,4)}"
+																scope="session" />
+														</c:if>
+
+														<td><p>${flug.flugzeugtyp.gesellschaft.bezeichnung }</p></td>
+														<td><p>${flugnr }</p></td>
+														<td><p>${UhrzeitAbflug}Uhr:
+																${flug.abFlughafen.ort}</p></td>
+														<td><p>${UhrzeitAbflug}Uhr:
+																${flug.anFlughafen.ort}</p></td>
+														<td><p>${reisedauer} h</p></td>
+														<td><p></p></td>
+													</tr>
+
+												</tbody>
+											</table> <%--  <%
  	}
- %><strong> <%=preis%>
-										</strong>
-										</span>
-									</div>
+ %> --%>
+								</c:forEach>
 
-									<%
-										if (anzahl_firstClassPlätze <= passagierZahl + 4) {
-									%>
-									<div>
-										<span class="lastSeats">Noch <%=anzahl_firstClassPlätze%>
-											Plätze
-										</span>
-									</div>
-									<%
-										}
-									%>
-								</div>
-							</td>
-
-						</tr>
-
-						<tr class="unvisibleHin" id="<%=flug.getId() + "_detail"%>">
-							<td colspan="4">
-								<table id="detail">
-									<thead>
-										<tr>
-											<th>Airline</th>
-											<th>Flug</th>
-											<th>Abflug</th>
-											<th>Ankunft</th>
-											<th>Reisedauer</th>
-
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-
-
-											<%
-												UhrzeitAbflug = UhrzeitAbflug + " Uhr: " + flug.getAbFlughafen().getOrt();
-														UhrzeitAnkunft = UhrzeitAnkunft + " Uhr: " + flug.getAnFlughafen().getOrt();
-														String flugnr = flug.getFlugzeugtyp().getGesellschaft().getBezeichnung().substring(0, 2)
-																+ flug.getId();
-														if (flugnr.length() > 5)
-															flugnr = flugnr.substring(0, 4);
-											%>
-											<td><p><%=flug.getFlugzeugtyp().getGesellschaft().getBezeichnung()%></p></td>
-											<td><p><%=flugnr%></p></td>
-											<td><p><%=UhrzeitAbflug%></p></td>
-											<td><p><%=UhrzeitAnkunft%></p></td>
-											<td><p><%=reisedauer + " h"%></p></td>
-											<td><p></p></td>
-										</tr>
-
-									</tbody>
-								</table> <%
- 	}
- %>
-							
-						</tbody>
-					</table>
-					<%
-						} else {
+								</tbody>
+							</table>
+						</c:when>
+						<c:otherwise>
+							<%-- 						<%
+	<%-- 					} else {
 
 							if (map != null) {
-					%>
-					<p class="fehler">
-						<span> <%
- 	if (map.size() == 0) {
+					%> --%>
+							<c:if test="${not empty map }">
+								<p class="fehler">
+									<span> <c:choose>
+											<c:when test="${fn:length(map) == 0}">
+					Es existiert kein Flug von ${abflughafen.ort} nach
+							${ankufthafen.ort}!
+					</c:when>
+											<c:otherwise>
+					Es konnte leider am ${hinDate } kein passender Flug gefunden werden!
+					</c:otherwise>
+										</c:choose>
+									</span>
+								</p>
+								<!-- 					<p class="fehler"> -->
+								<%-- 						<span> <% --%>
+								<%--  	if (map.size() == 0) {
  %>Es existiert kein Flug von ${abflughafen.ort} nach
 							${ankufthafen.ort}! <%
  	} else {
- %>Es konnte leider am <%=hinDate%> kein passender Flug gefunden werden!<%
+ %>Es konnte leider am ${hinDate } kein passender Flug gefunden werden!<%
  	}
  %>
-						</span>
-					</p>
-					<%
+								</span>
+								</p>
+								<%
 						}
 						}
-					%>
+					%> --%>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<%
-					if (direktflugRueck != null && direktflugRueck.size() > 0) {
+					//		if (direktflugRueck != null && direktflugRueck.size() > 0) {
+					if (onlyHinflug == false && direktflugRueck != null) {
 				%>
 
 				<div id="rueckflug">
 					<img
-						src="${pageContext.request.contextPath}/img/Flugsuche/planeUp.png"
+						src="${pageContext.request.contextPath}/img/Flugsuche/planeDown.png"
 						style="width: 50px; height: 50px;">
 					<h1>
 						Ihr Rückflug: <span>${ankufthafen.ort} - ${abflughafen.ort}</span>
@@ -731,7 +848,7 @@
 
 						<li class="arrow-flugtag" onclick="shiftDate('links','Rueck')"><span><</span></li>
 						<%
-							counter = 0;
+							counter = 1;
 									for (Date date : map.keySet()) {
 										String selectedDate = date.toLocaleString().substring(0, 10);
 						%>
@@ -972,8 +1089,7 @@
 
 
 				<%
-					}
-						} else {
+					} else {
 				%>
 				<p class="fehler">
 					<span> <%
@@ -981,34 +1097,43 @@
  %>Es existiert kein Flug von ${abflughafen.ort} nach
 						${ankufthafen.ort}! <%
  	} else {
- %>Es konnte leider am <%=hinDate%> kein passender Flug gefunden werden!<%
+ %>Es konnte leider am <%=rueckDate%> kein passender Flug gefunden
+						werden!<%
  	}
  %>
 					</span>
 				</p>
-
-				<%
-					}
-					}
-				%>
-
-
 			</div>
-			
 
-		<%
-			
-			if (direktflug != null && direktflug.size() > 0) {
-		%>
+			<%
+				}
+					} else {
+			%>
+			<p class="fehler">
+				<span> Es existiert kein Flug von ${abflughafen.ort} nach
+					${ankufthafen.ort}! </span>
+			</p>
+			<%
+				}
+				}
+			%>
+
+
+		</div>
+
+
+
 		<div id="preis">
-
+			<%
+				if (direktflug != null && direktflug.size() > 0) {
+			%>
 			<div class="Rechnung" id="RechnungHin">
 
 				<span>HINFLUG</span>
 				<p>Bitte wählen sie einen Hinflug aus</p>
 			</div>
 			<%
-				if (direktflugRueck != null && direktflugRueck.size() > 0) {
+				if (onlyHinflug == false) {
 			%>
 			<div class="Rechnung" id="RechnungRueck">
 
@@ -1022,15 +1147,15 @@
 				onclick="return g()" formaction="/Flugsuche/ServiceLaden"
 				formmethod="post">Weiter</button>
 
-		</div>
-		<%
-			}
-		%>
+			<%
+				}
+			%>
 
+		</div>
 	</form>
 
 	</main>
-
+	<div class="space"></div>
 	<%@ include file="Footer.jspf"%>
 </body>
 </html>

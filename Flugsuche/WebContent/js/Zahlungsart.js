@@ -19,14 +19,15 @@ function isNumeric(value) {
 	return false;
 }
 
-function trimIBAN(value) {
-	if (value.length == 22)
+function trimIBAN(valueIBAN) {
+	alert(valueIBAN.length);
+	if (valueIBAN.length == 22)
 		return false;
 	return true;
 }
 
-function trimBIC(value){
-	if (value.length >= 8 && value.length <= 11)
+function trimBIC(valueBIC){
+	if (valueBIC.length >= 8 && valueBIC.length <= 11)
 		return false;
 	return true;
 }

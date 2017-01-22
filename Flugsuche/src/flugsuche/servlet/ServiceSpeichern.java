@@ -1,6 +1,8 @@
 package flugsuche.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,34 +41,44 @@ public class ServiceSpeichern extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
-
+		
+		response.setCharacterEncoding("utf-8");
+		
 		Flug hin = buchung.getHinflug();
 		Flug rueck = buchung.getRueckflug();
 
 		String leistung = request.getParameter("leistung");
-		String[] leistungen = leistung.split(",");
-		System.out.println(leistungen.toString());
-
-		for (int i = 0; i < leistungen.length; i++) {
-			Flug flug = null;
-			
-			if (!leistungen[i].equals("undefined")) {
-				String string = leistungen[i].substring(0, leistungen[i].indexOf("_"));
-				Zusatzleistung leist = null;
-				if (leistungen[i].substring(leistungen[i].indexOf("_")).contains("Hinflug"))
-					leist = hin.getZusatzleistung(Integer.parseInt(string));
-				flug = hin;
-				if (leist == null) {
-					leist = rueck.getZusatzleistung(Integer.parseInt(string));
-					flug = rueck;
+		if (leistung != null) {
+			String[] leistungen = leistung.split(",");
+			System.out.println(leistungen.toString());
+			ArrayList<Buchungsposition> listPos = (ArrayList<Buchungsposition>) buchung.getPositionen();
+			for (Buchungsposition position : listPos) {
+				if (position.getZusatzleistung() != null) {
+					listPos.remove(position);
 				}
+			}
 
-				if (leist != null) {
-					Buchungsposition pos = new Buchungsposition();
-					pos.setZusatzleistung(leist);
-					pos.setFlug(flug);
-					pos.setPreis(leist.getPreis());
-					buchung.getPositionen().add(pos);
+			for (int i = 0; i < leistungen.length; i++) {
+				Flug flug = null;
+
+				if (!leistungen[i].equals("undefined")) {
+					String string = leistungen[i].substring(0, leistungen[i].indexOf("_"));
+					Zusatzleistung leist = null;
+					if (leistungen[i].substring(leistungen[i].indexOf("_")).contains("Hinflug"))
+						leist = hin.getZusatzleistung(Integer.parseInt(string));
+					flug = hin;
+					if (leist == null) {
+						leist = rueck.getZusatzleistung(Integer.parseInt(string));
+						flug = rueck;
+					}
+
+					if (leist != null) {
+						Buchungsposition pos = new Buchungsposition();
+						pos.setZusatzleistung(leist);
+						pos.setFlug(flug);
+						pos.setPreis(leist.getPreis());
+						buchung.getPositionen().add(pos);
+					}
 				}
 			}
 		}

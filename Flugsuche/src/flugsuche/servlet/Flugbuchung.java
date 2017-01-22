@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -97,9 +98,9 @@ public class Flugbuchung extends HttpServlet {
 		}
 		System.out.println("paraende");
 		System.out.println(request.getParameter("hinflug"));
-		
+
 		// if Zweig: Eingabe über Startseite
-		//else Zweig Eingabe über Flugsuche
+		// else Zweig Eingabe über Flugsuche
 		if (request.getParameter("hinflug") != null && request.getParameter("rueckflug") != null
 				&& request.getParameter("datumhin") != null) {
 
@@ -116,21 +117,23 @@ public class Flugbuchung extends HttpServlet {
 			}
 
 		} else {
-			
+
 			// Suche der Flughäfen
 			abflughafen = getAirport(request.getParameter("abflug"));
 
-/*			if (abflughafen == null) {
-				abflughafen = (Flughafen) session.getAttribute("abflughafen");
-			}*/
+			/*
+			 * if (abflughafen == null) { abflughafen = (Flughafen)
+			 * session.getAttribute("abflughafen"); }
+			 */
 
 			ankufthafen = getAirport(request.getParameter("ankunft"));
 
-			/*	if (ankufthafen == null) {
-				ankufthafen = (Flughafen) session.getAttribute("ankufthafen");
-			}*/
-			
-			if(abflughafen == null && ankufthafen == null ){
+			/*
+			 * if (ankufthafen == null) { ankufthafen = (Flughafen)
+			 * session.getAttribute("ankufthafen"); }
+			 */
+
+			if (abflughafen == null && ankufthafen == null) {
 				ankufthafen = (Flughafen) session.getAttribute("ankufthafen");
 				abflughafen = (Flughafen) session.getAttribute("abflughafen");
 			}
@@ -138,8 +141,7 @@ public class Flugbuchung extends HttpServlet {
 			request.setAttribute("abflughafen", abflughafen);
 			request.setAttribute("ankufthafen", ankufthafen);
 
-
-			//Prüfung auf Flugart: nur Hinflug oder Hin- und Rueckflug
+			// Prüfung auf Flugart: nur Hinflug oder Hin- und Rueckflug
 			if (request.getParameter("Flugart") != null) {
 				onlyHinflug = request.getParameter("Flugart").equals("2");
 				System.out.println("onlyHinflug" + onlyHinflug);
@@ -147,7 +149,7 @@ public class Flugbuchung extends HttpServlet {
 				if (session.getAttribute("onlyHinflug") != null)
 					onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
 			}
-			
+
 			// Konvertierung des Flugdatums
 			try {
 				if (request.getParameter("DateHinflug") != null && !request.getParameter("DateHinflug").equals(""))
@@ -167,13 +169,13 @@ public class Flugbuchung extends HttpServlet {
 				e1.printStackTrace();
 			}
 
-			//Prüfung der Anzahl der Passagiere
+			// Prüfung der Anzahl der Passagiere
 			if (request.getParameter("adults") != null) {
 				adults = Integer.parseInt("" + request.getParameter("adults").charAt(0));
 			} else {
 				if (session.getAttribute("erwachsener") != null)
 					adults = (int) session.getAttribute("erwachsener");
-				
+
 			}
 
 			if (request.getParameter("children") != null) {
@@ -233,8 +235,13 @@ public class Flugbuchung extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		} else {
+			session.setAttribute("map", null);
+			session.setAttribute("direktflug", null);
+			session.setAttribute("mapRueck", null);
+			session.setAttribute("direktflugRueck", null);
 		}
-
+		calculateMinMax(request);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Flugsuche.jsp");
 		dispatcher.forward(request, response);
 
@@ -242,7 +249,7 @@ public class Flugbuchung extends HttpServlet {
 
 	private Map<Date, Double> getMinPreisPerDate(Flughafen abFlughafen, Flughafen anFlughafen, Date datum) {
 
-		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? group by date(abflugzeit) order by abflugzeit asc ";
+		String statement = "SELECT date(abflugzeit) as abflugdatum ,MIN(preis) as minPreis,MAX(preis) as maxPreis from flug where fk_abflughafen = ? and fk_anflughafen = ? and date(abflugzeit) between ? and ? and date(abflugzeit)>= now() group by date(abflugzeit) order by abflugzeit asc ";
 		Map<Date, Double> minPreis = new TreeMap<>();
 		Map<Date, Double> maxPreis = new TreeMap<>();
 
@@ -394,7 +401,7 @@ public class Flugbuchung extends HttpServlet {
 			while (result.next()) {
 				Sitzplatz platz = new Sitzplatz();
 				platz.setId(result.getInt("sitzplatzid"));
-				platz.setFirstClass(result.getBoolean("isFirstClass"));
+				platz.setFirstClass(result.getBoolean("istFirstClass"));
 				platz.setStatus(result.getString("status"));
 
 				listSitzplatz.add(platz);
@@ -447,18 +454,18 @@ public class Flugbuchung extends HttpServlet {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
-			preparedStatement.setDate(3, new java.sql.Date(datum.getTime()));
+			preparedStatement.setTimestamp(3, new java.sql.Timestamp(datum.getTime()));
 			System.out.println(preparedStatement.toString());
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
 				Flug flug = new Flug();
 				flug.setId(result.getInt("flugid"));
-				flug.setAbflugzeit(new Date(result.getTimestamp("abflugzeit").getTime()));
+				flug.setAbflugzeit(new Timestamp(result.getTimestamp("abflugzeit").getTime()));
 
 				flug.setAbFlughafen(abFlughafen);
 				flug.setAnFlughafen(anFlughafen);
-				flug.setFlugdauer(new Date(result.getTime("fugdauer").getTime()));
+				flug.setFlugdauer(new Timestamp(result.getTime("fugdauer").getTime()));
 				flug.setPreis(result.getDouble("preis"));
 				flug.setFlugzeugtyp(getFlugzeugTyp(result.getInt("fk_flugzeugtyp")));
 
@@ -478,6 +485,81 @@ public class Flugbuchung extends HttpServlet {
 		}
 		return listDirektFluege;
 
+	}
+
+	private void calculateMinMax(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		List<Flug> direktflug = (List<Flug>) session.getAttribute("direktflug");
+		List<Flug> direktflugRueck = (List<Flug>) session.getAttribute("direktflugRueck");
+		DateFormat simDateFormat = new SimpleDateFormat("HH:mm");
+		Date flugHin = (Date) session.getAttribute("datumHin");
+		boolean onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
+		Timestamp flugdauerHinMin = new Timestamp(86400000L);
+		Timestamp flugdauerHinMax = new Timestamp(1L);
+		Timestamp abflugHinMin = new Timestamp(100 * 365 * 86400000L);
+		Timestamp abflugHinMax = new Timestamp(1L);
+		double minPrice = 99999999;
+		double maxPrice = 0;
+		Timestamp flugdauerRueckMin = new Timestamp(86400000L);
+		Timestamp flugdauerRueckMax = new Timestamp(1L);
+		Timestamp abflugRueckMin = new Timestamp(100 * 365 * 86400000L);
+		Timestamp abflugRueckMax = new Timestamp(1L);
+		double minPriceRueck = 99999999;
+		double maxPriceRueck = 0;
+		List<Fluggesellschaft> gesellschaftList = new ArrayList<>();
+		if (direktflug != null)
+			for (Flug flug : direktflug) {
+				if (flugdauerHinMin.after(flug.getFlugdauer()))
+					flugdauerHinMin = flug.getFlugdauer();
+				if (flugdauerHinMax.before(flug.getFlugdauer()))
+					flugdauerHinMax = flug.getFlugdauer();
+				if (abflugHinMax.before(flug.getAbflugzeit()))
+					abflugHinMax = flug.getAbflugzeit();
+				if (abflugHinMin.after(flug.getAbflugzeit()))
+					abflugHinMin = flug.getAbflugzeit();
+				if (minPrice > flug.getPreis())
+					minPrice = flug.getPreis();
+				if (maxPrice < flug.getPreis())
+					maxPrice = flug.getPreis();
+				if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
+					gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
+				}
+			}
+
+		request.setAttribute("flugdauerHinMin", flugdauerHinMin);
+		request.setAttribute("flugdauerHinMax", flugdauerHinMax);
+		request.setAttribute("abflugHinMax", abflugHinMax);
+		request.setAttribute("abflugHinMin", abflugHinMin);
+		request.setAttribute("minPrice", minPrice);
+		request.setAttribute("maxPrice", maxPrice);
+
+		if (direktflugRueck != null)
+			for (Flug flug : direktflugRueck) {
+				if (flugdauerRueckMin.after(flug.getFlugdauer()))
+					flugdauerRueckMin = flug.getFlugdauer();
+				if (flugdauerRueckMax.before(flug.getFlugdauer()))
+					flugdauerRueckMax = flug.getFlugdauer();
+				if (abflugRueckMax.before(flug.getAbflugzeit()))
+					abflugRueckMax = flug.getAbflugzeit();
+				if (abflugRueckMin.after(flug.getAbflugzeit()))
+					abflugRueckMin = flug.getAbflugzeit();
+				if (minPriceRueck > flug.getPreis())
+					minPriceRueck = flug.getPreis();
+				if (maxPriceRueck < flug.getPreis())
+					maxPriceRueck = flug.getPreis();
+				if (!gesellschaftList.contains(flug.getFlugzeugtyp().getGesellschaft())) {
+					gesellschaftList.add(flug.getFlugzeugtyp().getGesellschaft());
+				}
+			}
+		
+		request.setAttribute("flugdauerRueckMin", flugdauerRueckMin);
+		request.setAttribute("flugdauerRueckMax", flugdauerRueckMax);
+		request.setAttribute("abflugRueckMax", abflugRueckMax);
+		request.setAttribute("abflugRueckMin", abflugRueckMin);
+		request.setAttribute("minPriceRueck", minPriceRueck);
+		request.setAttribute("maxPriceRueck", maxPriceRueck);
+		request.setAttribute("gesellschaftList", gesellschaftList);
 	}
 
 }

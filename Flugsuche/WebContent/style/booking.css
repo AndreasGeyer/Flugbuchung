@@ -167,9 +167,7 @@ input[type="radio"], input[type="checkbox"] {
 	overflow: scroll;
 }
 
-#hinflug span {
-	color: red;
-}
+
 
 #trow, .stopps {
 	display: flex;
@@ -218,7 +216,7 @@ input[type="radio"], input[type="checkbox"] {
 
 }
 
-@media screen and (min-width:1200px) {
+@media screen and  (min-width:1200px) {
 	.datum div {
 		min-width: calc(100%/ 5);
 	}
@@ -230,7 +228,7 @@ input[type="radio"], input[type="checkbox"] {
 
 table {
 	width: 100%;
-	background-color: ghostwhite;
+
 }
 
 #ab p {
@@ -282,9 +280,11 @@ td p, th p {
 	color: white;
 }
 
-#hinTable tbody, #rueckTable tbody {
+#hinTable tbody, #rueckTable tbody, #hinTable thead, #rueckTable thead {
 	background-color: ghostwhite;
 }
+
+
 
 #filter h4 {
 	color: #1188cc;
@@ -424,4 +424,8 @@ li {
 
 .unvisibleHin, .unvisibleRueck{
 	display: none;
+}
+
+.space{
+	height: 100px;
 }

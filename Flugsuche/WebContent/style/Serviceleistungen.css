@@ -80,21 +80,22 @@ h1{
 	flex-direction: row;
 }
 
-#price{
-		display: flex;
-	flex-direction: column;
-}
-}
+
 #selector{
 	justify-content: space-around;
 }
 .service, #food, #price {
 	background-color: GhostWhite;
-	margin: 5%;
+	margin: 3%;
 	border-radius: 5px;
 }
 
+#price{
+		display: flex;
+	flex-direction: column;
+	margin-top:0;
 
+}
 
 .auswahl{
 	display: flex;
@@ -178,12 +179,12 @@ h4 {
 }
 
 button{
-	background-color: F5F5F5;
-	font-family: Bookman Old Style;
+
+
 	width: 100px;
 	height: 30px;
 	border-radius: 3%;
-	url("../html/Passagier.jsp")
+
 }
 
 .description p{
@@ -193,5 +194,13 @@ button{
 .unvisible{
 	display : none;
 }
+
+#weiterPass{
+	margin-left: 10%;
+	width: 200px;
+	margin-bottom:30px;
+}
+
+
 
 

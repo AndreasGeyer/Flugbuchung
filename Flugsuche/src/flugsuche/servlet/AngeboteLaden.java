@@ -54,8 +54,8 @@ public class AngeboteLaden extends HttpServlet {
 			}
 		}
 		try {
-			if(id != "")
-			k = getAngebot(Integer.parseInt(id), response);
+//			if(id != "")
+//			k = getAngebot(Integer.parseInt(id), response);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,39 +69,39 @@ public class AngeboteLaden extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	private Angebot getAngebot(int id, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		Angebot angebot = null;
-
-		try (Connection con = ds.getConnection();
-				PreparedStatement pstmt = con.prepareStatement("select * from angebot where kundeid = ?");) {
-			pstmt.setInt(1, id);
-			try (ResultSet rs = pstmt.executeQuery();) {
-				if (rs.next()) {
-					angebot = new Angebot();
-					angebot.setId(id);
-					//wie geht das mit dem Bild?
-					angebot.setBild(rs.getString("bild"));
-					angebot.setBezeichnung(rs.getString("Bezeichnung"));
-					angebot.setBeschreibung(rs.getString("Beschreibung"));
-				} else {
-
-				}
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return angebot;
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+//	private Angebot getAngebot(int id, HttpServletResponse response) {
+//		// TODO Auto-generated method stub
+//		Angebot angebot = null;
+//
+//		try (Connection con = ds.getConnection();
+//				PreparedStatement pstmt = con.prepareStatement("select * from angebot where kundeid = ?");) {
+//			pstmt.setInt(1, id);
+//			try (ResultSet rs = pstmt.executeQuery();) {
+//				if (rs.next()) {
+//					angebot = new Angebot();
+//					angebot.setId(id);
+//					//wie geht das mit dem Bild?
+//					angebot.setBild(rs.getString("bild"));
+//					angebot.setBezeichnung(rs.getString("Bezeichnung"));
+//					angebot.setBeschreibung(rs.getString("Beschreibung"));
+//				} else {
+//
+//				}
+//			}
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return angebot;
+//	}
+//
+//	/**
+//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+//	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		doGet(request, response);
+//	}
 
 }

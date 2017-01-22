@@ -438,6 +438,14 @@ function check() {
 		if (calendar.getAttribute("value") == "") {
 			return false;
 		}
+		var calendarHin = document.getElementById("calendarHin");
+		var hin = new Date(calendarHin.getAttribute("value"));
+		var rueck = new Date(calendar.getAttribute("value"));
+		
+		if(hin > rueck){
+			return false;
+		}
+	
 	}
 	return true;
 }
