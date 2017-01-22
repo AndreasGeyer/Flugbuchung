@@ -52,7 +52,8 @@ public class SitzplatzSpeichern extends HttpServlet {
 			if (pos.getFlug().getId() == hinflug.getId()) {
 				if (pos.getSitzplatz() != null) {
 					Sitzplatz s = pos.getSitzplatz();
-					s.setId(Integer.parseInt(request.getParameter("Sitzplatz" + counthin + "H")));
+					if(request.getParameter("Sitzplatz" + counthin + "H")!=null)
+						s.setId(Integer.parseInt(request.getParameter("Sitzplatz" + counthin + "H")));
 					counthin++;
 				}
 			}

@@ -32,73 +32,72 @@
 			</p>
 
 			<div id="grundriss">
-				<form method="post" action="/SitzplatzSpeichern" id="hinForm">
-					<table class="Sitzplatz">
-						<c:forEach begin="1" end="4" var="row">
-							<tr>
-								<c:forEach begin="1" end="12" var="col">
-									<td><c:set var="platzBesetzt" value="false" /> <c:forEach
-											items="${sitzplaetzeHin}" var="sitzHin">
-											<c:if test="${sitzHin.id == ((row-1)*12  + col) }">
-												<c:set var="platzBesetzt" value="true" />
-											</c:if>
-										</c:forEach> <c:if test="${platzBesetzt == true }">
-											<c:if test="${col <= 3 }">
-												<c:if test="${hinFirstClass }">
-													<button type="button" class="besetzt firstClass"
-														id="FC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" />
-												</c:if>
-												<c:if test="${!hinFirstClass }">
-													<button type="button" class="besetzt firstClass"
-														id="FC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" disabled />
-												</c:if>
-											</c:if>
-											<c:if test="${col > 3 }">
-												<c:if test="${hinFirstClass }">
-													<button type="button" class="besetzt economyClass"
-														id="EC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" />
-												</c:if>
-												<c:if test="${!hinFirstClass }">
-													<button type="button" class="besetzt economyClass"
-														id="EC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" disabled />
-												</c:if>
-											</c:if>
-										</c:if> <c:if test="${platzBesetzt == false }">
-											<c:if test="${col <= 3 }">
-												<c:if test="${hinFirstClass }">
-													<button type="button" class="frei firstClass"
-														id="FC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" />
-												</c:if>
-												<c:if test="${!hinFirstClass }">
-													<button type="button" class="frei firstClass"
-														id="FC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" disabled />
-												</c:if>
-											</c:if>
-											<c:if test="${col > 3 }">
-												<c:if test="${!hinFirstClass }">
-													<button type="button" class="frei economyClass"
-														id="EC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" />
-												</c:if>
-												<c:if test="${hinFirstClass }">
-													<button type="button" class="frei economyClass"
-														id="EC${(row-1)*12 + col}H"
-														onclick="changeSitzplatz(this)" disabled />
-												</c:if>
 
+				<table class="Sitzplatz">
+					<c:forEach begin="1" end="4" var="row">
+						<tr>
+							<c:forEach begin="1" end="12" var="col">
+								<td><c:set var="platzBesetzt" value="false" /> <c:forEach
+										items="${sitzplaetzeHin}" var="sitzHin">
+										<c:if test="${sitzHin.id == ((row-1)*12  + col) }">
+											<c:set var="platzBesetzt" value="true" />
+										</c:if>
+									</c:forEach> <c:if test="${platzBesetzt == true }">
+										<c:if test="${col <= 3 }">
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="besetzt firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled/>
 											</c:if>
-										</c:if></td>
-								</c:forEach>
-							</tr>
-						</c:forEach>
-					</table>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="besetzt firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
+										</c:if>
+										<c:if test="${col > 3 }">
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="besetzt economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled/>
+											</c:if>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="besetzt economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
+										</c:if>
+									</c:if> <c:if test="${platzBesetzt == false }">
+										<c:if test="${col <= 3 }">
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="frei firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)" />
+											</c:if>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="frei firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
+										</c:if>
+										<c:if test="${col > 3 }">
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="frei economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)" />
+											</c:if>
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="frei economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
 
+										</c:if>
+									</c:if></td>
+							</c:forEach>
+						</tr>
+					</c:forEach>
+				</table>
+				<form method="post" action="/Flugsuche/SitzplatzSpeichern"
+					id="hinForm">
 					<button type="submit">Weiter</button>
 				</form>
 			</div>

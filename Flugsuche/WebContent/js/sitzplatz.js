@@ -4,24 +4,34 @@ var anzahlsitzplaetze = 3
 function changeSitzplatz(node){
 	if(node.className.indexOf("frei") != -1 && sitzplatzzaehler < anzahlsitzplaetze){
 		node.className = node.className.replace("frei", "reserviert");
-		form = document.getElementById("hinForm");
+		var form = document.getElementById("hinForm");
 		sitzplatzzaehler = sitzplatzzaehler + 1;
 		
+		var hidden = document.createElement("input");
+		hidden.setAttribute("type","hidden");
+		hidden.setAttribute("name","Sitzplatz" + sitzplatzzaehler + "H");
+		hidden.setAttribute("value", node.id.substring(2, node.id.length-1));
+		hidden.setAttribute("id", node.id + "input");
+		form.appendChild(hidden);
+		
+		var rest = anzahlsitzplaetze - sitzplatzzaehler;
+		document.getElementById("countHin").innerText = rest;
 		
 	}else if(node.className.indexOf("reserviert") != -1){
 		node.className = node.className.replace("reserviert", "frei");
-		form = document.getElementById("hinForm");
-		
+		var form = document.getElementById("hinForm");
+		hidden = document.getElementById(node.id+"input");
+		form.removeChild(hidden);
 		sitzplatzzaehler = sitzplatzzaehler - 1;
+		var rest = anzahlsitzplaetze - sitzplatzzaehler;
+		document.getElementById("countHin").innerText = rest;
+		
+		
 	}
 }
 
-function sitzplaetzeBuchen(){
-	plaetze = document.getElementsByClassName("reserviert");
-	form = document.getElementById("hinForm");
-	str = "";
-	for(i=0;i<plaetze.length ;i++){
-		alert(plaetze.id.substring(3));
-		//str = str + "<input type='hidden' name='sitzplatz" + i +"H' value='" + plaetze.id
-	}
+document.addEventListener("DOMContentLoaded",init);
+
+function init(){
+	anzahlsitzplaetze = document.getElementById("countHin").innerText;
 }

@@ -77,7 +77,7 @@ public class SitzplatzLaden extends HttpServlet {
 		}
 		request.setAttribute("hinFirstClass", hinFistClass);
 		request.setAttribute("sitzplaetzeHin", sitzplaetzeHin);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Sitzplatz.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("html/SitzplatzBackup.jsp");
 		System.out.println("/html/SitzplatzBackup.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -101,7 +101,7 @@ public class SitzplatzLaden extends HttpServlet {
 			try (ResultSet rs = pstmt.executeQuery();) {
 				while (rs.next()) {
 					Sitzplatz s = new Sitzplatz();
-					s.setFirstClass(rs.getBoolean("isFirstClass"));
+					s.setFirstClass(rs.getBoolean("istFirstClass"));
 					s.setId(rs.getInt("sitzplatzId"));
 					sitzplaetze.add(s);
 				}
