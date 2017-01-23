@@ -1,3 +1,4 @@
+// Geyer Andreas
 var sitzplatzzaehler = 0;
 var anzahlsitzplaetze;
 var sitzplatzzaehlerrueck = 0;

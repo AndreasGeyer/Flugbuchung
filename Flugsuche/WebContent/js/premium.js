@@ -1,4 +1,4 @@
-
+// Geyer Andreas
 function oeffneKarte() {
 	document.getElementById("kredit").className = "aktiviert";
 	document.getElementById("last").className = "";
