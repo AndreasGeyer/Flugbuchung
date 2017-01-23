@@ -29,23 +29,23 @@
 				<button id="last" onclick="oeffneLast()">Per Lastschrift
 					bezahlen</button>
 			</div>
-			<form id="kreditkarte" class="aktiviert">
+			<form id="kreditkarte" class="aktiviert" method="post" action ="/Flugsuche/PremiumSpeichern">
 				<p>
 					<label>Kreditkartennummer</label> <input type="text"
-						name="kartennr">
+						name="kartennr" pattern=".{13,16}">
 				</p>
 				<p>
-					<label>Prüfnummer</label> <input type="text" name="preufnr">
+					<label>Prüfnummer</label> <input type="text" name="preufnr" pattern=".{3}">
 				</p>
 				<button type="submit" class="submitButton">Zahlungspflichtig
 					abschließen!</button>
 			</form>
-			<form id="lastschrift">
+			<form id="lastschrift" method="post" action ="/Flugsuche/PremiumSpeichern">
 				<p>
-					<label>IBAN</label> <input type="text" name="iban">
+					<label>IBAN</label> <input type="text" name="iban" pattern=".{22}">
 				</p>
 				<p>
-					<label>BIC</label> <input type="text" name="bic">
+					<label>BIC</label> <input type="text" name="bic" pattern=".{8,11}">
 				</p>
 				<button type="submit" class="submitButton">Zahlungspflichtig
 					abschließen!</button>
