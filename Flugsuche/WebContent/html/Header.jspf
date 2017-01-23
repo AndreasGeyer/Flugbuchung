@@ -39,10 +39,17 @@
 			</c:otherwise>
 		</c:choose>
 	</nav>
-	<div id="popupUserFenster">
+	<div id="popupUserFenster"
+		<c:if test="${anmeldenerror }">
+			class="anmeldenAktiviert"
+		</c:if>
+	>
 		<c:choose>
 			<c:when test="${cookie['kundenid'] == null}">
 				<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+					<c:if test="${anmeldenerror }">
+						<p class="passwordError">User Name oder Passwort waren falsch!</p>
+					</c:if>
 					<p>E-Mail:<br><input name="email" type="text"></p>
 					<p>Passwort:<br><input name="password" type="password"></p>
 					<input type="submit" value="Login" id="loginButton">

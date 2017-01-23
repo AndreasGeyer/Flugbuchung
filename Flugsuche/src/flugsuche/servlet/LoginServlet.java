@@ -52,20 +52,16 @@ public class LoginServlet extends HttpServlet {
 				idStr = "0" + idStr;
 			}
 			Cookie loginCookie = new Cookie("kundenid", idStr);
-			loginCookie.setMaxAge(30*600);
+			loginCookie.setMaxAge(30*60*24);
 			response.addCookie(loginCookie);
-			response.sendRedirect("html/Startseite.jsp");
+			response.setCharacterEncoding("utf-8");
+			response.sendRedirect(request.getContextPath() + "/html/Startseite.jsp");
 		}
 		catch(Exception e){
-			final PrintWriter out = response.getWriter();
-			out.println("<!DOCTYPE html>"); 
-			out.println("<html>"); 
-			out.println("<body>"); 
-			out.println("<h3>" + e.getMessage() + "</h3>"); 
-			e.printStackTrace();
-			out.println("Datum: <b>" + new Date() + "/b");
-			out.println("</body>");
-			out.println("</html>");
+			request.setAttribute("anmeldenerror", true);
+			response.setCharacterEncoding("utf-8");
+			RequestDispatcher disp = request.getRequestDispatcher("/html/Startseite.jsp");
+			disp.forward(request, response);
 		}
 		
 

@@ -83,6 +83,11 @@ header > #popupUserFenster.anmeldenAktiviert, header > #popupUserFenster.userAkt
   
 }
 
+header > #popupUserFenster.anmeldenAktiviert  p.passwordError{
+	color: red;
+	font-weight: bold;
+}
+
 header > #popupUserFenster.anmeldenAktiviert #loginButton{
   border: solid black 2px;
   border-radius: 5px;
