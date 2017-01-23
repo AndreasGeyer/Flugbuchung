@@ -19,17 +19,20 @@
 	<div id="navigation">
 		<nav>
 			<ul>
-				<li><a href="../html/Flugsuche.jsp">Flug wählen</a></li>
-				<li><a href="../html/Serviceleistungen.jsp">Serviceleistungen</a></li>
-				<li><a href="../html/Passagier.jsp">Passagierdaten</a></li>
-				<li><a href="../html/Zahlungsart.jsp">Zahlung</a></li>
+				<li><a
+					href="/Flugsuche/Flugbuchung">Flug
+						wählen</a></li>
+				<li><a  href="/Flugsuche/ServiceLaden">Serviceleistungen</a></li>
+				<li><a class = "selectedA" href="/Flugsuche/PassgierLaden">Passagierdaten</a></li>
+				<li><a >Sitzplatz</a></li>
+				<li><a >Zahlung</a></li>
 				<li><a href="#">Bestätigung</a></li>
 			</ul>
 		</nav>
 	</div>
 
 	<article>
-		<form action="PassagierSpeichern" method="post">
+		<form action="/Flugsuche/PassagierSpeichern" method="post">
 		<fieldset>
 			<legend>Passagierdaten</legend>
 			<c:forEach begin="1" end="${erwachsener}" var="val">

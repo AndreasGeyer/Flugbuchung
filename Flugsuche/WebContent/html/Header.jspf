@@ -15,7 +15,7 @@
 	<nav>
 		<a href="${pageContext.request.contextPath}/html/Startseite.jsp"><button>Startseite</button></a>
 		<a href="/Flugsuche/Flugbuchung"><button >Flugsuche</button></a>
-		<a href="${pageContext.request.contextPath}/html/Angebotsseite.jsp"><button>Angebote</button></a>
+		<a href="/Flugsuche/AngeboteLaden"><button>Angebote</button></a>
 		<!-- Hier muss Cookie Management eingefügt werden -->
 		
 		<c:choose>

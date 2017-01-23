@@ -23,6 +23,7 @@ import flugsuche.bean.Flug;
 
 /**
  * Servlet implementation class FlugTableAktualisieren
+ * Bauer Jürgen
  */
 @WebServlet("/FlugTableAktualisieren")
 public class FlugTableAktualisieren extends HttpServlet {
@@ -39,6 +40,8 @@ public class FlugTableAktualisieren extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	// Der bisherige Flüge werden nach speziellen Kriterien geprüft, um sie zu sortieren
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -59,7 +62,8 @@ public class FlugTableAktualisieren extends HttpServlet {
 
 		ArrayList<Flug> flugList = new ArrayList<>();
 		String[] gesellschaften = request.getParameter("ges").toString().split(",");
-		System.out.println("direktfluege"+direktfluege.size());
+	
+		//Zuordnung der Flüge, die Kriterien erfüllen
 		for (Flug flug : direktfluege) {
 
 			if (flug.getPreis() <= preisHin && flug.getAbflugzeit().compareTo(uhrzeitHin) <= 0
@@ -79,7 +83,9 @@ public class FlugTableAktualisieren extends HttpServlet {
 		}
 
 		String sort = request.getParameter("sortingHin");
-		System.out.println("sorting" + sort);
+		
+		//Ausführung der Comparatoren um Listen zu ordnen
+		
 		if (sort.equals("1")) {
 			Collections.sort(flugList, ComparatorFlug.getComparatorPreis());
 

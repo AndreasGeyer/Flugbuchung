@@ -1,3 +1,5 @@
+<!-- Author Bauer Jürgen -->
+
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 
@@ -34,10 +36,11 @@
 		<nav>
 			<ul>
 				<li><a
-					href="${pageContext.request.contextPath}/html/Flugsuche.jsp">Flug
+					href="/Flugsuche/Flugbuchung">Flug
 						wählen</a></li>
-				<li><a>Serviceleistungen</a></li>
+				<li><a class = "selectedA" href=""/Flugsuche/ServiceLaden">Serviceleistungen</a></li>
 				<li><a>Passagierdaten</a></li>
+				<li><a>Sitzplatz</a></li>
 				<li><a>Zahlung</a></li>
 				<li><a>Bestätigung</a></li>
 			</ul>

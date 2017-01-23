@@ -144,16 +144,23 @@ public class Flug implements Serializable {
 
 	public void calculatePreis() {
 		double minPreis = preis;
+		System.out.println(angebotListe.size()+"Ang");
 		for (Angebot angebot : angebotListe) {
+			
 			if (minPreis > angebot.getPreis()) {
 				minPreis = angebot.getPreis();
 			}
 		}
+		System.out.println(minPreis);
 		preis = minPreis;
 	}
 
 	public int freeSeats(boolean isFirstClass) {
-		int max = flugzeugtyp.getSeatsEconomy();
+		int max = 0;
+		if(!isFirstClass)
+				max = flugzeugtyp.getSeatsEconomy();
+		else
+			max = flugzeugtyp.getSeatsFirstClass();
 		int besetzt = 0;
 		for (Sitzplatz platz : sitzplatzListe) {
 			if (platz.isFirstClass() == isFirstClass ) {

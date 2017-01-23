@@ -52,11 +52,11 @@
 
 				<div class="visible Angebot1">
 
-					<h2>Von Rom nach London</h2>
+					<h2>Von Atlanta nach London</h2>
 					<div id="Angebotsinhalt">
 						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
 							
-						<img src="../img/Angebot/London.jpg" />
+						<img src="${pageContext.request.contextPath}/img/Angebot/London.jpg" />
 						<div>
 							<c>Ready for Tee-Time?</c>
 							<br>
@@ -66,31 +66,28 @@
 								an die nächste. Traditionen wie die Schlüsselzeremonie im Tower
 								überdauern die rasanten Veränderungen, denen die Stadt
 								ausgesetzt ist.</p>
-							<p class="alterPreis">115,99€</p>
-							<p class="neuerPreis">89,89€</p>
+							<p class="alterPreis">193,59€</p>
+							<p class="neuerPreis">9,89 €</p>
 						</div>
 					
 						<button type="Button" id="naechstesAngebot"
 							onclick="naechstesAngebot()"></button>
 					</div>
-					<form>
-					<button type="button" id="AlleAngebote" formaction="/Flugsuche/AngebotLaden"
-						formmethod="get">Weitere
-						Angebote</button></form>
+
 					<input type="hidden" name="ankunft" value="London"> <input
 						type="hidden" name="hinflug" value="Rom">
 					<form><button class="submitButton" type="submit"
-						formaction="/Flugsuche/Flugbuchung?abflug=Rom&ankunft=London" formmethod="Post">Zum
+						formaction="/Flugsuche/Flugbuchung?abflug=Atlanta&ankunft=London&DateHinflug=19.09.2017" formmethod="Post">Zum
 						Angebot</button></form>
 
 				</div>
 
 				<div class="unvisible Angebot2">
 
-					<h2>Von München nach Madrid</h2>
+					<h2>Von Jakatar nach Madrid</h2>
 					<div id="Angebotsinhalt">
 						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-						<img src="../img/Angebot/madrid.jpg" />
+						<img src="${pageContext.request.contextPath}/img/Angebot/madrid.jpg" />
 						<div>
 							<c>Madrid: Das pulsierende Herz Spaniens </c>
 							<br>
@@ -99,24 +96,24 @@
 								gute Gastronomie, Lebendigkeit und Sehenswürdigkeiten machen die
 								spanische Hauptstadt zu einem der spannendsten Städtereiseziele
 								in Spanien.</p>
-							<p class="alterPreis">135,50€</p>
-							<p class="neuerPreis">100,50€</p>
+							<p class="alterPreis">409,23 €</p>
+							<p class="neuerPreis">100,40 €</p>
 						</div>
 						<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 					</div>
-					<form><button type="button" id="AlleAngebote" href="Angebotsseite.jsp">Weitere Angebote</button></form>
+
 					<input type="hidden" name="ankunft" value="Madrid"> <input
 						type="hidden" name="hinflug" value="Muenchen">
-					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Muenchen&ankunft=Madrid"
+					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Jakatar&ankunft=Madrid&DateHinflug=17.07.2017"
 						formmethod="post">Zum Angebot</button></form>
 
 				</div>
 				<div class="unvisible Angebot3">
 
-					<h2>Von Bankok nach Zürich</h2>
+					<h2>Von Seattle nach Zürich</h2>
 					<div id="Angebotsinhalt">
 						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-						<img src="../img/Angebot/zuerich.jpg" />
+						<img src="${pageContext.request.contextPath}/img/Angebot/zuerich.jpg" />
 						<div>
 							<c>Einmal in die Berge </c>
 							<br>
@@ -125,16 +122,15 @@
 								von Zürich zählen die engen Gassen in der westlichen Altstadt
 								wie die historische 'Schipfe'. Im Osten liegt das Großmünster,
 								das Rathaus und sowie die Spiegelgasse und der Neumarkt.</p>
-							<p class="alterPreis">88,25</p>
-							<p class="neuerPreis">66,00€</p>
+							<p class="alterPreis">520,43 €</p>
+							<p class="neuerPreis">66,00 €</p>
 						</div>
 						<button id="naechstesAngebot" onclick="naechstesAngebot()"></button>
 					</div>
-					<form><button type="button" id="AlleAngebote" herf="Angebotsseite.jsp">Weitere
-						Angebote</button></form>
+
 					<input type="hidden" name="ankunft" value="Zürich"> <input
 						type="hidden" name="hinflug" value="Bankok">
-					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Bankok&ankunft=Zuerich"
+					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Seattle&ankunft=Zürich&DateHinflug=15.06.2017"
 						formmethod="post">Zum Angebot</button></form>
 
 				</div>
@@ -143,7 +139,7 @@
 					<h2>Von München nach Amsterdam</h2>
 					<div id="Angebotsinhalt">
 						<button id="vorherigesAngebot" onclick="vorherigesAngebot()"></button>
-						<img src="../img/Angebot/Barcelona.jpg" />
+						<img src="${pageContext.request.contextPath}/img/Angebot/Barcelona.jpg" />
 						<div>
 							<c>Ein Gefühl von Leidenschaft</c>
 							<br>
@@ -151,18 +147,17 @@
 								perfekte Kombination von Städtereise und Urlaub am Meer. Die
 								Arbeiten des niederländischen Architekten Anton van Gaudí zählen zum
 								Weltkulturerbe.</p>
-							<p class="alterPreis">187,87</p>
+							<p class="alterPreis">1400,87 €</p>
 							<p class="neuerPreis">123,99€</p>
 						</div>
 						<button type="button" id="naechstesAngebot"
 							onclick="naechstesAngebot()"></button>
 					</div>
-					<form><button id="AlleAngebote" herf="Angebotsseite.jsp">Weitere
-						Angebote</button></form>
+
 					<input type="hidden" name="ankunft" value="Amsterdam"> <input
 						type="hidden" name="hinflug" value="Muenchen">
 						
-					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Muenchen&ankunft=Amsterdam"
+					<form><button class="submitButton" formaction="/Flugsuche/Flugbuchung?abflug=Muenchen&ankunft=Amsterdam&DateHinflug=08.05.2017"
 						formmethod="post">Zum Angebot</button></form>
 
 				</div>

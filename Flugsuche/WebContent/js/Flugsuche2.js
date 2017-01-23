@@ -1,3 +1,5 @@
+
+// Berechnung der neu Berechnung der Datumselemente
 window.onresize = function() {
 	unsichtibar("HinElement");
 	unsichtibar("RueckElement");
@@ -10,6 +12,8 @@ window.addEventListener("DOMContentLoaded", function() {
 var hinflugSelected = null;
 var rueckFlugselected = null;
 
+
+//Erstellung der Flugdetails
 function displayFlightDetails(event, hin) {
 
 	if (hin == "Hin")
@@ -297,6 +301,7 @@ function ajax(hinorRueck) {
 	}
 }
 
+//Elemente werden auf display = none gesetzt 
 function displayNone(elements, parent) {
 	for (var i = 0; i < elements.length; i++) {
 
@@ -314,6 +319,8 @@ function displayNone(elements, parent) {
 	}
 }
 
+
+//Gibt Elelemt an Position id zurück
 function getElementPosition(elements, id) {
 	for (var i = 0; i < elements.length; i++) {
 		if (elements[i] != null && elements[i].id == id) {
@@ -322,6 +329,8 @@ function getElementPosition(elements, id) {
 	}
 }
 
+
+//Funktion, die die Sichtbarkeit der einzelnen Datumselemente handelt
 function unsichtibar(HinRueck) {
 	var zahl = 5;
 	var left = 0;
@@ -381,6 +390,7 @@ function unsichtibar(HinRueck) {
 
 }
 
+//Verschiebung der Datumselektoren für die Flüge
 function shiftDate(richtung, HinRueck) {
 
 	var nearestElement;
@@ -416,6 +426,8 @@ function shiftDate(richtung, HinRueck) {
 
 }
 
+
+//Ausführung der suchForm
 function submitDate(date, HinRueck) {
 
 	var calendar;
@@ -430,6 +442,8 @@ function submitDate(date, HinRueck) {
 
 }
 
+
+//Prüfung, ob Rückflug richtig befüllt ist
 function check() {
 	
 	var rueckFly = document.getElementById("rueckFly");
@@ -450,6 +464,7 @@ function check() {
 	return true;
 }
 
+
 function displayRueckflug(event) {
 
 	var target = event.target;
@@ -468,6 +483,8 @@ function displayRueckflug(event) {
 	}
 }
 
+
+//Funktion, die die url für den Button vorbeireitet und bei Ausführung weitergibt
 function g() {
 	var element = document.getElementById("weiterButton");
 	var elementsRueck = document.getElementsByName("RueckflugInput");

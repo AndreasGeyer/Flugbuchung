@@ -43,6 +43,7 @@ public class ServiceLaden extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
+	 * Bauer Jürgen
 	 */
 	public ServiceLaden() {
 		super();
@@ -56,7 +57,7 @@ public class ServiceLaden extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
+		//Prüfen ob Kunde bereits eingeloggt
 		Kunde k = null;
 		Cookie cookies[] = request.getCookies();
 		String id = "";
@@ -83,8 +84,17 @@ public class ServiceLaden extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
+		
+		//Erstellen eine Buchung und Zuordnung der gewählten Flüge und Passagieren 
 		String hinflugid = (String) request.getParameter("HinflugInput");
 		String rueckflugid = (String) request.getParameter("RueckflugInput");
+		if(hinflugid == null)
+			hinflugid = (String) session.getAttribute("hinflugid");
+		if(rueckflugid == null)
+			rueckflugid = (String) session.getAttribute("rueckflugid");
+		
+		session.setAttribute("hinflugid", hinflugid);
+		session.setAttribute("rueckflugid", rueckflugid);
 
 		Buchung buchung = new Buchung();
 		buchung.setKunde(k);
@@ -152,7 +162,7 @@ public class ServiceLaden extends HttpServlet {
 		}
 		
 		session.setAttribute("Buchung", buchung);
-
+		response.setCharacterEncoding("utf-8");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Serviceleistungen.jsp");
 		dispatcher.forward(request, response);
 
@@ -177,6 +187,9 @@ public class ServiceLaden extends HttpServlet {
 		}
 		
 	}
+	
+	//Gibt alle Zusatzleistungen eines Fluges
+	
 
 	private List<Zusatzleistung> getZusatzleistungen(Flug flug) {
 
@@ -212,7 +225,8 @@ public class ServiceLaden extends HttpServlet {
 		}
 		return listService;
 	}
-
+	
+	//Suche eines Fluges aus Liste
 	private Flug getFlug(List<Flug> list, int id) {
 		for (Flug flug : list) {
 			if (flug.getId() == id)
@@ -221,6 +235,7 @@ public class ServiceLaden extends HttpServlet {
 		return null;
 	}
 	
+	//Selektion des Kunden
 	public Kunde getUser(int id, HttpServletResponse response) throws Exception {
 		Kunde kunde = null;
 

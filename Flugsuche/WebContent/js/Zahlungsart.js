@@ -12,7 +12,7 @@ function isNumeric(value) {
 
 	for (var i = 0; i < value.length; i++) {
 		if (false == Number.isInteger(parseInt(value.charAt(i)))) {
-			alert(value.charAt(i));
+			
 			return true;
 		}
 	}
@@ -20,7 +20,7 @@ function isNumeric(value) {
 }
 
 function trimIBAN(valueIBAN) {
-	alert(valueIBAN.length);
+	
 	if (valueIBAN.length == 22)
 		return false;
 	return true;

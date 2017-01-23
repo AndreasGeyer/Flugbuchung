@@ -26,6 +26,7 @@ public class ServiceSpeichern extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
+	 * Author Bauer Jürgen
 	 */
 	public ServiceSpeichern() {
 		super();
@@ -51,6 +52,7 @@ public class ServiceSpeichern extends HttpServlet {
 
 		String leistung = request.getParameter("leistung");
 
+		//Falls zurück gegangen wird im Prozess löschen der vorherigen Eingaben
 		if (leistung != null) {
 			String[] leistungen = leistung.split(",");
 			System.out.println(leistungen.toString());
@@ -61,7 +63,7 @@ public class ServiceSpeichern extends HttpServlet {
 				}
 			}
 
-
+// Erstellen neuer Buchungsposition für die Zusatzleistungen
 
 			for (int i = 0; i < leistungen.length; i++) {
 				Flug flug = null;

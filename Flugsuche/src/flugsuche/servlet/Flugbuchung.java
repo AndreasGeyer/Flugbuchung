@@ -62,6 +62,7 @@ public class Flugbuchung extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      Author Bauer Jürgen
 	 */
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -89,15 +90,7 @@ public class Flugbuchung extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		Enumeration<String> e = request.getParameterNames();
-		System.out.println("parastart");
-		while (e.hasMoreElements()) {
-			String string = (String) e.nextElement();
-			System.out.println(string);
 
-		}
-		System.out.println("paraende");
-		System.out.println(request.getParameter("hinflug"));
 
 		// if Zweig: Eingabe über Startseite
 		// else Zweig Eingabe über Flugsuche
@@ -109,7 +102,7 @@ public class Flugbuchung extends HttpServlet {
 
 			try {
 				hinflug = format.parse(request.getParameter("datumhin"));
-				System.out.println("flug: datim" + hinflug.toString());
+		
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
@@ -144,7 +137,7 @@ public class Flugbuchung extends HttpServlet {
 			// Prüfung auf Flugart: nur Hinflug oder Hin- und Rueckflug
 			if (request.getParameter("Flugart") != null) {
 				onlyHinflug = request.getParameter("Flugart").equals("2");
-				System.out.println("onlyHinflug" + onlyHinflug);
+				
 			} else {
 				if (session.getAttribute("onlyHinflug") != null)
 					onlyHinflug = (boolean) session.getAttribute("onlyHinflug");
@@ -263,7 +256,7 @@ public class Flugbuchung extends HttpServlet {
 			preparedStatement.setDate(4, new java.sql.Date(datum.getTime() + 86400000L * 15));
 
 			ResultSet result = preparedStatement.executeQuery();
-			System.out.println(preparedStatement.toString());
+			
 			while (result.next()) {
 				minPreis.put(result.getDate("abflugdatum"), result.getDouble("minPreis"));
 				maxPreis.put(result.getDate("abflugdatum"), result.getDouble("maxPreis"));
@@ -308,9 +301,9 @@ public class Flugbuchung extends HttpServlet {
 				hafen.setLand(result.getString("land"));
 				hafen.setOrt(code);
 				hafen.setZeitzone((Double.valueOf(result.getBigDecimal("zeitzone").toString())));
-				System.out.println(hafen.getOrt());
+			
 			}
-			System.out.println(preparedStatement.toString());
+	
 
 			return hafen;
 
@@ -360,18 +353,19 @@ public class Flugbuchung extends HttpServlet {
 
 		String sql = "SELECT * FROM angebot WHERE fk_flug = ? ";
 		List<Angebot> listAngebot = new ArrayList<Angebot>();
-
+		
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, flug.getId());
+		
 
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
 				Angebot angebot = new Angebot();
 				angebot.setId(result.getInt("angebotid"));
-				angebot.setPreis(result.getDouble("preis"));
+				angebot.setPreis(result.getDouble("angebotspreis"));
 
 				listAngebot.add(angebot);
 
@@ -456,7 +450,7 @@ public class Flugbuchung extends HttpServlet {
 			preparedStatement.setInt(1, abFlughafen.getId());
 			preparedStatement.setInt(2, anFlughafen.getId());
 			preparedStatement.setTimestamp(3, new java.sql.Timestamp(datum.getTime()));
-			System.out.println(preparedStatement.toString());
+			
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {

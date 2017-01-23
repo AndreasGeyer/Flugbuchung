@@ -1,5 +1,7 @@
 /**
+ * Author Bauer Jürgen
  * 
+ * Funktion bei der Auswahl der Funktion Hin und Rückflug
  */
 function displayRueckflug(event) {
 

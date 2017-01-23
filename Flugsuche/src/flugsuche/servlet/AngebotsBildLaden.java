@@ -36,6 +36,7 @@ public class AngebotsBildLaden extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
+	 * Autohr Bauer Jürgen
 	 */
 	public AngebotsBildLaden() {
 		super();
@@ -53,7 +54,7 @@ public class AngebotsBildLaden extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("angebotid"));
 		
-		System.out.println("bild:" + id);
+		
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement("select bild from angebot where angebotid = ?");) {
 			pstmt.setInt(1, id);

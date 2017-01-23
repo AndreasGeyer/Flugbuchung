@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -23,10 +24,13 @@
 	<div id="navigation">
 		<nav>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/html/Flugsuche.jsp">Flug wählen</a></li>
-				<li><a href="${pageContext.request.contextPath}/html/Serviceleistungen.jsp">Serviceleistungen</a></li>
-				<li><a href="${pageContext.request.contextPath}/html/Passagier.jsp">Passagierdaten</a></li>
-				<li><a href="#">Zahlung</a></li>
+				<li><a
+					href="/Flugsuche/Flugbuchung">Flug
+						wählen</a></li>
+				<li><a  href="/Flugsuche/ServiceLaden">Serviceleistungen</a></li>
+				<li><a  href="/Flugsuche/PassgierLaden">Passagierdaten</a></li>
+				<li><a href="/Flugsuche/SitzplatzLaden">Sitzplatz</a></li>
+				<li><a class = "selectedA" >Zahlung</a></li>
 				<li><a href="#">Bestätigung</a></li>
 			</ul>
 		</nav>

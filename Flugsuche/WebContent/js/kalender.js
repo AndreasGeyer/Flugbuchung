@@ -9,6 +9,7 @@ var listInputs = null
 var selectedDate = new Date();
 
 function currentMonthName(calendarHin) {
+
 	selectedDate = new Date();
 	var today = selectedDate;
 	listInputs = calendarHin;
@@ -54,8 +55,8 @@ function createBodyCalender(monthNumber, year, calendarHin) {
 			
 
 				} else {
-					if (today.getMonth() >= date.getMonth()
-							&& today.getFullYear() >= date.getFullYear())
+					if ((today.getMonth() >= date.getMonth()
+							&& today.getFullYear() >= date.getFullYear()) || today.getFullYear() >= date.getFullYear())
 						td.setAttribute("class", "last");
 				}
 

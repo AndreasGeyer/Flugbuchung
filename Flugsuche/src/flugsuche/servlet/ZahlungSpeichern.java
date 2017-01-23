@@ -40,6 +40,7 @@ public class ZahlungSpeichern extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
+	 * Author Bauer Jürgen
 	 */
 	public ZahlungSpeichern() {
 		super();
@@ -60,6 +61,8 @@ public class ZahlungSpeichern extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//Unterscheidung zwischen kreditkarte und Lastschrift
 
 		Buchung buchung = (Buchung) session.getAttribute("Buchung");
 
@@ -95,7 +98,7 @@ public class ZahlungSpeichern extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	//Speicherung der Buchung
 	private void insertBuchung(Buchung buchung) {
 
 		String sql = "INSERT INTO buchung (zeitstempel,fk_kunde,Zahlungsart,Zahlungsnummer)   VALUES(?,?,?,?)";
@@ -124,7 +127,7 @@ public class ZahlungSpeichern extends HttpServlet {
 		}
 
 	}
-
+	//Speicherung der Buchungsposition
 	private void insertBuchungsposition(Buchung buchung) {
 
 		List<Buchungsposition> positionen = buchung.getPositionen();
@@ -176,7 +179,7 @@ public class ZahlungSpeichern extends HttpServlet {
 		}
 
 	}
-
+	//Speicherung des Sitzplatzes
 	private void insertSitzplatz(Sitzplatz platz) {
 
 		String sql = "INSERT INTO sitzplatz (sitzplatzid,istFirstClass,status,fk_flug)   VALUES(?,?,?,?)";

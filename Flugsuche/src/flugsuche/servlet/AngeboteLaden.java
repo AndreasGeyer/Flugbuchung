@@ -42,7 +42,7 @@ public class AngeboteLaden extends HttpServlet {
      */
     public AngeboteLaden() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -56,46 +56,15 @@ public class AngeboteLaden extends HttpServlet {
 		
 		List<Angebot> listAngebot = getAngebote(response);
 		request.setAttribute("listAngebote", listAngebot);
-		System.out.println("listangebot: "+ listAngebot.size());
+	
+		
+		response.setCharacterEncoding("utf-8");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("html/Angebotsseite.jsp");
 		dispatcher.forward(request, response);
 	}
 
-//	private Angebot getAngebot(int id, HttpServletResponse response) {
-//		// TODO Auto-generated method stub
-//		Angebot angebot = null;
-//
-//		try (Connection con = ds.getConnection();
-//				PreparedStatement pstmt = con.prepareStatement("select * from angebot where kundeid = ?");) {
-//			pstmt.setInt(1, id);
-//			try (ResultSet rs = pstmt.executeQuery();) {
-//				if (rs.next()) {
-//					angebot = new Angebot();
-//					angebot.setId(id);
-//					//wie geht das mit dem Bild?
-//					angebot.setBild(rs.getString("bild"));
-//					angebot.setBezeichnung(rs.getString("Bezeichnung"));
-//					angebot.setBeschreibung(rs.getString("Beschreibung"));
-//				} else {
-//
-//				}
-//			}
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return angebot;
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		doGet(request, response);
-//	}
+
 
 	
 	private List<Angebot> getAngebote( HttpServletResponse response) {

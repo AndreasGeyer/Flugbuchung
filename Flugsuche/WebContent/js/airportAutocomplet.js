@@ -1,3 +1,8 @@
+/*Author Bauer Jürgen
+ * 
+ * 
+ * Ajax zum Laden des Airports*/
+
 function loadAirports(event) {
 
 	var xmlhttp = new XMLHttpRequest();
@@ -93,7 +98,8 @@ function loadAirports(event) {
 	xmlhttp.send();
 }
 
-
+/*Autocompletietung wird geschlossen bei Selektion
+ * */
 
 function selectAirport(event, inputField) {
 	var target = event.target;
