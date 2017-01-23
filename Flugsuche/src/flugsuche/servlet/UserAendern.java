@@ -101,7 +101,7 @@ public class UserAendern extends HttpServlet {
 				String n = names.nextElement();
 				if (n.equals("geburtsdatum")) {
 					pstmt.setDate(i,
-							new Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter(n)).getTime()));
+							new Date(new SimpleDateFormat("dd.MM.yyyy").parse(request.getParameter(n)).getTime()));
 				}else if(n.equals("altespasswortAbgleich") ||
 						n.equals("altespasswort") ||
 						n.equals("passwortwdh")){

@@ -12,6 +12,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/user.js"></script>
 </head>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <body>
 	<%@ include file="Header.jspf"%>
 	<div id="main">
@@ -119,7 +121,7 @@
 					</form>
 				</li>
 				<li class="anzeigen" onclick="oeffneAendern('Geburtsdatum')">
-					<h2>Geburtsdatum</h2> <span class="inhalt">${kunde.geburtsdatum}</span><span
+					<h2>Geburtsdatum</h2> <span class="inhalt"><fmt:formatDate value="${kunde.geburtsdatum}" pattern="dd.MM.yyyy" /></span><span
 					class="bearbeiten">Bearbeiten</span>
 				</li>
 				<li id="Geburtsdatum" class="aendern">
@@ -129,7 +131,7 @@
 							<tr>
 								<td><label>Geburtsdatum</label></td>
 								<td><input name="geburtsdatum" type="date"
-									value="${kunde.geburtsdatum}"  pattern="\d{1,2}.\d{1,2}.\d{4}"/></td>
+									value='<fmt:formatDate value="${kunde.geburtsdatum}" pattern="dd.MM.yyyy" />'  pattern="\d{1,2}.\d{1,2}.\d{4}"/></td>
 							</tr>
 							<tr>
 								<td><input type="button"
