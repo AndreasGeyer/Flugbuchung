@@ -32,7 +32,6 @@ div nav a, nav span {
 	color: black;
 	background-color: #F5F5F5;
 	margin-top: 3%;
-	font-family: Bookman Old Style;
 	text-decoration: none;
 }
 
@@ -86,7 +85,6 @@ fieldset {
 	padding-top: 1.5em;
 	padding-left: 7em;
 	border-radius: 3%;
-	font-family: Bookman Old Style;
 	margin-right: auto;
 	background-image: URL("../img/Passagier/PassagierHintergrund.jpg");
 	background-repeat: no-repeat;

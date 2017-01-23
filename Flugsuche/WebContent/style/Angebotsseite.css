@@ -26,7 +26,6 @@ body{
 
 	font-style: italic;
 	text-align: center;
-  font-family: "Bookman Old Style";
 	font-size: 15px;
 }
 
@@ -82,7 +81,6 @@ right: 25%;
 
 b{
 	
-	font-family: "Bookman Old Style";
 	font-size: 30px;
 	color: white;
 	
@@ -90,7 +88,6 @@ b{
 
 #angebote{
    text-align: center;
-  font-family: "Bookman Old Style";
 	font-size: 20px;
 	margin-right: 100px;
 	margin-left: 100px;

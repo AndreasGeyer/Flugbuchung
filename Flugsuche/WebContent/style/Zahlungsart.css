@@ -43,9 +43,11 @@ div nav a:focus, nav a:hover, nav span {
 	text-decoration: underline;
 }
 
+
+
 article {
-	width: 70%;
-	margin-left: 28%;
+	width: 100%;
+	margin-left: 25%;
 	margin-top: 20px;
 	padding: 20px;
 	margin-bottom: 25px;
@@ -54,57 +56,30 @@ article {
 article h1 {
 	text-align: center;
 	background-color: ghostwhite;
-	margin-right: 47%;
-	border-radius: 3%;
-	font-family: Bookman Old Style;
+	width: 50%;
+	border-radius: 3%;;
 }
 
-lable {
-	display: block;
-	text-align: left;
-}
 
-input {
-	width: 20em;
-}
 
-textarea {
-	width: 20em;
-	border: 1px soild black;
-}
+
+
+
 
 fieldset {
-	width: 30em;
+	width: 50%;
 	padding-top: 1.5em;
 	padding-left: 1.5em;
 	background: ghostwhite;
 	border-radius: 3%;
-	font-family: Bookman Old Style;
 }
 
-.mainField {
-	display: flex;
-	flex-wrapper: row wrap;
-}
 
-#sidebar {
-	float: left;
-	padding: 2% 2%;
-	width: 28%;
-	background-color: ghostwhite;
-	border-radius: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 4%;
-	height: 50%;
-	font-family: Bookman Old Style;
-}
+
 
 #main {
 	float: right;
-	width: 65%;
-	margin-right: 5%;
-	font-family: Bookman Old Style;
+	width: 100%;
 }
 
 

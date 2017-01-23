@@ -31,7 +31,6 @@ div nav span {
 	color: black;
 	background-color: #F5F5F5;
 	margin-top: 3%;
-	font-family: Bookman Old Style;
 	text-decoration: none;
 }
 
@@ -52,7 +51,6 @@ h1{
 	background-color: ghostwhite;
 	margin-left: 10%;
 	margin-right: 10%;
-	font-family: Bookman Old Style;
 }
 
 .aufTeilung >.service >img{
@@ -77,7 +75,6 @@ h1{
 
 #insurance p {
 	width: 80%;
-	font-family: Bookman Old Style;
 }
 
 .service, #kindInsurance, #food, #selector, #a {
@@ -123,7 +120,6 @@ div h3 {
 	text-align: center;
 	background-color: #1188cc;
 	color: white;
-	font-family: Bookman Old Style;
 	margin-bottom: 5%;
 }
 
@@ -147,21 +143,18 @@ li {
 	margin-top: 5px;
 	padding-left: 20px;
 	font-weight: 500;
-	font-family: Bookman Old Style;
 }
 
 input {
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-right: 20px;
-	font-family: Bookman Old Style;
 }
 
 .description {
 	position:relative;
 	width: 35%;
 	background-color: #ddd;
-	font-family: Bookman Old Style;
 }
 
 div label {
@@ -172,12 +165,10 @@ div label {
 	right: 5px;
 	bottom: 2%;
 	font-size: 130%;
-	font-family: Bookman Old Style;
 }
 
 h4 {
 	margin: 15px;
-	font-family: Bookman Old Style;
 }
 
 .auswahl {

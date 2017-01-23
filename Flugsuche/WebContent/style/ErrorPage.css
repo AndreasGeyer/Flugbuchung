@@ -32,7 +32,6 @@ body{
 #main > p{
 
 	text-align: center;
-	font-family: "Calisto MT";
 	font-size: 70px;
 	font-weight: bold;
 	margin-top: 15%;
@@ -41,7 +40,6 @@ body{
 
 body > #Beschreibung{
 	text-align: center;
-	font-family: "Calisto MT";
 	font-size: 25px;
 	margin-left: 12%;
 	margin-right: 10%;

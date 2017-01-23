@@ -37,19 +37,6 @@
 	</div>
 
 	<div class="mainField">
-		<div id="sidebar">
-			<h4>Via Kreditkarte</h4>
-			<p>Zahlung via Kreditkarte: Bei dieser Zahlungsart fallen
-				Gebühren in Höhe von 5,99€ zusätzlich zur zum Betrag an.</p>
-			<br> <img src="${pageContext.request.contextPath}/img/Zahlungsart/kreditkarte.png"
-				alt="Kreditkarte" style="width: 150px; height: 83px;"> <br>
-			<h4>Via Lastschrift</h4>
-			<p>Zahlung via Lastschrift: Bei dieser Zahlungsart wird innerhalb
-				von 14 Tagen der Betrag gebührenfrei von dem angegebenen Konto
-				angebucht.</p>
-			<br> <img src="${pageContext.request.contextPath}/img/Zahlungsart/lastschrift.png"
-				alt="Lastschrift" style="width: 80px; height: 83px;">
-		</div>
 		<div id="main">
 			<article>
 			

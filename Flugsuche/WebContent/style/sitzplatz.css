@@ -1,4 +1,40 @@
+#navigation {
+	margin-top: 9%;
+}
 
+div nav ul {
+	margin: 0;
+	padding: 0.8em;
+	text-align: center;
+}
+
+div nav li {
+	list-style: none;
+	display: inline-block;
+}
+
+div nav a, nav span {
+	display: block;
+	width: 11em;
+	padding: 0.5em;
+	font-weight: bold;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px white inset;
+	color: black;
+	background-color: #F5F5F5;
+	margin-top: 3%;
+	font-family: Bookman Old Style;
+	text-decoration: none;
+}
+
+div nav a:focus, nav a:hover, nav span {
+	color: black;
+	background-color: darkgrey;
+}
+
+.selectedA{
+	text-decoration: underline;
+}
 body{
 	background-image: url("../img/Registrierung/HintergrundRegistrierung.jpg");
 		background-repeat: no-repeat;
@@ -7,15 +43,15 @@ body{
 
 
 
-#main > h1{
-    text-align: center; 
-}
-#main >p{
+
+main >p{
   text-align: center; 
 }
 
 #grundriss{
-
+   border: white solid 5px;
+   background-color: rgb(215,204,186);
+  background-color-opacity:0.5;
   background-position: 15px 0px;
   background-image: url(../img/querschnitt2.png);
   background-size: 750px 510px;
@@ -23,6 +59,9 @@ body{
   width: 780px;
   margin: auto;
   margin-top: 10px;
+  opacity: 0.9;
+    border-radius: 50px;
+  
 }
 
 table.Sitzplatz{

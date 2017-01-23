@@ -62,7 +62,8 @@ public class SitzplatzLaden extends HttpServlet {
 			request.setAttribute("sitzplaetzeRueck", sitzplaetzeRueck);
 			boolean rueckFistClass = false;
 			for(int i = 0; i<buchung.getPositionen().size(); i++){
-				if(buchung.getPositionen().get(i).getFlug().getId() == rueckflug.getId()){
+				if(buchung.getPositionen().get(i).getFlug().getId() == rueckflug.getId() &&
+						buchung.getPositionen().get(i).getSitzplatz()!= null){
 					rueckFistClass = buchung.getPositionen().get(i).getSitzplatz().isFirstClass();
 				}
 			}
