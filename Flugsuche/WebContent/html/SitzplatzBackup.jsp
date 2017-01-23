@@ -98,18 +98,25 @@
 				</table>
 				<form method="post" action="/Flugsuche/SitzplatzSpeichern"
 					id="hinForm">
-					<button type="submit">Weiter</button>
+			<button type="submit" class="submitButton" id="submitHin">Weiter</button>
 				</form>
 			</div>
 		</c:if>
 		<c:if test="${!onlyHinflug }">
 			<p>
-				Anzahl noch zu vergebener Plätze für den Hinflug: <span
-					id="countHin"> <c:out
+				Anzahl noch zu vergebener Plätze: <span id="countHin"> <c:out
 						value="${erwachsener + childs + babies }"></c:out>
 				</span>
+				<c:if test="${hinFirstClass }">
+				(First Class)
+				</c:if>
+				<c:if test="${!hinFirstClass }">
+				(Economy Class)
+				</c:if>
 			</p>
+
 			<div id="grundriss">
+
 				<table class="Sitzplatz">
 					<c:forEach begin="1" end="4" var="row">
 						<tr>
@@ -121,26 +128,51 @@
 										</c:if>
 									</c:forEach> <c:if test="${platzBesetzt == true }">
 										<c:if test="${col <= 3 }">
-											<input type="checkbox" class="besetzt firstClass"
-												id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="FC${(row-1)*12 + col}H/">
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="besetzt firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled/>
+											</c:if>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="besetzt firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
 										</c:if>
 										<c:if test="${col > 3 }">
-											<input type="checkbox" class="besetzt economyClass"
-												id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="EC${(row-1)*12 + col}H" />
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="besetzt economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled/>
+											</c:if>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="besetzt economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
 										</c:if>
 									</c:if> <c:if test="${platzBesetzt == false }">
 										<c:if test="${col <= 3 }">
-											<input type="checkbox" class="frei firstClass"
-												id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="FC${(row-1)*12 + col}H" />
-
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="frei firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)" />
+											</c:if>
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="frei firstClass"
+													id="FC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
 										</c:if>
 										<c:if test="${col > 3 }">
-											<input type="checkbox" class="frei economyClass"
-												id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="EC${(row-1)*12 + col}H" />
+											<c:if test="${!hinFirstClass }">
+												<button type="button" class="frei economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)" />
+											</c:if>
+											<c:if test="${hinFirstClass }">
+												<button type="button" class="frei economyClass"
+													id="EC${(row-1)*12 + col}H" onclick="changeSitzplatz(this)"
+													disabled />
+											</c:if>
 
 										</c:if>
 									</c:if></td>
@@ -148,52 +180,10 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
-			<p>
-				Anzahl noch zu vergebener Plätze für den Rückflug: <span
-					id="countRueck"> <c:out
-						value="${erwachsener + childs + babies }"></c:out>
-				</span>
-			</p>
-			<div id="grundriss">
-				<table class="Sitzplatz">
-					<c:forEach begin="1" end="4" var="row">
-						<tr>
-							<c:forEach begin="1" end="12" var="col">
-								<td><c:set var="platzBesetzt" value="false" /> <c:forEach
-										items="${sitzplaetzeRueck}" var="sitzRueck">
-										<c:if test="${sitzRueck.id == ((row-1)*12  + col) }">
-											<c:set var="platzBesetzt" value="true" />
-										</c:if>
-									</c:forEach> <c:if test="${platzBesetzt == true }">
-										<c:if test="${col <= 3 }">
-											<input type="checkbox" class="besetzt firstClass"
-												id="FC${(row-1)*12 + col}R" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="FC${(row-1)*12 + col}R/">
-										</c:if>
-										<c:if test="${col > 3 }">
-											<input type="checkbox" class="besetzt economyClass"
-												id="EC${(row-1)*12 + col}R" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="EC${(row-1)*12 + col}R" />
-										</c:if>
-									</c:if> <c:if test="${platzBesetzt == false }">
-										<c:if test="${col <= 3 }">
-											<input type="checkbox" class="frei firstClass"
-												id="FC${(row-1)*12 + col}R" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="FC${(row-1)*12 + col}R" />
-
-										</c:if>
-										<c:if test="${col > 3 }">
-											<input type="checkbox" class="frei economyClass"
-												id="EC${(row-1)*12 + col}R" onclick="changeSitzplatz(this)"
-												name="sitzplatz" value="EC${(row-1)*12 + col}R" />
-
-										</c:if>
-									</c:if></td>
-							</c:forEach>
-						</tr>
-					</c:forEach>
-				</table>
+				<form method="post" action="/Flugsuche/SitzplatzSpeichern"
+					id="hinForm">
+			<button type="submit" class="submitButton" id="submitHin">Weiter</button>
+				</form>
 			</div>
 		</c:if>
 	</div>

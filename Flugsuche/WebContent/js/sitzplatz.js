@@ -28,10 +28,18 @@ function changeSitzplatz(node){
 		
 		
 	}
+	
+	if(anzahlsitzplaetze == sitzplatzzaehler){
+		document.getElementById("submitHin").disabled = false;
+	}
+	else{
+		document.getElementById("submitHin").disabled = true;
+	}
 }
 
 document.addEventListener("DOMContentLoaded",init);
 
 function init(){
 	anzahlsitzplaetze = document.getElementById("countHin").innerText;
+	document.getElementById("submitHin").disabled = true;
 }

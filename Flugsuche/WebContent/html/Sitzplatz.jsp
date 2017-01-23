@@ -79,9 +79,9 @@
 							pattern="\d{1,2}.\d{1,2}.\d{4}">
 					</div>
 					<br> <br>
-				</div>
+				</div> 
 			</c:forEach>
-			<button type="submit">Weiter</button>
+			<button type="submit" class="submitButton" id="submitHin">Weiter</button>
 		</form>
 	</div>
 	<%@ include file="Footer.jspf"%>
