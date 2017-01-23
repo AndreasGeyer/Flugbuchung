@@ -11,7 +11,7 @@
 
 
 
-<title>Bestellbestätigung</title>
+<title>Meine Bestellbestätigung</title>
 
 </head>
 <jsp:useBean id="buchung" class="flugsuche.bean.Buchung" />

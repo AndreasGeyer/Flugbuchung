@@ -23,6 +23,7 @@ import flugsuche.bean.Kunde;
 
 /**
  * Servlet implementation class LoginServlet
+ * Geyer Andreas
  */
 
 public class LoginServlet extends HttpServlet {

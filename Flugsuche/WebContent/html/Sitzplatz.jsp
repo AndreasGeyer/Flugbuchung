@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/main.css" />
 <link rel="stylesheet" type="text/css"
@@ -11,7 +12,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/sitzplatz.js"></script>
 
-<title>Insert title here</title>
+<title>Flugbuchung - Sitzplatz buchen</title>
 </head>
 <body>
 	<%@ include file="Header.jspf"%>

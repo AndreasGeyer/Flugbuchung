@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 
 /**
  * Servlet implementation class UserBildAendern
+ * Geyer Andreas
  */
 @WebServlet("/UserBildAendern")
 @MultipartConfig(

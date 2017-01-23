@@ -27,6 +27,7 @@ import flugsuche.bean.Kunde;
 
 /**
  * Servlet implementation class UserBildLaden
+ * Geyer Andreas
  */
 @WebServlet("/UserBildLaden")
 public class UserBildLaden extends HttpServlet {

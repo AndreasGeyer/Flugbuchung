@@ -19,6 +19,7 @@ import flugsuche.bean.Sitzplatz;
 
 /**
  * Servlet implementation class SitzplatzSpeichern
+ * Geyer Andreas
  */
 @WebServlet("/SitzplatzSpeichern")
 public class SitzplatzSpeichern extends HttpServlet {

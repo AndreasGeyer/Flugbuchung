@@ -22,6 +22,7 @@ import flugsuche.bean.Kunde;
 
 /**
  * Servlet implementation class PremiumSpeichern
+ * Geyer Andreas
  */
 @WebServlet("/PremiumSpeichern")
 public class PremiumSpeichern extends HttpServlet {

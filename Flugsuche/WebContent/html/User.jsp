@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Mein Bereich</title>
 <meta charset="utf-8">
-<title>User</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/main.css" />
 <link rel="stylesheet" type="text/css"

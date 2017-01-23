@@ -28,6 +28,7 @@ import flugsuche.bean.Zusatzleistung;
 
 /**
  * Servlet implementation class BestaetigungLaden
+ * Geyer Andreas
  */
 @WebServlet("/BestaetigungLaden")
 public class BestaetigungLaden extends HttpServlet {

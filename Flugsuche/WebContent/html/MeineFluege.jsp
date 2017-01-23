@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>User</title>
+<title>Meine gebuchten Flüge</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/main.css" />
 <link rel="stylesheet" type="text/css"

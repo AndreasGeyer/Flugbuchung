@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Premium ist besser!</title>
 <meta charset="utf-8">
-<title>Premium</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/main.css" />
 <link rel="stylesheet" type="text/css"

@@ -27,6 +27,7 @@ import flugsuche.bean.Zusatzleistung;
 
 /**
  * Servlet implementation class SitzplatzLaden
+ * Geyer Andreas
  */
 @WebServlet("/SitzplatzLaden")
 public class SitzplatzLaden extends HttpServlet {

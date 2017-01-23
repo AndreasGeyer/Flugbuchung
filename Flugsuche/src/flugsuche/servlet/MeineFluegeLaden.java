@@ -28,6 +28,7 @@ import flugsuche.bean.Zusatzleistung;
 
 /**
  * Servlet implementation class MeineFluegeLaden
+ * Geyer Andreas
  */
 @WebServlet("/MeineFluegeLaden")
 public class MeineFluegeLaden extends HttpServlet {
