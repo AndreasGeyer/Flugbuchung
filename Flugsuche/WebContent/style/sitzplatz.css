@@ -67,9 +67,21 @@ table.Sitzplatz tr:nth-child(3){
 .frei{
   background-color: green;
 }
-.besetzt{
+
+table.Sitzplatz button[disabled].besetzt{
+  background-color: red;
+}
+table.Sitzplatz button[disabled].besetzt:hover{
   background-color: red;
 }
 .reserviert{
   background-color: yellow;
+}
+
+table.Sitzplatz button[disabled]{
+  background-color: grey;
+}
+
+table.Sitzplatz button[disabled]:hover{
+  background-color: grey;
 }

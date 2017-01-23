@@ -163,7 +163,7 @@ public class BestaetigungLaden extends HttpServlet {
 						buchung.setPositionen(positionen);
 						buchung.setId(rs.getInt("buchungnr"));
 						buchung.setZahlungsart(rs.getString("zahlungsart"));
-						buchung.setZahlungsnummer(rs.getString("zahlungnr"));
+						buchung.setZahlungsnummer(rs.getString("zahlungnr").replace("_", " / "));
 						buchung.setTimestamp(rs.getTimestamp("buchungdatum"));
 						erste = false;
 					}

@@ -118,3 +118,14 @@ article > ul > li.aendern  form button, article > ul > li.aendern form input[typ
   border-radius: 5px;
 }
 
+article form#passwortForm tr#msgneuespasswort,article form#passwortForm tr#msgaltespasswort{
+	display: none;
+}
+
+article form#passwortForm tr#msgneuespasswort.passwortFalsch,
+article form#passwortForm tr#msgaltespasswort.passwortFalsch{
+	display: inherit;
+	color:red;
+	font-weight: bold;
+}
+

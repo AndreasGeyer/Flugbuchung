@@ -129,7 +129,7 @@
 							<tr>
 								<td><label>Geburtsdatum</label></td>
 								<td><input name="geburtsdatum" type="date"
-									value="${kunde.geburtsdatum}" /></td>
+									value="${kunde.geburtsdatum}"  pattern="\d{1,2}.\d{1,2}.\d{4}"/></td>
 							</tr>
 							<tr>
 								<td><input type="button"
@@ -154,7 +154,7 @@
 							</tr>
 							<tr>
 								<td><input type="button" onclick="schlieseAendern('Email')"
-									value="Abbrechen"></td>
+									value="Abbrechen" ></td>
 								<td><button type="submit" class="submitButton">Speichern</button></td>
 							</tr>
 						</table>
@@ -167,24 +167,32 @@
 				</li>
 				<li id="Passwort" class="aendern">
 					<form action="${pageContext.request.contextPath}/UserAendern"
-						method="post">
+						method="post" id="passwortForm">
+						<input type="hidden" name="altespasswortAbgleich" id="altespasswortAbgleich"
+							value="${kunde.passwort }" />
 						<table>
 							<tr>
 								<td><label>Altes Passwort</label></td>
-								<td><input name="altespasswort" type="password" /></td>
+								<td><input name="altespasswort" type="password" id="altespasswort"/></td>
+							</tr>
+							<tr class="" id="msgaltespasswort">
+								<td colspan="2">Das alte Passwort ist falsch!</td>
 							</tr>
 							<tr>
 								<td><label>Neues Passwort</label></td>
-								<td><input name="passwort" type="password" /></td>
+								<td><input name="passwort" type="password" id="neuespasswort"/></td>
 							</tr>
 							<tr>
 								<td><label>Neues Passwort (wdh)</label></td>
-								<td><input name="passwortwdh" type="password" /></td>
+								<td><input name="passwortwdh" type="password" id="neuespasswortwdh"/></td>
+							</tr>
+							<tr class="" id="msgneuespasswort">
+								<td colspan="2">Die eingegebenen Passwörter stimmen nicht überein!</td>
 							</tr>
 							<tr>
 								<td><input type="button"
 									onclick="schlieseAendern('Passwort')" value="Abbrechen"></td>
-								<td><button type="submit" class="submitButton">Speichern</button></td>
+								<td><button type="button" class="submitButton" onclick="checkPasswort()">Speichern</button></td>
 							</tr>
 						</table>
 

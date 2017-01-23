@@ -82,7 +82,13 @@ public class UserAendern extends HttpServlet {
 		String statement = "update kunde set ";
 		Enumeration<String> names = request.getParameterNames();
 		while (names.hasMoreElements()) {
-			statement += names.nextElement() + " = ? , ";
+			String n = names.nextElement();
+			if(!(n.equals("altespasswortAbgleich") ||
+						n.equals("altespasswort") ||
+						n.equals("passwortwdh"))){
+				System.out.println("Parameter: " +n);
+				statement += n + " = ? , ";
+			}
 			
 		}
 		statement = statement.substring(0, statement.length() - 3) + " where kundeid = ?";
@@ -96,9 +102,15 @@ public class UserAendern extends HttpServlet {
 				if (n.equals("geburtsdatum")) {
 					pstmt.setDate(i,
 							new Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter(n)).getTime()));
+				}else if(n.equals("altespasswortAbgleich") ||
+						n.equals("altespasswort") ||
+						n.equals("passwortwdh")){
+					i--;
+					//Mache nichts
 				}else if (n.equals("istPremium")) {
 					System.out.println("Premium");
 				} else {
+					System.out.println("Para: "+ i + " - " + n + " - "+ request.getParameter(n));
 					pstmt.setString(i, request.getParameter(n));
 					System.out.println(n + " : " + request.getParameter(n) + ";" + i);
 				}
